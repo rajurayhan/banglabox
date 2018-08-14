@@ -17,6 +17,11 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('description');
+            $table->string('featured_image');
+            $table->integer('category_id');
+            $table->integer('sub_category_id')->nullable();
+            $table->boolean('status');
+            $table->string('tags'); // Array
             $table->integer('read_count');
             $table->integer('author_id')->nullable();
             $table->integer('created_by')->nullable();

@@ -11,6 +11,12 @@
   <!-- Google Fonts -->
   <link href='https://fonts.googleapis.com/css?family=Montserrat:400,600,700%7CSource+Sans+Pro:400,600,700' rel='stylesheet'>
 
+  {{-- Bangla Fonts --}}
+      {{-- Siyam Rupali --}}
+      {{-- https://fonts.maateen.me/ --}}
+  <link href="https://fonts.maateen.me/siyam-rupali/font.css" rel="stylesheet">  
+  <link href="https://fonts.maateen.me/bangla/font.css" rel="stylesheet">
+
   <!-- Css -->
   <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/font-icons.css') }}" />
@@ -24,6 +30,11 @@
 
   <!-- Lazyload (must be placed in head in order to work) -->
   <script src="{{ asset('js/lazysizes.min.js') }}"></script>
+  <style type="text/css">
+    body {
+      font-family: 'Bangla', Arial, sans-serif !important;
+    }
+  </style>
 
 </head>
 
@@ -57,7 +68,7 @@
         </li>
         <!-- Categories -->
         <li>
-          <a href="#" class="sidenav__menu-url">জীবনযাত্রা</a>
+          <a href="{{ route('home') }}" class="sidenav__menu-url">জীবনযাত্রা</a>
         </li>
         <li>
           <a href="#" class="sidenav__menu-url">বিস্ময়কর</a>

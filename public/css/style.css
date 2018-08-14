@@ -17,6 +17,8 @@
 /*-------------------------------------------------------*/
 /* General
 /*-------------------------------------------------------*/
+@import url('https://fonts.maateen.me/bangla/font.css');
+@import url('https://fonts.maateen.me/siyam-rupali/font.css');
 .clearfix {
 	*zoom: 1; }
 
@@ -93,7 +95,8 @@ a:focus {
 body {
 	margin: 0;
 	padding: 0;
-	font-family: "Source Sans Pro", sans-serif;
+	font-family: 'SiyamRupali', Arial, sans-serif;
+	/*font-family: "Source Sans Pro", sans-serif;*/
 	font-size: 15px;
 	line-height: 1.5;
 	font-smoothing: antialiased;
@@ -210,7 +213,7 @@ ul {
 	padding: 0; }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: "Montserrat", sans-serif;
+	font-family: "SiyamRupali", sans-serif;
 	margin-top: 0;
 	margin-bottom: 10px;
 	color: #171821;
@@ -407,7 +410,7 @@ hr {
 /*-------------------------------------------------------*/
 .btn {
 	font-weight: 700;
-	font-family: "Source Sans Pro", sans-serif;
+	font-family: 'SiyamRupali', Arial, sans-serif;
 	overflow: hidden;
 	display: inline-block;
 	text-decoration: none;
@@ -577,7 +580,7 @@ select::-ms-expand {
 
 label {
 	color: #171821;
-	font-family: "Montserrat", sans-serif;
+	font-family: "SiyamRupali", sans-serif;
 	font-size: 13px;
 	font-weight: 700;
 	display: inline-block;
@@ -1730,7 +1733,7 @@ img.mfp-img {
 	margin-right: 5px; }
 
 .entry__meta-category {
-	font-family: "Montserrat", sans-serif;
+	font-family: "SiyamRupali", sans-serif;
 	font-size: 12px;
 	text-transform: uppercase;
 	margin-bottom: 3px;
@@ -1796,7 +1799,7 @@ img.mfp-img {
 	left: 16px;
 	padding: 8px;
 	text-align: center;
-	font-family: "Montserrat", sans-serif; }
+	font-family: "SiyamRupali", sans-serif; }
 	.entry-date-label__weekday, .entry-date-label__month {
 		font-size: 8px;
 		text-transform: uppercase;
@@ -1965,7 +1968,7 @@ img.mfp-img {
 	        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
 	.trending-now__label {
 		background-color: #2D95E3;
-		font-family: "Source Sans Pro", sans-serif;
+		font-family: 'SiyamRupali', Arial, sans-serif;
 		font-weight: 700;
 		display: inline-block;
 		color: #fff;
@@ -2228,7 +2231,7 @@ img.mfp-img {
 	float: right;
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
-	font-family: "Montserrat", sans-serif;
+	font-family: "SiyamRupali", sans-serif;
 	color: #54555E;
 	font-size: 11px;
 	line-height: 28px; }
@@ -2812,7 +2815,7 @@ img.mfp-img {
 	font-weight: 700;
 	text-transform: uppercase;
 	background-color: #f7f7f7;
-	font-family: "Source Sans Pro", sans-serif;
+	font-family: 'SiyamRupali', Arial, sans-serif;
 	color: #54555E;
 	display: inline-block;
 	float: left; }
@@ -2908,7 +2911,7 @@ figure {
 	margin: 0; }
 
 figcaption {
-	font-family: "Source Sans Pro", sans-serif;
+	font-family: 'SiyamRupali', Arial, sans-serif;
 	font-size: 12px;
 	font-style: italic;
 	margin-top: 10px;
@@ -2946,7 +2949,7 @@ figcaption {
 		border: 5px solid #fff;
 		font-size: 36px;
 		font-weight: 700;
-		font-family: "Montserrat", sans-serif;
+		font-family: "SiyamRupali", sans-serif;
 		width: 100px;
 		height: 100px;
 		line-height: 90px;
@@ -3085,7 +3088,7 @@ figcaption {
 	overflow: hidden; }
 
 .comment-author {
-	font-family: "Montserrat", sans-serif;
+	font-family: "SiyamRupali", sans-serif;
 	font-size: 15px;
 	display: inline-block;
 	margin-bottom: 5px;
@@ -3227,7 +3230,7 @@ figcaption {
 			.nav__menu > li:hover a:before {
 				width: 100%; }
 		.nav__menu > li > a {
-			font-family: "Source Sans Pro", sans-serif;
+			font-family: 'SiyamRupali', Arial, sans-serif;
 			color: #171821;
 			font-size: 14px;
 			font-weight: 700;
@@ -3317,7 +3320,7 @@ figcaption {
 		.nav__megamenu-item .entry__title {
 			font-size: 16px; }
 		.nav__megamenu-list a {
-			font-family: "Montserrat", sans-serif;
+			font-family: "SiyamRupali", sans-serif;
 			display: block;
 			clear: both;
 			padding: 4px 0;
@@ -3503,7 +3506,7 @@ header .flex-child {
 	border: none;
 	background-color: transparent;
 	margin-bottom: 0;
-	font-family: "Montserrat", sans-serif;
+	font-family: "SiyamRupali", sans-serif;
 	font-size: 13px;
 	color: #171821;
 	border-radius: 0;
@@ -3677,7 +3680,7 @@ input.nav__search-mobile-input:-ms-input-placeholder {
 			border-top: 1px solid #E3E4E8; }
 	.sidenav__menu-dropdown a {
 		font-weight: 400;
-		font-family: "Source Sans Pro", sans-serif; }
+		font-family: 'SiyamRupali', Arial, sans-serif; }
 	.sidenav__menu-dropdown a, .sidenav__menu-dropdown:hover,
 	.sidenav__menu-dropdown .sidenav__menu-toggle {
 		color: #171821; }
@@ -3715,7 +3718,7 @@ input.nav__search-mobile-input:-ms-input-placeholder {
 	display: block;
 	color: #54555E;
 	padding: 12px 22px;
-	font-family: "Montserrat", sans-serif;
+	font-family: "SiyamRupali", sans-serif;
 	font-size: 15px;
 	font-weight: 600;
 	-webkit-transition: background 0.3s ease;
@@ -4660,7 +4663,7 @@ a img.aligncenter {
 	line-height: 41px;
 	font-size: 11px;
 	padding: 0 24px;
-	font-family: "Montserrat", sans-serif;
+	font-family: "SiyamRupali", sans-serif;
 	border: none;
 	text-transform: uppercase;
 	letter-spacing: 0.1em;

@@ -31,3 +31,22 @@ Route::get('/article', 'ArticleController@singleArticle')->name('singleArticle')
 
 
 /** Back End Routs  **/
+Route::get('dashboard', 'AdminController@dashboard')->name('dashboard');
+
+    // Category 
+Route::get('admin/category', 'CategoryController@allCategory')->name('allCategory');
+
+Route::post('admin/category/post', 'CategoryController@postCategory')->name('postCategory');
+Route::post('admin/category/update/', 'CategoryController@updateCategory')->name('updateCategory');
+Route::post('admin/category/delete/{id}', 'CategoryController@deleteCategory')->name('deleteCategory');
+
+Route::get('ajax/category/info/', 'CategoryController@getCategoryInfo')->name('getCategoryInfo'); // Ajax (Edit Purpose)
+
+    // Articles 
+Route::get('admin/articles', 'ArticleController@allArticles')->name('allArticles');
+
+Route::get('admin/article/new', 'ArticleController@newArticle')->name('newArticle');
+// Route::post('admin/article/post', 'ArticleController@postArticle')->name('postArticle');
+
+// Route::get('admin/article/edit/{id}', 'ArticleController@editArticle')->name('editArticle');
+// Route::post('admin/article/update/{id}', 'ArticleController@updatetArticle')->name('updateArticle');
