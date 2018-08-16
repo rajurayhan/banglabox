@@ -6,7 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Image;
+
 use App\Article;
+use App\Category;
 
 class ArticleController extends Controller
 {
@@ -27,6 +32,16 @@ class ArticleController extends Controller
 
     public function newArticle()
     {
-        return view('backend.article.add');
+        $categoryObj    = new Category();
+        $categories     = $categoryObj->get();
+
+        return view('backend.article.add' , compact('categories'));
+    }
+
+    public function postArticle(Request $request)
+    {
+        Image::make(Input::file('featured_image'))->resize(300, 200)->save('foo.jpg');
+        return 'Saved';
+
     }
 }

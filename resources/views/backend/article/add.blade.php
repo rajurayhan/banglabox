@@ -1,10 +1,67 @@
 @extends('backend.layouts.master')
 @section('title')
-Banglabox || Articles
+Banglabox || Add New Article
 @endsection
 @section('headSection')
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+
+    <!-- Select 2 -->
+    <link rel="stylesheet" href="{{ asset('assets/bower_components/select2/dist/css/select2.min.css') }}">
+
+    {{-- TinyMCE --}}
+    <script type="text/javascript" src="{{URL::asset('vendor/tinymce/js/tinymce/tinymce.min.js')}}"></script>
+
+    <!-- Tags Input -->
+    <!-- <link rel="stylesheet" href="{{URL::asset('vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.css')}}"> -->
+    <link rel="stylesheet" href="{{ asset('vendor/tagsinput/jquery.tagsinput.min.css') }}">
+
+    <!-- Dropify -->
+    <link rel="stylesheet" href="{{ asset('vendor/dorpify/dist/css/dropify.min.css') }}">
+
+    <script>
+      var editor_config = {
+        path_absolute : "/",
+        selector: "#description",
+        plugins: [
+          "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+          "searchreplace wordcount visualblocks visualchars code fullscreen",
+          "insertdatetime media nonbreaking save table contextmenu directionality",
+          "emoticons template paste textcolor colorpicker textpattern"
+        ],
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
+        relative_urls: false,
+        file_browser_callback : function(field_name, url, type, win) {
+          var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+          var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+
+          var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
+          if (type == 'image') {
+            cmsURL = cmsURL + "&type=Images";
+          } else {
+            cmsURL = cmsURL + "&type=Files";
+          }
+
+          tinyMCE.activeEditor.windowManager.open({
+            file : cmsURL,
+            title : 'BanglaBox Filemanager',
+            width : x * 0.8,
+            height : y * 0.8,
+            resizable : "yes",
+            close_previous : "no"
+          });
+        }
+      };
+
+      tinymce.init(editor_config);
+    </script>
+    <style type="text/css">
+        [class^='select2'] {
+          border-radius: 0px !important;
+          line-height: 22px !important;
+        }
+    }
+    </style>
 @endsection
 @section('main-content')
 <!-- Content Wrapper. Contains page content -->
@@ -23,30 +80,166 @@ Banglabox || Articles
 
     <!-- Main content -->
     <section class="content container-fluid">
-
-    <!--------------------------
-    | Your Page Content Here |
-    -------------------------->
-    
-    <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-9">
+          <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
               <h3 class="box-title">New Article</h3>
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
-              
-            </div>
-            <!-- /.box-body -->
+            <!-- form start -->
+            <form method="post" action="{{ route('postArticle') }}" enctype="multipart/form-data">
+              {{ csrf_field() }}
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="title">Title</label>
+                  <input type="text" class="form-control" id="title" placeholder="Enter Title">
+                </div>
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  {{-- <input type="text" class="form-control" id="title" placeholder="Enter Title"> --}}
+                  <textarea id="description" rows="15"></textarea>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              {{-- <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div> --}}
           </div>
           <!-- /.box -->
+
         </div>
-        <!-- /.col -->
+        <!--/.col (left) -->
+        <!-- right column -->
+        <div class="col-md-3">
+          <!-- Horizontal Form -->
+
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Featured Image</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <div class="box-body">
+                <div class="form-group">
+                  <!-- <label for="category_id" class="col-sm-2 control-label">Tags</label> -->
+
+                  <div class="col-sm-12">
+                    <!-- <select multiple data-role="tagsinput" class="form-controll">
+                    </select> -->
+                    <input type="file" class="form-control" id="dropify" name="image" placeholder="Upload Image">
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                
+              </div>
+              <!-- /.box-footer -->
+          </div>
+          <!-- /.box -->
+          
+
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Category</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <div class="box-body">
+                <div class="form-group">
+                  <!-- <label for="category_id" class="col-sm-2 control-label">Category</label> -->
+
+                  <div class="col-sm-12">
+                    <select name="category_id" class="form-control select2"  data-placeholder="Select a Category"
+                        style="width: 100%;">
+                      @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                
+              </div>
+              <!-- /.box-footer -->
+          </div>
+          <!-- /.box -->
+
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Tags</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <div class="box-body">
+                <div class="form-group">
+                  <!-- <label for="category_id" class="col-sm-2 control-label">Tags</label> -->
+
+                  <div class="col-sm-12">
+                    <!-- <select multiple data-role="tagsinput" class="form-controll">
+                    </select> -->
+                    <input type="text" class="form-control" id="tags" name="tags" placeholder="Enter Tags">
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                
+              </div>
+              <!-- /.box-footer -->
+          </div>
+          <!-- /.box -->
+
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Publish</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="status" class="col-sm-2 control-label">Status</label>
+
+                  <div class="col-sm-10">
+                    <select name="status" class="form-control">
+                        <option value="published">Published</option>
+                        <option value="Draft">Draft</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group" style="margin-top:50px !important;">
+                  <label for="status" class="col-sm-2 control-label">Visibility</label>
+
+                  <div class="col-sm-10">
+                    <select name="status" class="form-control">
+                        <option value="published">Public</option>
+                        <option value="Draft">Private</option>
+                    </select>
+                  </div>
+                </div>                
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button type="button" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-success pull-right">Publish</button>
+              </div>
+              <!-- /.box-footer -->
+          </div>
+          <!-- /.box -->
+
+          
+
+        </div>
+        <!--/.col (right) -->
       </div>
       <!-- /.row -->
-    
-
     </section>
 <!-- /.content -->
 </div>
@@ -59,18 +252,28 @@ Banglabox || Articles
 <!-- DataTables -->
 <script src="{{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
+<!-- Tags Input -->
+<!-- <script type="text/javascript" src="{{URL::asset('vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js')}}"></script> -->
+<script src="{{ asset('vendor/tagsinput/jquery.tagsinput.min.js') }}"></script>
+
+<script src="{{ asset('vendor/dorpify/dist/js/dropify.min.js') }}"></script>
 
 <script>
-  $(function () {
-    $('#articleList').DataTable()
-    // $('#example2').DataTable({
-    //   'paging'      : true,
-    //   'lengthChange': false,
-    //   'searching'   : false,
-    //   'ordering'    : true,
-    //   'info'        : true,
-    //   'autoWidth'   : false
-    // })
-  })
+    $(document).ready(function() {
+        $('.select2').select2();
+        $('#tags').tagsInput();
+
+        $('#dropify').dropify({
+          messages: {
+              'default': 'Drag and drop a file here or click',
+              'replace': 'Drag and drop or click to replace',
+              'remove':  'Remove',
+              'error':   'Ooops, something wrong happended.'
+          }
+      });
+    });
 </script>
+
+
 @endsection

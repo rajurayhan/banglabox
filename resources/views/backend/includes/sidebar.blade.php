@@ -31,7 +31,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <li class="active"><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         {{-- <li><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span>Another Link</span></a></li> --}}
         <li class="treeview">
           <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span>Articles</span>
@@ -40,12 +40,12 @@
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Write New</a></li>
-            <li><a href="#">All Articles</a></li>
+            <li><a href="{{ route('newArticle') }}">Write New</a></li>
+            <li><a href="{{ route('allArticles') }}">All Articles</a></li>
           </ul>
         </li>
 
-        <li><a href="#"><i class="fa fa-thumb-tack" aria-hidden="true"></i><span>Categories</span></a></li>
+        <li><a href="{{ route('allCategory') }}"><i class="fa fa-thumb-tack" aria-hidden="true"></i><span>Categories</span></a></li>
 
         <li><a href="#"><i class="fa fa-users" aria-hidden="true"></i><span>Users</span></a></li>
 
