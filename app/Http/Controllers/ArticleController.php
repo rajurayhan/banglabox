@@ -15,10 +15,18 @@ use App\Category;
 
 class ArticleController extends Controller
 {
-    public function singleArticle($value='')
+    public function singleArticle($id, $slug)
     {
-        return view('frontend.article.single');
+        $articleObj         = new Article();
+        $article            = $articleObj->find($id);
+        return view('frontend.article.single', compact('article'));
+        // return $article;
     }
+
+    // public function testArticle()
+    // {
+    //     return view('frontend.article.single');
+    // }
 
 
     // Backend Function 
@@ -40,8 +48,68 @@ class ArticleController extends Controller
 
     public function postArticle(Request $request)
     {
-        Image::make(Input::file('featured_image'))->resize(300, 200)->save('foo.jpg');
-        return 'Saved';
+        
+        // $file = Input::file('image');
+        // $fileName = time() . '-' . $file->getClientOriginalName();
+        // $file->move('uploads/featured', $fileName);
 
+        $articleObj         = new Article();
+
+        $articleObj->title              = $request->title;
+        $articleObj->description        = $request->description;
+        $articleObj->category_id        = $request->category_id;
+        $articleObj->status             = $request->status;
+        $articleObj->visibility         = $request->visibility;
+        $articleObj->tags               = $request->tags;
+
+        $image = Input::file('image');
+			$filename  = time() . '.' . $image->getClientOriginalExtension();
+			$path = public_path('uploads/featured/' . $filename);
+            Image::make($image->getRealPath())->resize(468, 249)->save($path);
+        
+        $articleObj->image = $filename;
+        
+        $articleObj->save();
+
+        return redirect()->route('allArticles')->with('message', 'Article Added Successfully!');
+
+        // return 'Saved';
+
+    }
+
+    public function editArticle($id)
+    {
+        $articleObj         = new Article();
+        $article            = $articleObj->find($id);
+
+        $categoryObj    = new Category();
+        $categories     = $categoryObj->get();
+        return view('backend.article.edit' , compact('categories', 'article'));
+    }
+
+    public function updateArticle(Request $request, $id)
+    {
+        $articleObj         = new Article();
+        $article            = $articleObj->find($id);
+
+        $article->title              = $request->title;
+        $article->description        = $request->description;
+        $article->category_id        = $request->category_id;
+        $article->status             = $request->status;
+        $article->visibility         = $request->visibility;
+        $article->tags               = $request->tags;
+
+        $image = Input::file('image');
+
+        if($image){
+            $filename  = time() . '.' . $image->getClientOriginalExtension();
+            $path = public_path('uploads/featured/' . $filename);
+            Image::make($image->getRealPath())->resize(468, 249)->save($path);
+        
+            $article->image = $filename;
+        }
+        $article->save();
+
+        return redirect()->back()->with('message', 'Article Updated Successfully!');
     }
 }

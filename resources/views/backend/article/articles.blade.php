@@ -33,8 +33,8 @@ Banglabox || Articles
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Article List</h3>
-              <button type="button" class="btn btn-sm btn-success pull-right">
-                Add New</button>
+              <a href="{{ route('newArticle') }}"><button type="button" class="btn btn-sm btn-success pull-right">
+                Add New</button></a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -51,7 +51,17 @@ Banglabox || Articles
                 </tr>
                 </thead>
                 <tbody>
-                    
+                    @foreach($articles as $article)
+                      <tr>
+                        <td>{{ $loop->index+1 }}</td>
+                        <td><img src="{{ route('home') }}/uploads/featured/{{ $article->image }}"  class="img-thumbnail img-responsive" style="max-width: 150px;"></td>
+                        <td>{{ $article->title }}</td>
+                        <td>{{ $article->category->name }}</td>
+                        <td>{{ $article->slug }}</td>
+                        <td>{{ $article->creted_at }}</td>
+                        <td><a href="{{ route('editArticle', $article->id) }}"><button type="button" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-edit"></span></button></a></td>
+                      </tr>
+                    @endforeach
                 </tbody>
                 <tfoot>
                 <tr>

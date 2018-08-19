@@ -90,17 +90,18 @@ Banglabox || Add New Article
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form method="post" action="{{ route('postArticle') }}" enctype="multipart/form-data">
-              {{ csrf_field() }}
+            {{-- <form method="post" action="{{ route('postArticle') }}" enctype="multipart/form-data"> --}}
+              {{ Form::open(['route'=>'postArticle', 'class'=>'form','enctype' =>'multipart/form-data' ,'files'=>true]) }}
+              {{-- {{ csrf_field() }} --}}
               <div class="box-body">
                 <div class="form-group">
                   <label for="title">Title</label>
-                  <input type="text" class="form-control" id="title" placeholder="Enter Title">
+                  <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" required>
                 </div>
                 <div class="form-group">
                   <label for="description">Description</label>
                   {{-- <input type="text" class="form-control" id="title" placeholder="Enter Title"> --}}
-                  <textarea id="description" rows="15"></textarea>
+                  <textarea id="description" name="description" rows="20"></textarea>
                 </div>
               </div>
               <!-- /.box-body -->
@@ -130,7 +131,12 @@ Banglabox || Add New Article
                   <div class="col-sm-12">
                     <!-- <select multiple data-role="tagsinput" class="form-controll">
                     </select> -->
-                    <input type="file" class="form-control" id="dropify" name="image" placeholder="Upload Image">
+                    {{-- <input type="file" class="form-control" id="dropify" name="image" placeholder="Upload Image"> --}}
+                    {{-- {!! Form::file('image', ['id' => 'dropify', 'class' => 'form-control']) !!} --}}
+                    <div>
+                       <img src="" id="blah" alt="" style="width: 100%">
+                    </div>
+                    <input type="file" name="image" id="" onchange="readURL(this);" class="form-control" required  />
                   </div>
                 </div>
               </div>
@@ -208,8 +214,8 @@ Banglabox || Add New Article
 
                   <div class="col-sm-10">
                     <select name="status" class="form-control">
-                        <option value="published">Published</option>
-                        <option value="Draft">Draft</option>
+                        <option value="1">Published</option>
+                        <option value="0">Draft</option>
                     </select>
                   </div>
                 </div>
@@ -218,9 +224,9 @@ Banglabox || Add New Article
                   <label for="status" class="col-sm-2 control-label">Visibility</label>
 
                   <div class="col-sm-10">
-                    <select name="status" class="form-control">
-                        <option value="published">Public</option>
-                        <option value="Draft">Private</option>
+                    <select name="visibility" class="form-control">
+                        <option value="1">Public</option>
+                        <option value="0">Private</option>
                     </select>
                   </div>
                 </div>                
@@ -233,6 +239,7 @@ Banglabox || Add New Article
               <!-- /.box-footer -->
           </div>
           <!-- /.box -->
+        {{ Form::close()}}
 
           
 
@@ -273,6 +280,21 @@ Banglabox || Add New Article
           }
       });
     });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    // .width(350)
+                    // .height(250);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 </script>
 
 

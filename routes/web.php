@@ -19,7 +19,8 @@
 Route::get('/', 'HomeController@home')->name('home');
 
     //Article Routes
-Route::get('/article', 'ArticleController@singleArticle')->name('singleArticle'); // Slugable with a Identifire Variable.
+Route::get('/article/{id}/{slug}', 'ArticleController@singleArticle')->name('singleArticle'); // Slugable with a Identifire Variable.
+// Route::get('/article-test', 'ArticleController@testArticle')->name('testArticle'); 
 
     // Category 
 
@@ -48,5 +49,5 @@ Route::get('admin/articles', 'ArticleController@allArticles')->name('allArticles
 Route::get('admin/article/new', 'ArticleController@newArticle')->name('newArticle');
 Route::post('admin/article/post', 'ArticleController@postArticle')->name('postArticle');
 
-// Route::get('admin/article/edit/{id}', 'ArticleController@editArticle')->name('editArticle');
-// Route::post('admin/article/update/{id}', 'ArticleController@updatetArticle')->name('updateArticle');
+Route::get('admin/article/edit/{id}', 'ArticleController@editArticle')->name('editArticle');
+Route::post('admin/article/update/{id}', 'ArticleController@updateArticle')->name('updateArticle');
