@@ -45,6 +45,7 @@ Route::get('ajax/category/info/', 'CategoryController@getCategoryInfo')->name('g
 
     // Articles 
 Route::get('admin/articles', 'ArticleController@allArticles')->name('allArticles');
+Route::get('admin/articles/data', 'ArticleController@anyData')->name('anyData');
 
 Route::get('admin/article/new', 'ArticleController@newArticle')->name('newArticle');
 Route::post('admin/article/post', 'ArticleController@postArticle')->name('postArticle');

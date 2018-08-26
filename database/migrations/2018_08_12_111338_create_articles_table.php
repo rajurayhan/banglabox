@@ -23,6 +23,7 @@ class CreateArticlesTable extends Migration
             $table->integer('sub_category_id')->nullable();
             $table->boolean('status');
             $table->boolean('visibility');
+            $table->boolean('featued')->default(0);
             $table->string('tags'); // Array
             $table->integer('read_count')->default(0);
             $table->integer('author_id')->nullable();
