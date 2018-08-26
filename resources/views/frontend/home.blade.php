@@ -67,7 +67,7 @@
           <a href="{{ route('home') }}" class="sidenav__menu-url">হোম</a>
         </li>
         <!-- Categories -->
-        <li>
+        <!-- <li>
           <a href="{{ route('home') }}" class="sidenav__menu-url">জীবনযাত্রা</a>
         </li>
         <li>
@@ -75,7 +75,17 @@
         </li>
         <li>
           <a href="#" class="sidenav__menu-url">বিনোদন </a>
+        </li> -->
+        <?php
+          use App\Category;
+          $navObj  = new Category();
+          $navs    = $navObj->get();
+        ?>
+        @foreach($navs as $nav)
+        <li>
+          <a href="{{ route('categoryArticles', $nav->slug) }}" class="sidenav__menu-url">{{ $nav->name }} </a>
         </li>
+        @endforeach
       </ul>
     </nav>
 
@@ -154,7 +164,7 @@
 
             <!-- Logo -->
             <a href="{{ route('home') }}" class="logo">
-              <img class="logo__img" src="img/logo_default.png" srcset="img/logo_default.png 1x, img/logo_default@2x.png 2x" alt="logo">
+              <img class="logo__img" src="{{ route('home') }}/img/logo_default.png" srcset="{{ route('home') }}/img/logo_default.png 1x, img/logo_default@2x.png 2x" alt="logo">
             </a>
 
             <!-- Nav-wrap -->
@@ -162,9 +172,14 @@
               <ul class="nav__menu">
 
                 <li class="active"><a href="{{ route('home') }}">হোম</a></li>
-                <li><a href="#">জীবন যাত্রা</a></li>
+                <!-- <li><a href="#">জীবন যাত্রা</a></li>
                 <li><a href="#">বিস্ময়কর</a></li>
-                <li><a href="#">বিনোদন </a></li>
+                <li><a href="#">বিনোদন </a></li> -->
+                @foreach($navs as $nav)
+                <li>
+                  <a href="{{ route('categoryArticles', $nav->slug) }}" class="sidenav__menu-url">{{ $nav->name }} </a>
+                </li>
+                @endforeach
 
 
               </ul> <!-- end menu -->

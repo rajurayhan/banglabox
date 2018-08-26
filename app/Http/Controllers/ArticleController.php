@@ -31,6 +31,18 @@ class ArticleController extends Controller
         // return $article;
     }
 
+    public function categoryArticles($slug)
+    {
+        $categoryObj    = new Category();
+        $category       = $categoryObj->where('slug', $slug)->first();
+
+        $articleObj             = new Article();
+        $articles               = $articleObj->where('category_id', $category->id)->get();
+
+        // return $category;
+        return view('frontend.article.category', compact('articles', 'category'));
+    }
+
     // public function testArticle()
     // {
     //     return view('frontend.article.single');

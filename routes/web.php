@@ -20,6 +20,7 @@ Route::get('/', 'HomeController@home')->name('home');
 
     //Article Routes
 Route::get('/article/{id}/{slug}', 'ArticleController@singleArticle')->name('singleArticle'); // Slugable with a Identifire Variable.
+Route::get('/category/{slug}', 'ArticleController@categoryArticles')->name('categoryArticles'); // Slugable with a Identifire Variable.
 // Route::get('/article-test', 'ArticleController@testArticle')->name('testArticle'); 
 
     // Category 
