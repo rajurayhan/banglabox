@@ -103,6 +103,12 @@ Banglabox || Add New Article
                   {{-- <input type="text" class="form-control" id="title" placeholder="Enter Title"> --}}
                   <textarea id="description" name="description" rows="20">{{ $article->description }}</textarea>
                 </div>
+
+                <div class="form-group">
+                  <label for="excerpt">Excerpt</label>
+                  <!-- <textarea id="excerpt" name="excerpt" rows="5"></textarea> -->
+                  <input type="text" class="form-control" id="excerpt" name="excerpt" placeholder="Enter Excerpt" value="{{ $article->excerpt }}" required>
+                </div>
               </div>
               <!-- /.box-body -->
 

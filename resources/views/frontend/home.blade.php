@@ -357,183 +357,20 @@
 
           <!-- Worldwide News -->
           <section class="section">
-            <article class="entry card post-list">
-              <div class="entry__img-holder post-list__img-holder card__img-holder" style="background-image: url(img/content/list/list_post_1.jpg)">
-                <a href="#" class="thumb-url"></a>
-                <img src="img/content/list/list_post_1.jpg" alt="" class="entry__img d-none">
-                <a href="#" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--blue">Business</a>
-              </div>
-
-              <div class="entry__body post-list__body card__body">
-                <div class="entry__header">
-                  <h2 class="entry__title">
-                    <a href="#">These Are the 20 Best Places to Work in 2018</a>
-                  </h2>
-                  <ul class="entry__meta">
-                    <li class="entry__meta-author">
-                      <span>by</span>
-                      <a href="#">BanglaBox</a>
-                    </li>
-                    <li class="entry__meta-date">
-                      Jan 21, 2018
-                    </li>
-                  </ul>
-                </div>        
-                <div class="entry__excerpt">
-                  <p>iPrice Group report offers insights on daily e-commerce activity in the ...</p>
-                </div>
-              </div>
-            </article>
-
-            <article class="entry card post-list">
-              <div class="entry__img-holder post-list__img-holder card__img-holder" style="background-image: url(img/content/list/list_post_2.jpg)">
-                <a href="#" class="thumb-url"></a>
-                <img src="img/content/list/list_post_2.jpg" alt="" class="entry__img d-none">
-                <a href="#" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--purple">Fashion</a>
-              </div>
-
-              <div class="entry__body post-list__body card__body">
-                <div class="entry__header">
-                  <h2 class="entry__title">
-                    <a href="#">This Co-Working Space is a One-Stop Shop</a>
-                  </h2>
-                  <ul class="entry__meta">
-                    <li class="entry__meta-author">
-                      <span>by</span>
-                      <a href="#">BanglaBox</a>
-                    </li>
-                    <li class="entry__meta-date">
-                      Jan 21, 2018
-                    </li>
-                  </ul>
-                </div>        
-                <div class="entry__excerpt">
-                  <p>iPrice Group report offers insights on daily e-commerce activity in the ...</p>
-                </div>
-              </div>
-            </article>
-
-            <article class="entry card post-list">
-              <div class="entry__img-holder post-list__img-holder card__img-holder" style="background-image: url(img/content/list/list_post_3.jpg)">
-                <a href="#" class="thumb-url"></a>
-                <img src="img/content/list/list_post_3.jpg" alt="" class="entry__img d-none">
-                <a href="#" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--orange">Mining</a>
-              </div>
-
-              <div class="entry__body post-list__body card__body">
-                <div class="entry__header">
-                  <h2 class="entry__title">
-                    <a href="#">This 6-Year-Old Kid Reportedly Earned US$11 Million on YouTube</a>
-                  </h2>
-                  <ul class="entry__meta">
-                    <li class="entry__meta-author">
-                      <span>by</span>
-                      <a href="#">BanglaBox</a>
-                    </li>
-                    <li class="entry__meta-date">
-                      Jan 21, 2018
-                    </li>
-                  </ul>
-                </div>        
-                <div class="entry__excerpt">
-                  <p>iPrice Group report offers insights on daily e-commerce activity in the ...</p>
-                </div>
-              </div>
-            </article>
-
-            <article class="entry card post-list">
-              <div class="entry__img-holder post-list__img-holder card__img-holder" style="background-image: url(img/content/list/list_post_4.jpg)">
-                <a href="#" class="thumb-url"></a>
-                <img src="img/content/list/list_post_4.jpg" alt="" class="entry__img d-none">
-                <a href="#" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--violet">World</a>
-              </div>
-
-              <div class="entry__body post-list__body card__body">
-                <div class="entry__header">
-                  <h2 class="entry__title">
-                    <a href="#">Rating Agency Breaks with Financial Community </a>
-                  </h2>
-                  <ul class="entry__meta">
-                    <li class="entry__meta-author">
-                      <span>by</span>
-                      <a href="#">BanglaBox</a>
-                    </li>
-                    <li class="entry__meta-date">
-                      Jan 21, 2018
-                    </li>
-                  </ul>
-                </div>        
-                <div class="entry__excerpt">
-                  <p>iPrice Group report offers insights on daily e-commerce activity in the ...</p>
-                </div>
-              </div>
-            </article>
-
-            <article class="entry card post-list">
-              <div class="entry__img-holder post-list__img-holder card__img-holder" style="background-image: url(img/content/list/list_post_5.jpg)">
-                <a href="#" class="thumb-url"></a>
-                <img src="img/content/list/list_post_5.jpg" alt="" class="entry__img d-none">
-                <a href="#" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--red">Investment</a>
-              </div>
-
-              <div class="entry__body post-list__body card__body">
-                <div class="entry__header">
-                  <h2 class="entry__title">
-                    <a href="#">Decentralized Exchanges (DEX) – What Are They?</a>
-                  </h2>
-                  <ul class="entry__meta">
-                    <li class="entry__meta-author">
-                      <span>by</span>
-                      <a href="#">BanglaBox</a>
-                    </li>
-                    <li class="entry__meta-date">
-                      Jan 21, 2018
-                    </li>
-                  </ul>
-                </div>        
-                <div class="entry__excerpt">
-                  <p>iPrice Group report offers insights on daily e-commerce activity in the ...</p>
-                </div>
-              </div>
-            </article>
-
-            <article class="entry card post-list">
-              <div class="entry__img-holder post-list__img-holder card__img-holder" style="background-image: url(img/content/list/list_post_6.jpg)">
-                <a href="#" class="thumb-url"></a>
-                <img src="img/content/list/list_post_6.jpg" alt="" class="entry__img d-none">
-                <a href="#" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--cyan">Technology</a>
-              </div>
-
-              <div class="entry__body post-list__body card__body">
-                <div class="entry__header">
-                  <h2 class="entry__title">
-                    <a href="#">Decentralized Exchanges (DEX) – What Are They?</a>
-                  </h2>
-                  <ul class="entry__meta">
-                    <li class="entry__meta-author">
-                      <span>by</span>
-                      <a href="#">BanglaBox</a>
-                    </li>
-                    <li class="entry__meta-date">
-                      Jan 21, 2018
-                    </li>
-                  </ul>
-                </div>        
-                <div class="entry__excerpt">
-                  <p>iPrice Group report offers insights on daily e-commerce activity in the ...</p>
-                </div>
-              </div>
-            </article>
+          @include('frontend.article.data')
           </section> <!-- end worldwide news -->
 
           <!-- Pagination -->
-          <nav class="pagination">
+          <!-- <nav class="pagination">
             <span class="pagination__page pagination__page--current">1</span>
             <a href="#" class="pagination__page">2</a>
             <a href="#" class="pagination__page">3</a>
             <a href="#" class="pagination__page">4</a>
             <a href="#" class="pagination__page pagination__icon pagination__page--next"><i class="ui-arrow-right"></i></a>
-          </nav>
+          </nav> -->
+          <div class="ajax-load text-center" style="display:none">
+            <p><img src="http://demo.itsolutionstuff.com/plugin/loader.gif">Loading More Articles</p>
+          </div>
 
         </div> <!-- end posts -->
 
@@ -634,8 +471,6 @@
           </aside> <!-- end widget recommended (rating) -->
         </aside> <!-- end sidebar 1 -->
       </div> <!-- content secondary -->
-
-
       <!-- Carousel posts -->
       <section class="section mb-0">
           <div class="title-wrap title-wrap--line title-wrap--pr">
@@ -667,6 +502,8 @@
           </div> <!-- end slider -->
 
       </section> <!-- end carousel posts -->
+
+      
       
 
     </div> <!-- end main container -->
@@ -815,6 +652,43 @@
   <script src="{{ asset('js/jquery.newsTicker.min.js') }}"></script>  
   <script src="{{ asset('js/modernizr.min.js') }}"></script>
   <script src="{{ asset('js/scripts.js') }}"></script>
+
+  <script type="text/javascript">
+    var page = 1;
+    $(window).scroll(function() {
+        if($(window).scrollTop() + $(window).height() >= $(document).height()) {
+            page++;
+            loadMoreData(page);
+        }
+    });
+
+
+    function loadMoreData(page){
+      $.ajax(
+            {
+                url: '?page=' + page,
+                type: "get",
+                beforeSend: function()
+                {
+                    $('.ajax-load').show();
+                }
+            })
+            .done(function(data)
+            {
+                if(data.html == " "){
+                    $('.ajax-load').html("No more records found");
+                    return;
+                }
+                $('.ajax-load').hide();
+                $(".blog__content").append(data.html);
+            })
+            .fail(function(jqXHR, ajaxOptions, thrownError)
+            {
+                  // alert('server not responding...');
+                  console.log('server not responding...');
+            });
+    }
+  </script>
 
 </body>
 

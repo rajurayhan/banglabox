@@ -4,10 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Article;
+use App\Category;
+
 class HomeController extends Controller
 {
-    public function home(){
-        return view('frontend.home');
+    public function home(Request $request){
+        $articleObj         = new Article();
+        $articles           = $articleObj->paginate(6);
+
+        if($request->ajax()){
+            $view = view('frontend.article.data',compact('articles'))->render();
+            return response()->json(['html'=>$view]);
+        }
+
+        return view('frontend.home', compact('articles'));
     }
 
     // public function about(){

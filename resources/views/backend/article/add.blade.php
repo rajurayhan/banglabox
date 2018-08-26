@@ -101,7 +101,13 @@ Banglabox || Add New Article
                 <div class="form-group">
                   <label for="description">Description</label>
                   {{-- <input type="text" class="form-control" id="title" placeholder="Enter Title"> --}}
-                  <textarea id="description" name="description" rows="20"></textarea>
+                  <textarea id="description" name="description" rows="17"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="excerpt">Excerpt</label>
+                  <!-- <textarea id="excerpt" name="excerpt" rows="5"></textarea> -->
+                  <input type="text" class="form-control" id="excerpt" name="excerpt" placeholder="Enter Excerpt" required>
                 </div>
               </div>
               <!-- /.box-body -->

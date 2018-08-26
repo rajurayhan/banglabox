@@ -10,7 +10,8 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4",
-        "unisharp/laravel-filemanager": "~1.8"
+        "unisharp/laravel-filemanager": "~1.8",
+        "ronisaha/easy-bangla-date": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

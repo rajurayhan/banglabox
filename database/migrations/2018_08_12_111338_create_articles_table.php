@@ -17,6 +17,7 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->longText('description');
+            $table->string('excerpt');
             $table->string('image');
             $table->integer('category_id');
             $table->integer('sub_category_id')->nullable();

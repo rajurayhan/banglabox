@@ -58,7 +58,7 @@ Banglabox || Articles
                         <td>{{ $article->title }}</td>
                         <td>{{ $article->category->name }}</td>
                         <td>{{ $article->slug }}</td>
-                        <td>{{ $article->creted_at }}</td>
+                        <td>{{ $article->created_at }}</td>
                         <td><a href="{{ route('editArticle', $article->id) }}"><button type="button" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-edit"></span></button></a></td>
                       </tr>
                     @endforeach

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "90427807966b3d763099dd76e88811bd",
+    "content-hash": "edf3284c4529d95245c226c07d6b21a2",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -745,16 +745,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.45",
+            "version": "1.0.46",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "a99f94e63b512d75f851b181afcdf0ee9ebef7e6"
+                "reference": "f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/a99f94e63b512d75f851b181afcdf0ee9ebef7e6",
-                "reference": "a99f94e63b512d75f851b181afcdf0ee9ebef7e6",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2",
+                "reference": "f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2",
                 "shasum": ""
             },
             "require": {
@@ -766,7 +766,7 @@
             "require-dev": {
                 "ext-fileinfo": "*",
                 "phpspec/phpspec": "^3.4",
-                "phpunit/phpunit": "^5.7"
+                "phpunit/phpunit": "^5.7.10"
             },
             "suggest": {
                 "ext-fileinfo": "Required for MimeType",
@@ -825,7 +825,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2018-05-07T08:44:23+00:00"
+            "time": "2018-08-22T07:45:22+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -1356,6 +1356,58 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "ronisaha/easy-bangla-date",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ronisaha/easy-bangla-date.git",
+                "reference": "bae41f86401854a31bf8465e7d85e4fe892908eb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ronisaha/easy-bangla-date/zipball/bae41f86401854a31bf8465e7d85e4fe892908eb",
+                "reference": "bae41f86401854a31bf8465e7d85e4fe892908eb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8 || ^5.7 || ^6.5",
+                "satooshi/php-coveralls": "^0.6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "EasyBanglaDate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roni Saha",
+                    "email": "roni.cse@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Extended DateTime Class For Bangla Date and Time",
+            "homepage": "http://ronisaha.github.io/easy-bangla-date/",
+            "keywords": [
+                "Bangla",
+                "Bangla Date",
+                "Bangla DateTime"
+            ],
+            "time": "2018-06-07T00:46:13+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3939,7 +3991,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "ronisaha/easy-bangla-date": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

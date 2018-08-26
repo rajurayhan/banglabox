@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 
+use EasyBanglaDate\Types\BnDateTime;
+use EasyBanglaDate\Types\DateTime as EnDateTime;
+
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Image;
@@ -17,8 +20,11 @@ class ArticleController extends Controller
 {
     public function singleArticle($id, $slug)
     {
-        $articleObj         = new Article();
-        $article            = $articleObj->find($id);
+        $articleObj             = new Article();
+        $article                = $articleObj->find($id);
+
+        $article->read_count    = $article->read_count + 1; 
+        $article->save();
         return view('frontend.article.single', compact('article'));
         // return $article;
     }
@@ -61,11 +67,13 @@ class ArticleController extends Controller
         $articleObj->status             = $request->status;
         $articleObj->visibility         = $request->visibility;
         $articleObj->tags               = $request->tags;
+        $articleObj->excerpt            = $request->excerpt;
 
         $image = Input::file('image');
 			$filename  = time() . '.' . $image->getClientOriginalExtension();
 			$path = public_path('uploads/featured/' . $filename);
-            Image::make($image->getRealPath())->resize(468, 249)->save($path);
+            // Image::make($image->getRealPath())->resize(468, 249)->save($path);
+            Image::make($image->getRealPath())->save($path);
         
         $articleObj->image = $filename;
         
@@ -98,6 +106,7 @@ class ArticleController extends Controller
         $article->status             = $request->status;
         $article->visibility         = $request->visibility;
         $article->tags               = $request->tags;
+        $article->excerpt            = $request->excerpt;
 
         $image = Input::file('image');
 

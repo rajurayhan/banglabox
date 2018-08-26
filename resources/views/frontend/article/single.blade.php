@@ -1,3 +1,20 @@
+<?php
+    use EasyBanglaDate\Types\BnDateTime;
+    use EasyBanglaDate\Types\DateTime as EnDateTime;
+
+    $created_at     = $article->created_at;
+
+    $bongabda = new BnDateTime($created_at, new DateTimeZone('Asia/Dhaka'));
+    // $bongabda->setDate(1398, 1, 1);
+
+    // echo $bongabda->format('l jS F Y b h:i:s') . PHP_EOL ;
+    // echo $bongabda->enFormat('l jS F Y h:i:s a') . PHP_EOL;
+    // echo $bongabda->getDateTime()->format('l jS F Y b h:i:s'). PHP_EOL;
+    $published =  $bongabda->getDateTime()->format('l, jS F, Y b h:i:s'). PHP_EOL;
+    // echo $bongabda->getDateTime()->enFormat('l jS F Y h:i:s A') . PHP_EOL;
+    // echo $created_at;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -390,12 +407,14 @@
 
     <div class="entry__meta-holder">
         <ul class="entry__meta">
-            <li class="entry__meta-author">
+            <!-- <li class="entry__meta-author">
                 <span>by</span>
                 <a href="#">DeoThemes</a>
-            </li>
+            </li> -->
             <li class="entry__meta-date">
-                {{ date('d M, Y', strtotime($article->created_at)) }}
+                <!-- {{ date('d M, Y', strtotime($article->created_at)) }} -->
+                {{ $published }}
+                
             </li>
         </ul>
 
