@@ -27,26 +27,45 @@ class ArticleController extends Controller
 
         $article->read_count    = $article->read_count + 1; 
         $article->save();
-        return view('frontend.article.single', compact('article'));
+
+        $relatedArticles        = $articleObj->where('category_id', $article->category_id)->where('id', '!=', $article->id)->take(6)->get();
+
+        $previous   = $articleObj->where('id', '<', $article->id)->orderBy('id','desc')->first();
+        $next       = $articleObj->where('id', '>', $article->id)->orderBy('id')->first();
+
+        return view('frontend.article.single', compact('article', 'relatedArticles', 'next', 'previous'));
         // return $article;
     }
 
-    public function categoryArticles($slug)
+    public function categoryArticles($slug, Request $request)
     {
         $categoryObj    = new Category();
         $category       = $categoryObj->where('slug', $slug)->first();
+        
 
         $articleObj             = new Article();
-        $articles               = $articleObj->where('category_id', $category->id)->get();
+        // $articles               = $articleObj->where('category_id', $category->id)->get();
+
+        $articles               = $articleObj->where('category_id', $category->id)->paginate(6);
+
+        if($request->ajax()){
+            $view = view('frontend.article.data',compact('articles'))->render();
+            return response()->json(['html'=>$view]);
+        }
 
         // return $category;
         return view('frontend.article.category', compact('articles', 'category'));
     }
 
-    // public function testArticle()
-    // {
-    //     return view('frontend.article.single');
-    // }
+    public function popularArticles()
+    {
+        $articleObj             = new Article();
+        $articles               = $articleObj->where('status', 1)
+                                             ->orderBy('read_count', 'desc')
+                                             ->take(5)
+                                             ->get();
+        return $articles;
+    }
 
 
     // Backend Function 

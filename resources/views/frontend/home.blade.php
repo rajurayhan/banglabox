@@ -1,3 +1,8 @@
+<?php
+    use EasyBanglaDate\Types\BnDateTime;
+    use EasyBanglaDate\Types\DateTime as EnDateTime;
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +35,8 @@
 
   <!-- Lazyload (must be placed in head in order to work) -->
   <script src="{{ asset('js/lazysizes.min.js') }}"></script>
+ <!-- Toastr --> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
   <style type="text/css">
     body {
       font-family: 'Bangla', Arial, sans-serif !important;
@@ -50,166 +57,7 @@
   <!-- Bg Overlay -->
   <div class="content-overlay"></div>
 
-  <!-- Sidenav -->    
-  <header class="sidenav" id="sidenav">
-
-    <!-- close -->
-    <div class="sidenav__close">
-      <button class="sidenav__close-button" id="sidenav__close-button" aria-label="close sidenav">
-        <i class="ui-close sidenav__close-icon"></i>
-      </button>
-    </div>
-    
-    <!-- Nav -->
-    <nav class="sidenav__menu-container">
-      <ul class="sidenav__menu" role="menubar">
-        <li>
-          <a href="{{ route('home') }}" class="sidenav__menu-url">হোম</a>
-        </li>
-        <!-- Categories -->
-        <!-- <li>
-          <a href="{{ route('home') }}" class="sidenav__menu-url">জীবনযাত্রা</a>
-        </li>
-        <li>
-          <a href="#" class="sidenav__menu-url">বিস্ময়কর</a>
-        </li>
-        <li>
-          <a href="#" class="sidenav__menu-url">বিনোদন </a>
-        </li> -->
-        <?php
-          use App\Category;
-          $navObj  = new Category();
-          $navs    = $navObj->get();
-        ?>
-        @foreach($navs as $nav)
-        <li>
-          <a href="{{ route('categoryArticles', $nav->slug) }}" class="sidenav__menu-url">{{ $nav->name }} </a>
-        </li>
-        @endforeach
-      </ul>
-    </nav>
-
-    <div class="socials sidenav__socials"> 
-      <a class="social social-facebook" href="#" target="_blank" aria-label="facebook">
-        <i class="ui-facebook"></i>
-      </a>
-      <a class="social social-twitter" href="#" target="_blank" aria-label="twitter">
-        <i class="ui-twitter"></i>
-      </a>
-      <a class="social social-google-plus" href="#" target="_blank" aria-label="google">
-        <i class="ui-google"></i>
-      </a>
-      <a class="social social-youtube" href="#" target="_blank" aria-label="youtube">
-        <i class="ui-youtube"></i>
-      </a>
-      <a class="social social-instagram" href="#" target="_blank" aria-label="instagram">
-        <i class="ui-instagram"></i>
-      </a>
-    </div>
-  </header> <!-- end sidenav -->
-
-  <main class="main oh" id="main">
-
-    <!-- Top Bar -->
-    <div class="top-bar d-none d-lg-block">
-      <div class="container">
-        <div class="row">
-
-          <!-- Top menu -->
-          <div class="col-lg-6">
-            <ul class="top-menu">
-              <li><a href="about.php">About</a></li>
-              <li><a href="contact.php">Contact</a></li>
-            </ul>
-          </div>
-          
-          <!-- Socials -->
-          <div class="col-lg-6">
-            <div class="socials nav__socials socials--nobase socials--white justify-content-end"> 
-              <a class="social social-facebook" href="#" target="_blank" aria-label="facebook">
-                <i class="ui-facebook"></i>
-              </a>
-              <a class="social social-twitter" href="#" target="_blank" aria-label="twitter">
-                <i class="ui-twitter"></i>
-              </a>
-              <a class="social social-google-plus" href="#" target="_blank" aria-label="google">
-                <i class="ui-google"></i>
-              </a>
-              <a class="social social-youtube" href="#" target="_blank" aria-label="youtube">
-                <i class="ui-youtube"></i>
-              </a>
-              <a class="social social-instagram" href="#" target="_blank" aria-label="instagram">
-                <i class="ui-instagram"></i>
-              </a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div> <!-- end top bar -->        
-
-    <!-- Navigation -->
-    <header class="nav">
-
-      <div class="nav__holder nav--sticky">
-        <div class="container relative">
-          <div class="flex-parent">
-
-            <!-- Side Menu Button -->
-            <button class="nav-icon-toggle" id="nav-icon-toggle" aria-label="Open side menu">
-              <span class="nav-icon-toggle__box">
-                <span class="nav-icon-toggle__inner"></span>
-              </span>
-            </button> 
-
-            <!-- Logo -->
-            <a href="{{ route('home') }}" class="logo">
-              <img class="logo__img" src="{{ route('home') }}/img/logo_default.png" srcset="{{ route('home') }}/img/logo_default.png 1x, img/logo_default@2x.png 2x" alt="logo">
-            </a>
-
-            <!-- Nav-wrap -->
-            <nav class="flex-child nav__wrap d-none d-lg-block">              
-              <ul class="nav__menu">
-
-                <li class="active"><a href="{{ route('home') }}">হোম</a></li>
-                <!-- <li><a href="#">জীবন যাত্রা</a></li>
-                <li><a href="#">বিস্ময়কর</a></li>
-                <li><a href="#">বিনোদন </a></li> -->
-                @foreach($navs as $nav)
-                <li>
-                  <a href="{{ route('categoryArticles', $nav->slug) }}" class="sidenav__menu-url">{{ $nav->name }} </a>
-                </li>
-                @endforeach
-
-
-              </ul> <!-- end menu -->
-            </nav> <!-- end nav-wrap -->
-
-            <!-- Nav Right -->
-            <div class="nav__right">
-
-              <!-- Search -->
-              <div class="nav__right-item nav__search">
-                <a href="#" class="nav__search-trigger" id="nav__search-trigger">
-                  <i class="ui-search nav__search-trigger-icon"></i>
-                </a>
-                <div class="nav__search-box" id="nav__search-box">
-                  <form class="nav__search-form">
-                    <input type="text" placeholder="Search an article" class="nav__search-input">
-                    <button type="submit" class="search-button btn btn-lg btn-color btn-button">
-                      <i class="ui-search nav__search-icon"></i>
-                    </button>
-                  </form>
-                </div>                
-              </div>             
-
-            </div> <!-- end nav right -->            
-        
-          </div> <!-- end flex-parent -->
-        </div> <!-- end container -->
-
-      </div>
-    </header> <!-- end navigation -->
+    @include('frontend.includes.navigation')
   
 
     <!-- Trending Now -->
@@ -404,11 +252,16 @@
           <!-- Widget Recommended (Rating) -->
           <aside class="widget widget-rating-posts">
             <h4 class="widget-title">Recommended</h4>
+            @foreach($randoms as $random)
+            <?php 
+                  $bongabda   = new BnDateTime($random->created_at, new DateTimeZone('Asia/Dhaka'));
+                  $published  =  $bongabda->getDateTime()->format('jS F, Y'). PHP_EOL;
+            ?>
             <article class="entry">
               <div class="entry__img-holder">
                 <a href="#">
                   <div class="thumb-container thumb-60">
-                    <img data-src="img/content/hero/hero_post_1.jpg" src="img/content/hero/hero_post_1.jpg" class="entry__img lazyload" alt="">
+                    <img data-src="{{ route('home') }}/uploads/featured/{{ $random->image }}" src="{{ route('home') }}/uploads/featured/{{ $random->image }}" class="entry__img lazyload" alt="">
                   </div>
                 </a>
               </div>
@@ -417,65 +270,31 @@
                 <div class="entry__header">
                   
                   <h2 class="entry__title">
-                    <a href="#">বর্তমান বিশ্বের দামি গাড়ির শীর্ষ স্থানে রয়েছে ১ কোটি ১ লাখ মার্কিন ডলার মূল্যের.... </a>
+                    <a href="#">{{ $random->title }}</a>
                   </h2>
                   <ul class="entry__meta">
-                    <li class="entry__meta-author">
+                    <!-- <li class="entry__meta-author">
                       <span>by</span>
                       <a href="#">BanglaBox</a>
-                    </li>
+                    </li> -->
                     <li class="entry__meta-date">
-                        July 16, 2018
+                        {{ $published }}
                     </li>
                   </ul>
-                  <ul class="entry__meta">
+                  <!-- <ul class="entry__meta">
                     <li class="entry__meta-rating">
-                      <i class="ui-star"></i><!--
-                      --><i class="ui-star"></i><!--
-                      --><i class="ui-star"></i><!--
-                      --><i class="ui-star"></i><!--
-                      --><i class="ui-star-empty"></i>
+                      <i class="ui-star"></i>
+                      <i class="ui-star"></i>
+                      <i class="ui-star"></i>
+                      <i class="ui-star"></i>
+                      <i class="ui-star-empty"></i>
                     </li>
-                  </ul>
+                  </ul> -->
                 </div>
               </div>
             </article>
-            <article class="entry">
-              <div class="entry__img-holder">
-                <a href="#">
-                  <div class="thumb-container thumb-60">
-                    <img data-src="img/content/hero/hero_post_2.jpg" src="img/content/hero/hero_post_2.jpg" class="entry__img lazyload" alt="">
-                  </div>
-                </a>
-              </div>
-
-              <div class="entry__body">
-                <div class="entry__header">
-                  
-                  <h2 class="entry__title">
-                    <a href="#">যে ৯টি টিপস জানলে গৃহকর্মী ছাড়াই আপনার ঘরদোর থাকবে পরিচ্ছন্ন...</a>
-                  </h2>
-                  <ul class="entry__meta">
-                    <li class="entry__meta-author">
-                      <span>by</span>
-                      <a href="#">BanglaBox</a>
-                    </li>
-                    <li class="entry__meta-date">
-                        July 16, 2018
-                    </li>
-                  </ul>
-                  <ul class="entry__meta">
-                    <li class="entry__meta-rating">
-                      <i class="ui-star"></i><!--
-                      --><i class="ui-star"></i><!--
-                      --><i class="ui-star"></i><!--
-                      --><i class="ui-star"></i><!--
-                      --><i class="ui-star-empty"></i>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </article>
+            @endforeach
+            
 
               <aside class="widget widget_media_image">
                   <a href="#">
@@ -529,126 +348,7 @@
         </a>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer footer--dark">
-      <div class="container">
-        <div class="footer__widgets">
-          <div class="row">
-
-            <div class="col-lg-3 col-md-6">
-              <aside class="widget widget-logo">
-                <a href="index-2.html">
-                  <img src="img/logo_default_white.png" srcset="img/logo_default_white.png 1x, img/logo_default_white@2x.png 2x" class="logo__img" alt="">
-                </a>
-                <p class="copyright">
-                  © 2018 BanglaBox | Made by <a href="http://adboxbd.com/">Adbox</a>
-                </p>
-                <div class="socials socials--large socials--rounded mb-24">
-                  <a href="#" class="social social-facebook" aria-label="facebook"><i class="ui-facebook"></i></a>
-                  <a href="#" class="social social-twitter" aria-label="twitter"><i class="ui-twitter"></i></a>
-                  <a href="#" class="social social-google-plus" aria-label="google+"><i class="ui-google"></i></a>
-                  <a href="#" class="social social-youtube" aria-label="youtube"><i class="ui-youtube"></i></a>
-                  <a href="#" class="social social-instagram" aria-label="instagram"><i class="ui-instagram"></i></a>
-                </div>
-              </aside>
-            </div>
-
-            <div class="col-lg-2 col-md-6">
-              <aside class="widget widget_nav_menu">
-                <h4 class="widget-title">Useful Links</h4>
-                <ul>
-                  <li><a href="#">About</a></li>
-                  <li><a href="#">News</a></li>
-                  <li><a href="#">Advertise</a></li>
-                  <li><a href="#">Support</a></li>
-                  <li><a href="#">Features</a></li>
-                  <li><a href="#">Contact</a></li>
-                </ul>
-              </aside>
-            </div>  
-
-            <div class="col-lg-4 col-md-6">
-              <aside class="widget widget-popular-posts">
-                <h4 class="widget-title">Popular Posts</h4>
-                <ul class="post-list-small">
-                  <li class="post-list-small__item">
-                    <article class="post-list-small__entry clearfix">
-                      <div class="post-list-small__img-holder">
-                        <div class="thumb-container thumb-100">
-                          <a href="#">
-                            <img data-src="img/content/post_small/post_small_1.jpg" src="img/empty.png" alt="" class="post-list-small__img--rounded lazyload">
-                          </a>
-                        </div>
-                      </div>
-                      <div class="post-list-small__body">
-                        <h3 class="post-list-small__entry-title">
-                          <a href="#">Follow These Smartphone Habits of Successful Entrepreneurs</a>
-                        </h3>
-                        <ul class="entry__meta">
-                          <li class="entry__meta-author">
-                            <span>by</span>
-                            <a href="#">BanglaBox</a>
-                          </li>
-                          <li class="entry__meta-date">
-                            Jan 21, 2018
-                          </li>
-                        </ul>
-                      </div>                  
-                    </article>
-                  </li>
-                  <li class="post-list-small__item">
-                    <article class="post-list-small__entry clearfix">
-                      <div class="post-list-small__img-holder">
-                        <div class="thumb-container thumb-100">
-                          <a href="#">
-                            <img data-src="img/content/post_small/post_small_2.jpg" src="img/empty.png" alt="" class="post-list-small__img--rounded lazyload">
-                          </a>
-                        </div>
-                      </div>
-                      <div class="post-list-small__body">
-                        <h3 class="post-list-small__entry-title">
-                          <a href="#">Lose These 12 Bad Habits If You're Serious About Becoming a Millionaire</a>
-                        </h3>
-                        <ul class="entry__meta">
-                          <li class="entry__meta-author">
-                            <span>by</span>
-                            <a href="#">BanglaBox</a>
-                          </li>
-                          <li class="entry__meta-date">
-                            Jan 21, 2018
-                          </li>
-                        </ul>
-                      </div>                  
-                    </article>
-                  </li>
-                </ul>
-              </aside>              
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-              <aside class="widget widget_mc4wp_form_widget">
-                <h4 class="widget-title">Newsletter</h4>
-                <p class="newsletter__text">
-                  <i class="ui-email newsletter__icon"></i>
-                  Subscribe for our daily news
-                </p>
-                <form class="mc4wp-form" method="post">
-                  <div class="mc4wp-form-fields">
-                    <div class="form-group">
-                      <input type="email" name="EMAIL" placeholder="Your email" required="">
-                    </div>
-                    <div class="form-group">
-                      <input type="submit" class="btn btn-lg btn-color" value="Sign Up">
-                    </div>
-                  </div>
-                </form>                
-              </aside>
-            </div>
-
-          </div>
-        </div>    
-      </div> <!-- end container -->
-    </footer> <!-- end footer -->
+@include('frontend.includes.footer')
 
     <div id="back-to-top">
       <a href="#top" aria-label="Go to top"><i class="ui-arrow-up"></i></a>
@@ -704,6 +404,59 @@
             });
     }
   </script>
+
+  <!-- Toastr --> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+@if(session()->has('message'))
+<script>
+        var text    = '{{ session()->get("message") }}';
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+            }
+        toastr.success(text, 'Success');
+</script>
+@endif
+
+@if(count($errors)>0)
+   @foreach($errors->all() as $error)
+        <script>
+            var text = '{{ $error }}';
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+                }
+            toastr.error(text, 'Error');
+        </script>
+   @endforeach
+@endif
 
 </body>
 

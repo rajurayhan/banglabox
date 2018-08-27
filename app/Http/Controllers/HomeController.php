@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
 
 use App\Article;
 use App\Category;
+use App\Subscriber;
 
 class HomeController extends Controller
 {
@@ -18,7 +21,9 @@ class HomeController extends Controller
             return response()->json(['html'=>$view]);
         }
 
-        return view('frontend.home', compact('articles'));
+        $randoms  = Article::orderByRaw('RAND()')->take(3)->get();
+
+        return view('frontend.home', compact('articles', 'randoms'));
     }
 
     // public function about(){
@@ -36,4 +41,25 @@ class HomeController extends Controller
     // public function copyright(){
     //     return view('frontend.pages.copyright');
     // }
+
+    public function subscribe(Request $request)
+    {
+        $subObj    = new Subscriber();
+
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|unique:subscribers|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        else{
+            $subObj->email  = $request->email;
+            $subObj->save();
+
+            return redirect()->back()->with('message', 'You have sucessfully Subscribed!');
+        }
+    }
 }

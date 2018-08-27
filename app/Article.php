@@ -15,7 +15,7 @@ class Article extends Model
     public $fillable = ['title'];
 
     protected $casts = [
-        'tags' 		=> 'array'
+        'tags' 		=> 'array',
     ];
 
     public function category()
