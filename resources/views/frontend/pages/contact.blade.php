@@ -104,7 +104,14 @@
               <input type="submit" class="btn btn-lg btn-color btn-button" value="Send Message" id="submit-message">
               <div id="msg" class="message"></div>
             </form> -->
-            <form action="{{ route('contactUs') }}" method="POST">
+            <div class="row">
+                <div class="col-md-12 center">
+                  <div id="result">
+                    Result
+                  </div>
+                </div>
+            </div>
+            <form onsubmit="return false" method="POST" id="contactForm">
             {{ csrf_field() }}
               <div class="form-group">
                 <label for="name">Name:</label>
@@ -121,11 +128,16 @@
               </div>
 
               <div class="form-group">
-                <label for="message">Message:</label>
-                <textarea names="message" id="message" class="form-controll" rows="7" width="100%"></textarea>
+                <label for="subject">Subject:</label>
+                <input type="text" class="form-control" id="subject" placeholder="Enter Subject" name="subject">
               </div>
 
-              <button type="submit" class="btn btn-success">Submit</button>
+              <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea name="message" id="message" class="form-controll" rows="7" width="100%"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-success" id="submit_btn">Submit</button>
             </form>
 
           </div>
@@ -197,6 +209,63 @@
           infowindow.open(map, marker);
         });
       });
+    });
+
+    //Contact Us
+    $("#submit_btn").click(function() {
+          //get input field values
+          var user_name       = $('input[name=name]').val();
+          var user_email      = $('input[name=email]').val();
+          var user_telephone      = $('input[name=phone]').val();
+          var user_subject      = $('input[name=subject]').val();
+          var user_message    = $('textarea[name=message]').val();
+
+          //simple validation at client's end
+          var post_data, output;
+          var proceed = true;
+          if(user_name==""){
+              proceed = false;
+          }
+          if(user_email==""){
+              proceed = false;
+          }
+          if(user_message=="") {
+              proceed = false;
+          }
+
+          //everything looks good! proceed...
+          if(proceed)
+          {
+              $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': '<?= csrf_token() ?>'
+                  }
+              });
+              $.ajax({
+                  url: "{{ route('contactUs') }}",
+                  type: 'GET',
+                  datatype: 'JSON',
+                  data: {user_name, user_email, user_telephone, user_subject, user_message},
+              })
+              .done(function(response) {
+                  var output = '<div class="alert-success" style="padding:10px; margin-bottom:25px;">'+response+'</div>';
+
+                  $("#result").hide().html(output).slideDown();
+                  $("#contactForm").find("input, textarea").val("");
+                  console.log(response);
+              })
+              .fail(function() {
+                  var output = '<div class="alert-danger" style="padding:10px; margin-bottom:25px;">Whoops! Something Wrong. Try Again!</div>';
+
+                  $("#result").hide().html(output).slideDown();
+                  console.log(output);
+              })
+
+          }
+      });
+
+      $("#form-elements input, #form-elements textarea").keyup(function() {
+        $("#result").slideUp();
     });
   </script>
 

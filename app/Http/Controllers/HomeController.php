@@ -10,6 +10,9 @@ use App\Article;
 use App\Category;
 use App\Subscriber;
 
+use App\Mail\ContuctUs;
+use Mail;
+
 class HomeController extends Controller
 {
     public function home(Request $request){
@@ -39,7 +42,13 @@ class HomeController extends Controller
 
     public function contactUs(Request $request)
     {
-        return 'Contact Us';
+        $email         = 'send2raju.bd@gmail.com';
+
+        Mail::to($email)
+        ->cc(['devraju.bd@gmail.com'])
+        ->send(new ContuctUs());
+
+        return response()->json('Mail Sent Successfully!');
     }
 
     // public function privacy(){
