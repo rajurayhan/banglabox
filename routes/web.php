@@ -28,8 +28,10 @@ Route::get('/category/{slug}', 'ArticleController@categoryArticles')->name('cate
 Route::post('/subscribe', 'HomeController@subscribe')->name('subscribe');
 
     // Pages
-// Route::get('/', 'HomeController@about')->name('about'); 
-// Route::get('/', 'HomeController@contact')->name('contact'); 
+Route::get('/about', 'HomeController@about')->name('about'); 
+
+Route::get('/contact', 'HomeController@contact')->name('contact'); 
+Route::post('/contact-us', 'HomeController@contactUs')->name('contactUs'); 
 // Route::get('/', 'HomeController@privacy')->name('privacy');
 // Route::get('/', 'HomeController@copyright')->name('copyright');
 

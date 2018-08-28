@@ -6,11 +6,11 @@
 
             <div class="col-lg-3 col-md-6">
               <aside class="widget widget-logo">
-                <a href="index-2.html">
+                <a href="{{ route('home') }}">
                   <img src="img/logo_default_white.png" srcset="img/logo_default_white.png 1x, img/logo_default_white@2x.png 2x" class="logo__img" alt="">
                 </a>
                 <p class="copyright">
-                  © 2018 BanglaBox | Made by <a href="http://adboxbd.com/">Adbox</a>
+                  &copy; {{ date('Y') }} BanglaBox | Made by <a href="http://adboxbd.com/">Adbox</a>
                 </p>
                 <div class="socials socials--large socials--rounded mb-24">
                   <a href="#" class="social social-facebook" aria-label="facebook"><i class="ui-facebook"></i></a>
@@ -26,12 +26,12 @@
               <aside class="widget widget_nav_menu">
                 <h4 class="widget-title">Useful Links</h4>
                 <ul>
-                  <li><a href="#">About</a></li>
-                  <li><a href="#">News</a></li>
+                  <li><a href="{{ route('about') }}">About</a></li>
+                  <!-- <li><a href="#">News</a></li>
                   <li><a href="#">Advertise</a></li>
                   <li><a href="#">Support</a></li>
-                  <li><a href="#">Features</a></li>
-                  <li><a href="#">Contact</a></li>
+                  <li><a href="#">Features</a></li> -->
+                  <li><a href="{{ route('contact') }}">Contact</a></li>
                 </ul>
               </aside>
             </div>  

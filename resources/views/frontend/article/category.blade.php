@@ -48,6 +48,20 @@
 
 @include('frontend.includes.navigation')
 
+    <!-- Breadcrumbs -->
+    <div class="container">
+      <ul class="breadcrumbs">
+        <li class="breadcrumbs__item">
+          <a href="index-2.html" class="breadcrumbs__url">হোম</a>
+        </li>
+        <!-- <li class="breadcrumbs__item">
+          <a href="index-2.html" class="breadcrumbs__url">News</a>
+        </li> -->
+        <li class="breadcrumbs__item breadcrumbs__item--current">
+          {{ $category->name }}
+        </li>
+      </ul>
+    </div>
 
 <div class="main-container container pt-40" id="main-container">
 
@@ -57,46 +71,7 @@
 <!-- Posts -->
 <div class="col-lg-8 blog__content mb-72">
     <h1 class="page-title">{{ $category->name }}</h1>
-
-    <!-- <article class="entry card post-list">
-        <div class="entry__img-holder post-list__img-holder card__img-holder" style="background-image: url(img/content/list/list_post_1.jpg)">
-            <a href="single-post.html" class="thumb-url"></a>
-            <img src="img/content/list/list_post_1.jpg" alt="" class="entry__img d-none">
-            <a href="categories.html" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--blue">Business</a>
-        </div>
-
-        <div class="entry__body post-list__body card__body">
-            <div class="entry__header">
-                <h2 class="entry__title">
-                    <a href="single-post.html">These Are the 20 Best Places to Work in 2018</a>
-                </h2>
-                <ul class="entry__meta">
-                    <li class="entry__meta-author">
-                        <span>by</span>
-                        <a href="#">DeoThemes</a>
-                    </li>
-                    <li class="entry__meta-date">
-                        Jan 21, 2018
-                    </li>
-                </ul>
-            </div>
-            <div class="entry__excerpt">
-                <p>iPrice Group report offers insights on daily e-commerce activity in the ...</p>
-            </div>
-        </div>
-    </article> -->
     @include('frontend.article.data')
-
-    
-
-    <!-- Pagination -->
-    <!-- <nav class="pagination">
-        <span class="pagination__page pagination__page--current">1</span>
-        <a href="#" class="pagination__page">2</a>
-        <a href="#" class="pagination__page">3</a>
-        <a href="#" class="pagination__page">4</a>
-        <a href="#" class="pagination__page pagination__icon pagination__page--next"><i class="ui-arrow-right"></i></a>
-    </nav> -->
 </div> <!-- end posts -->
 
 @include('frontend.article.sidebar')

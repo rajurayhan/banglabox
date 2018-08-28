@@ -62,8 +62,8 @@
           <!-- Top menu -->
           <div class="col-lg-6">
             <ul class="top-menu">
-              <li><a href="about.php">About</a></li>
-              <li><a href="contact.php">Contact</a></li>
+              <li><a href="{{ route('about') }}">About</a></li>
+              <li><a href="{{ route('contact') }}">Contact</a></li>
             </ul>
           </div>
           

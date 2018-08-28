@@ -16,6 +16,8 @@ class HomeController extends Controller
         $articleObj         = new Article();
         $articles           = $articleObj->paginate(6);
 
+        $latestPosts        = $articleObj->orderBy('id', 'desc')->take(6)->get();
+
         if($request->ajax()){
             $view = view('frontend.article.data',compact('articles'))->render();
             return response()->json(['html'=>$view]);
@@ -23,16 +25,22 @@ class HomeController extends Controller
 
         $randoms  = Article::orderByRaw('RAND()')->take(3)->get();
 
-        return view('frontend.home', compact('articles', 'randoms'));
+        return view('frontend.home', compact('articles', 'randoms', 'latestPosts'));
+        // return $latestPosts;
     }
 
-    // public function about(){
-    //     return view('frontend.pages.about');
-    // }
+    public function about(){
+        return view('frontend.pages.about');
+    }
 
-    // public function contact(){
-    //     return view('frontend.pages.contact');
-    // }
+    public function contact(){
+        return view('frontend.pages.contact');
+    }
+
+    public function contactUs(Request $request)
+    {
+        return 'Contact Us';
+    }
 
     // public function privacy(){
     //     return view('frontend.pages.privacy');

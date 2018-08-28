@@ -65,12 +65,12 @@
       <div class="trending-now">
         <span class="trending-now__label">
           <i class="ui-flash"></i>
-        LATEST POST</span>
+        LATEST ARTICLES</span>
         <div class="newsticker">
           <ul class="newsticker__list">
-            <li class="newsticker__item"><a href="#" class="newsticker__item-url">কফি কেন খেতে ইচ্ছা করে?</a></li>
-            <li class="newsticker__item"><a href="#" class="newsticker__item-url">১ মিনিটে ১ কেজি রসুনের খোসা ছারিয়ে নিন</a></li>
-            <li class="newsticker__item"><a href="#" class="newsticker__item-url">বিখ্যাত এই ৫ ব্যক্তি কত ঘণ্টা ঘুমান</a></li>
+          @foreach($latestPosts as $latest)
+            <li class="newsticker__item"><a href="{{ route('singleArticle', [$latest->id, $latest->slug]) }}" class="newsticker__item-url">{{ $latest->title }}</a></li>
+          @endforeach
           </ul>
         </div>
         <div class="newsticker-buttons">
