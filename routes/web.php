@@ -50,10 +50,15 @@ Route::get('ajax/category/info/', 'CategoryController@getCategoryInfo')->name('g
 
     // Articles 
 Route::get('admin/articles', 'ArticleController@allArticles')->name('allArticles');
-Route::get('admin/articles/data', 'ArticleController@anyData')->name('anyData');
+
+Route::get('admin/articles/data', 'ArticleController@anyData')->name('anyData'); // Get Serverside Data
 
 Route::get('admin/article/new', 'ArticleController@newArticle')->name('newArticle');
 Route::post('admin/article/post', 'ArticleController@postArticle')->name('postArticle');
 
 Route::get('admin/article/edit/{id}', 'ArticleController@editArticle')->name('editArticle');
 Route::post('admin/article/update/{id}', 'ArticleController@updateArticle')->name('updateArticle');
+
+    //Settings 
+Route::get('admin/settings', 'AdminController@settings')->name('settings');
+Route::post('admin/settings/update', 'AdminController@postSettings')->name('postSettings');

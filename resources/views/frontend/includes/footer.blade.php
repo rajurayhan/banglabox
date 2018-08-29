@@ -7,17 +7,17 @@
             <div class="col-lg-3 col-md-6">
               <aside class="widget widget-logo">
                 <a href="{{ route('home') }}">
-                  <img src="img/logo_default_white.png" srcset="img/logo_default_white.png 1x, img/logo_default_white@2x.png 2x" class="logo__img" alt="">
+                  <img src="{{ route('home') }}/img/{{ $settingsAttr->logo }}" srcset="{{ route('home') }}/img/{{ $settingsAttr->logo }}" class="logo__img" alt="">
                 </a>
                 <p class="copyright">
                   &copy; {{ date('Y') }} BanglaBox | Made by <a href="http://adboxbd.com/">Adbox</a>
                 </p>
                 <div class="socials socials--large socials--rounded mb-24">
-                  <a href="#" class="social social-facebook" aria-label="facebook"><i class="ui-facebook"></i></a>
-                  <a href="#" class="social social-twitter" aria-label="twitter"><i class="ui-twitter"></i></a>
-                  <a href="#" class="social social-google-plus" aria-label="google+"><i class="ui-google"></i></a>
-                  <a href="#" class="social social-youtube" aria-label="youtube"><i class="ui-youtube"></i></a>
-                  <a href="#" class="social social-instagram" aria-label="instagram"><i class="ui-instagram"></i></a>
+                  <a href="https://facebook.com/{{ $settingsAttr->facebook }}" class="social social-facebook" aria-label="facebook"><i class="ui-facebook"></i></a>
+                  <a href="https://twitter.com/{{ $settingsAttr->twitter }}" class="social social-twitter" aria-label="twitter"><i class="ui-twitter"></i></a>
+                  <a href="https://plus.google.com/+{{ $settingsAttr->google_plus }}" class="social social-google-plus" aria-label="google+"><i class="ui-google"></i></a>
+                  <a href="https://youtube.com/channel/{{ $settingsAttr->youtube }}" class="social social-youtube" aria-label="youtube"><i class="ui-youtube"></i></a>
+                  <a href="https://instagram.com/{{ $settingsAttr->instagram }}" class="social social-instagram" aria-label="instagram"><i class="ui-instagram"></i></a>
                 </div>
               </aside>
             </div>

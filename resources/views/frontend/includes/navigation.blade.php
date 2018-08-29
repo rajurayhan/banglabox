@@ -1,3 +1,5 @@
+
+  
   <!-- Sidenav -->    
   <header class="sidenav" id="sidenav">
 
@@ -34,19 +36,19 @@
     </nav>
 
     <div class="socials sidenav__socials"> 
-      <a class="social social-facebook" href="#" target="_blank" aria-label="facebook">
+      <a class="social social-facebook" href="https://facebook.com/{{ $settingsAttr->facebook }}" target="_blank" aria-label="facebook">
         <i class="ui-facebook"></i>
       </a>
-      <a class="social social-twitter" href="#" target="_blank" aria-label="twitter">
+      <a class="social social-twitter" href="https://twitter.com/{{ $settingsAttr->twitter }}" target="_blank" aria-label="twitter">
         <i class="ui-twitter"></i>
       </a>
-      <a class="social social-google-plus" href="#" target="_blank" aria-label="google">
+      <a class="social social-google-plus" href="https://plus.google.com/+{{ $settingsAttr->google_plus }}" target="_blank" aria-label="google">
         <i class="ui-google"></i>
       </a>
-      <a class="social social-youtube" href="#" target="_blank" aria-label="youtube">
+      <a class="social social-youtube" href="https://youtube.com/channel/{{ $settingsAttr->youtube }}" target="_blank" aria-label="youtube">
         <i class="ui-youtube"></i>
       </a>
-      <a class="social social-instagram" href="#" target="_blank" aria-label="instagram">
+      <a class="social social-instagram" href="https://instagram.com/{{ $settingsAttr->instagram }}" target="_blank" aria-label="instagram">
         <i class="ui-instagram"></i>
       </a>
     </div>
@@ -70,19 +72,19 @@
           <!-- Socials -->
           <div class="col-lg-6">
             <div class="socials nav__socials socials--nobase socials--white justify-content-end"> 
-              <a class="social social-facebook" href="#" target="_blank" aria-label="facebook">
+              <a class="social social-facebook" href="https://facebook.com/{{ $settingsAttr->facebook }}" target="_blank" aria-label="facebook">
                 <i class="ui-facebook"></i>
               </a>
-              <a class="social social-twitter" href="#" target="_blank" aria-label="twitter">
+              <a class="social social-twitter" href="https://twitter.com/{{ $settingsAttr->twitter }}" target="_blank" aria-label="twitter">
                 <i class="ui-twitter"></i>
               </a>
-              <a class="social social-google-plus" href="#" target="_blank" aria-label="google">
+              <a class="social social-google-plus" href="https://plus.google.com/+{{ $settingsAttr->google_plus }}" target="_blank" aria-label="google">
                 <i class="ui-google"></i>
               </a>
-              <a class="social social-youtube" href="#" target="_blank" aria-label="youtube">
+              <a class="social social-youtube" href="https://youtube.com/channel/{{ $settingsAttr->youtube }}" target="_blank" aria-label="youtube">
                 <i class="ui-youtube"></i>
               </a>
-              <a class="social social-instagram" href="#" target="_blank" aria-label="instagram">
+              <a class="social social-instagram" href="https://instagram.com/{{ $settingsAttr->instagram }}" target="_blank" aria-label="instagram">
                 <i class="ui-instagram"></i>
               </a>
             </div>
@@ -108,7 +110,7 @@
 
             <!-- Logo -->
             <a href="{{ route('home') }}" class="logo">
-              <img class="logo__img" src="{{ route('home') }}/img/logo_default.png" srcset="{{ route('home') }}/img/logo_default.png 1x, img/logo_default@2x.png 2x" alt="logo">
+              <img class="logo__img" src="{{ route('home') }}/img/{{ $settingsAttr->logo }}" srcset="{{ route('home') }}/img/{{ $settingsAttr->logo }}" alt="logo">
             </a>
 
             <!-- Nav-wrap -->

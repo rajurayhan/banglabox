@@ -20,6 +20,12 @@ use App\Category;
 
 class ArticleController extends Controller
 {
+
+    public function __construct()
+    {
+        
+    }
+    
     public function singleArticle($id, $slug)
     {
         $articleObj             = new Article();
@@ -109,6 +115,20 @@ class ArticleController extends Controller
             Image::make($image->getRealPath())->save($path);
         
         $articleObj->image = $filename;
+
+        if ($request->has('featured')) {
+            $articleObj->is_featured = 1;
+        }
+
+        if ($request->has('headline')) {
+            $articleObj->is_headline = 1;
+
+            $oldHeadline = $articleObj->where('is_headline', 1)->first();
+            if($oldHeadline){
+                $oldHeadline->is_headline = 0;
+                $oldHeadline->save();
+            }
+        }
         
         $articleObj->save();
 
@@ -150,6 +170,21 @@ class ArticleController extends Controller
         
             $article->image = $filename;
         }
+
+        if ($request->has('featured')) {
+            $articleObj->is_featured = 1;
+        }
+
+        if ($request->has('headline')) {
+            $oldHeadline = $articleObj->where('is_headline', 1)->first();
+            if($oldHeadline){
+                $oldHeadline->is_headline = 0;
+                $oldHeadline->save();
+            }
+
+            $article->is_headline = 1;
+        }
+
         $article->save();
 
         return redirect()->back()->with('message', 'Article Updated Successfully!');

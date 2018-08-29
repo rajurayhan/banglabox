@@ -101,7 +101,7 @@ Banglabox || Add New Article
                 <div class="form-group">
                   <label for="description">Description</label>
                   {{-- <input type="text" class="form-control" id="title" placeholder="Enter Title"> --}}
-                  <textarea id="description" name="description" rows="20">{{ $article->description }}</textarea>
+                  <textarea id="description" name="description" rows="23">{{ $article->description }}</textarea>
                 </div>
 
                 <div class="form-group">
@@ -235,7 +235,34 @@ Banglabox || Add New Article
                         <option value="0">Private</option>
                     </select>
                   </div>
-                </div>                
+                </div>   
+
+                <div class="form-group" style="margin-top: 110px !important;">
+                  <label>
+                    <!-- <input type="checkbox" name="featured" class="flat-red" value="1"> -->
+                    @if($article->is_featured)
+                      {{ Form::checkbox('featured', '1', true, ['class' => 'featured']) }}
+                      Featured
+                    @else
+                    {{ Form::checkbox('featured', '1', false, ['class' => 'featured']) }}
+                      Featured
+                      @endif
+                  </label>
+                </div>
+
+                <div class="form-group" style="">
+                  <label>
+                    <!-- <input type="checkbox" class="flat-red" name="headline"> -->
+                    @if($article->is_headline)
+                      {{ Form::checkbox('headline', '1', true, ['class' => 'headline']) }}
+                      Headline
+                    @else
+                    {{ Form::checkbox('headline', '1', false, ['class' => 'headline']) }}
+                    Headline
+                      @endif
+                  </label>
+                </div>
+
               </div>
               <!-- /.box-body -->
               <div class="box-footer">

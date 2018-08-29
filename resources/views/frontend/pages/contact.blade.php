@@ -1,3 +1,10 @@
+<?php
+    use App\Http\Controllers\HomeController;
+    $homeCTRLR      = new HomeController();
+    $settingsAttr        = $homeCTRLR->gteSettings();
+
+    // var_dump($settingsAttr);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +37,33 @@
     body {
       font-family: 'Bangla', Arial, sans-serif !important;
     }
+    .modal-backdrop.in {
+        opacity: 0.9;
+      }
+
+    .modal {
+        text-align: center;
+        outline-width: 0px !important;
+      }
+
+      @media screen and (min-width: 768px) { 
+        .modal:before {
+          display: inline-block;
+          vertical-align: middle;
+          content: " ";
+          height: 100%;
+          outline-width: 0px !important;
+        }
+      }
+
+      .modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+        outline-width: 0px !important;
+      }
+
+      
   </style>
 
 </head>
@@ -52,13 +86,13 @@
     <div class="container">
       <ul class="breadcrumbs">
         <li class="breadcrumbs__item">
-          <a href="{{ route('home') }}" class="breadcrumbs__url">Home</a>
+          <a href="{{ route('home') }}" class="breadcrumbs__url">হোম</a>
         </li>
         <!-- <li class="breadcrumbs__item">
           <a href="index-2.html" class="breadcrumbs__url">News</a>
         </li> -->
         <li class="breadcrumbs__item breadcrumbs__item--current">
-          Contact
+          যোগাযোগ
         </li>
       </ul>
     </div>
@@ -66,7 +100,7 @@
     <div class="main-container container" id="main-container">            
       <!-- post content -->
       <div class="blog__content mb-72">
-        <h1 class="page-title">Contact Us</h1>
+        <h1 class="page-title">যোগাযোগ</h1>
         
         <!-- Google Map -->
         <div id="google-map" class="gmap" data-address="Adbox Bangladesh, Dhaka, Bangladesh"></div>
@@ -76,9 +110,9 @@
             <h4>Drop Us a Message</h4>
             <p>Don't hesitate to get in touch. We will reply you as soon as possible.</p>
             <ul class="contact-items">
-              <li class="contact-item"><address>Centre Inc. CA 48792 Star Apple ave. 54</address></li>
-              <li class="contact-item"><a href="tel:+1-800-1554-456-123">+ 1 (800) 155 4561</a></li>
-              <li class="contact-item"><a href="mailto:themesupport@gmail.com">themesupport@gmail.com</a></li>
+              <li class="contact-item"><address>{{ $settingsAttr->address }}</address></li>
+              <li class="contact-item"><a href="{{ $settingsAttr->contact }}">{{ $settingsAttr->contact }}</a></li>
+              <li class="contact-item"><a href="mailto:{{ $settingsAttr->email }}">{{ $settingsAttr->email }}</a></li>
             </ul>            
 
             <!-- Contact Form -->
@@ -107,33 +141,33 @@
             <div class="row">
                 <div class="col-md-12 center">
                   <div id="result">
-                    Result
+                    
                   </div>
                 </div>
             </div>
             <form onsubmit="return false" method="POST" id="contactForm">
             {{ csrf_field() }}
               <div class="form-group">
-                <label for="name">Name:</label>
+                <label for="name">Name: *</label>
                 <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name">
               </div>
 
               <div class="form-group">
-                <label for="email">Email:</label>
+                <label for="email">Email: *</label>
                 <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
               </div>
               <div class="form-group">
-                <label for="phone">Phone:</label>
+                <label for="phone">Phone: *</label>
                 <input type="text" class="form-control" id="phone" placeholder="Enter Phone" name="phone">
               </div>
 
               <div class="form-group">
-                <label for="subject">Subject:</label>
+                <label for="subject">Subject: *</label>
                 <input type="text" class="form-control" id="subject" placeholder="Enter Subject" name="subject">
               </div>
 
               <div class="form-group">
-                <label for="message">Message:</label>
+                <label for="message">Message: *</label>
                 <textarea name="message" id="message" class="form-controll" rows="7" width="100%"></textarea>
               </div>
 
@@ -144,6 +178,31 @@
         </div>
       </div> <!-- end post content -->
     </div> <!-- end main container -->
+
+    <!-- Loader Modal -->
+    <div class="modal" id="AjaxLoader">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <!-- <div class="modal-header">
+            <h4 class="modal-title">Modal Heading</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div> -->
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <img src='https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif' style="max-width: 150px;" />
+          </div>
+
+          <!-- Modal footer -->
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div> -->
+
+        </div>
+      </div>
+    </div>
 
     @include('frontend.includes.footer')
 
@@ -171,7 +230,8 @@
   <script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>
   <script type="text/javascript" src="{{ asset('js/gmap3.min.js') }}"></script>
 
-  <script src="{{ asset('js/scripts.js') }}"></script>
+  <!-- Toastr -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
   <!-- Google Map -->
   <script type="text/javascript">
@@ -236,6 +296,9 @@
           //everything looks good! proceed...
           if(proceed)
           {
+                // Preloader
+              $('#AjaxLoader').modal('show');
+
               $.ajaxSetup({
                   headers: {
                       'X-CSRF-TOKEN': '<?= csrf_token() ?>'
@@ -248,26 +311,109 @@
                   data: {user_name, user_email, user_telephone, user_subject, user_message},
               })
               .done(function(response) {
-                  var output = '<div class="alert-success" style="padding:10px; margin-bottom:25px;">'+response+'</div>';
+                  $('#AjaxLoader').modal('hide');
+                  // var output = '<div class="alert-success" style="padding:10px; margin-bottom:25px;">'+response+'</div>';
+                  var text    = response;
+                  toastr.options = {
+                      "closeButton": false,
+                      "debug": false,
+                      "newestOnTop": false,
+                      "progressBar": false,
+                      "positionClass": "toast-bottom-right",
+                      "preventDuplicates": false,
+                      "onclick": null,
+                      "showDuration": "300",
+                      "hideDuration": "1000",
+                      "timeOut": "5000",
+                      "extendedTimeOut": "1000",
+                      "showEasing": "swing",
+                      "hideEasing": "linear",
+                      "showMethod": "fadeIn",
+                      "hideMethod": "fadeOut"
+                      }
+                  toastr.success(text, 'Success');
 
-                  $("#result").hide().html(output).slideDown();
                   $("#contactForm").find("input, textarea").val("");
                   console.log(response);
               })
               .fail(function() {
-                  var output = '<div class="alert-danger" style="padding:10px; margin-bottom:25px;">Whoops! Something Wrong. Try Again!</div>';
-
-                  $("#result").hide().html(output).slideDown();
+                  // var output = '<div class="alert-danger" style="padding:10px; margin-bottom:25px;">Whoops! Something Wrong. Try Again!</div>';
+                  var text    = response;
+                  toastr.options = {
+                      "closeButton": false,
+                      "debug": false,
+                      "newestOnTop": false,
+                      "progressBar": false,
+                      "positionClass": "toast-bottom-right",
+                      "preventDuplicates": false,
+                      "onclick": null,
+                      "showDuration": "300",
+                      "hideDuration": "1000",
+                      "timeOut": "5000",
+                      "extendedTimeOut": "1000",
+                      "showEasing": "swing",
+                      "hideEasing": "linear",
+                      "showMethod": "fadeIn",
+                      "hideMethod": "fadeOut"
+                      }
+                  toastr.success(text, 'Error');
                   console.log(output);
               })
 
           }
       });
 
-      $("#form-elements input, #form-elements textarea").keyup(function() {
-        $("#result").slideUp();
-    });
   </script>
+
+  @if(session()->has('message'))
+<script>
+        var text    = '{{ session()->get("message") }}';
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+            }
+        toastr.success(text, 'Success');
+</script>
+@endif
+
+@if(count($errors)>0)
+   @foreach($errors->all() as $error)
+        <script>
+            var text = '{{ $error }}';
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+                }
+            toastr.error(text, 'Error');
+        </script>
+   @endforeach
+@endif
 
 </body>
 </html>

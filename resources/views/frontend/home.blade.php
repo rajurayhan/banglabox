@@ -1,6 +1,10 @@
 <?php
     use EasyBanglaDate\Types\BnDateTime;
     use EasyBanglaDate\Types\DateTime as EnDateTime;
+    use App\Http\Controllers\HomeController;
+
+    $homeCTRLR      = new HomeController();
+    $settingsAttr        = $homeCTRLR->gteSettings();
     
 ?>
 <!DOCTYPE html>

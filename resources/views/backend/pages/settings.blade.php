@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 @section('title')
-Banglabox || Add New Article
+Banglabox || Update Settings
 @endsection
 @section('headSection')
     <!-- DataTables -->
@@ -19,13 +19,10 @@ Banglabox || Add New Article
     <!-- Dropify -->
     <link rel="stylesheet" href="{{ asset('vendor/dorpify/dist/css/dropify.min.css') }}">
 
-      <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="{{ asset('assets/plugins/iCheck/all.css') }}">
-
     <script>
       var editor_config = {
         path_absolute : "/",
-        selector: "#description",
+        selector: "#about",
         plugins: [
           "advlist autolink lists link image charmap print preview hr anchor pagebreak",
           "searchreplace wordcount visualblocks visualchars code fullscreen",
@@ -72,12 +69,12 @@ Banglabox || Add New Article
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Articles
+            System Settings
             <small></small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="active">Articles</li>
+            <li class="active">Settings</li>
         </ol>
     </section>
 
@@ -89,35 +86,40 @@ Banglabox || Add New Article
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">New Article</h3>
+              <h3 class="box-title">Update Settings</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            {{-- <form method="post" action="{{ route('postArticle') }}" enctype="multipart/form-data"> --}}
-              {{ Form::open(['route'=>'postArticle', 'class'=>'form','enctype' =>'multipart/form-data' ,'files'=>true]) }}
+            {{-- <form method="post" action="{{ route('postSettings') }}" enctype="multipart/form-data"> --}}
+              {{ Form::open(['route'=>'postSettings', 'class'=>'form','enctype' =>'multipart/form-data' ,'files'=>true]) }}
               {{-- {{ csrf_field() }} --}}
               <div class="box-body">
                 <div class="form-group">
-                  <label for="title">Title</label>
-                  <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" required>
+                  <label for="website_title">Website Title</label>
+                  <input type="text" class="form-control" id="website_title"  value="{{ $settings->website_title }}" name="website_title" placeholder="Enter Title" required>
                 </div>
                 <div class="form-group">
-                  <label for="description">Description</label>
-                  {{-- <input type="text" class="form-control" id="title" placeholder="Enter Title"> --}}
-                  <textarea id="description" name="description" rows="23"></textarea>
+                  <label for="about">About Website</label>
+                  <textarea id="about" name="about" rows="17">{{ $settings->about }}</textarea>
                 </div>
 
                 <div class="form-group">
-                  <label for="excerpt">Excerpt</label>
-                  <!-- <textarea id="excerpt" name="excerpt" rows="5"></textarea> -->
-                  <input type="text" class="form-control" id="excerpt" name="excerpt" placeholder="Enter Excerpt" required>
+                  <label for="address">Address</label>
+                  <input type="text" class="form-control" id="address" name="address" value="{{ $settings->address }}" placeholder="Enter Address" required>
                 </div>
+
+                <div class="form-group">
+                  <label for="contact">Mobile</label>
+                  <input type="text" class="form-control" value="{{ $settings->contact }}" id="contact" name="contact" placeholder="Enter Contact No" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="contact">Email</label>
+                  <input type="email" class="form-control" id="email" name="email"  value="{{ $settings->email }}"  placeholder="Enter Email" required>
+                </div>
+
               </div>
               <!-- /.box-body -->
-
-              {{-- <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div> --}}
           </div>
           <!-- /.box -->
 
@@ -129,7 +131,7 @@ Banglabox || Add New Article
 
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Featured Image</h3>
+              <h3 class="box-title">Logo</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -143,9 +145,9 @@ Banglabox || Add New Article
                     {{-- <input type="file" class="form-control" id="dropify" name="image" placeholder="Upload Image"> --}}
                     {{-- {!! Form::file('image', ['id' => 'dropify', 'class' => 'form-control']) !!} --}}
                     <div>
-                       <img src="" id="blah" alt="" style="width: 100%">
+                       <img src="{{ route('home') }}/img/{{ $settings->logo }}" id="blah" alt="" style="width: 100%">
                     </div>
-                    <input type="file" name="image" id="" onchange="readURL(this);" class="form-control" required  />
+                    <input type="file" name="logo" id="" onchange="readURL(this);" class="form-control" @if(!isset($settings->logo)){{ 'required' }}@endif  />
                   </div>
                 </div>
               </div>
@@ -160,101 +162,46 @@ Banglabox || Add New Article
 
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Category</h3>
+              <h3 class="box-title">Social</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
               <div class="box-body">
                 <div class="form-group">
-                  <!-- <label for="category_id" class="col-sm-2 control-label">Category</label> -->
-
+                  <label for="category_id" class="col-sm-2 control-label">Facebook</label>
                   <div class="col-sm-12">
-                    <select name="category_id" class="form-control select2"  data-placeholder="Select a Category"
-                        style="width: 100%;">
-                      @foreach($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                      @endforeach
-                    </select>
+                  <input type="text" class="form-control" id="facebook" name="facebook"  value="{{ $settings->facebook }}"  placeholder="Enter Email" >
                   </div>
                 </div>
-              </div>
-              <!-- /.box-body -->
-              <div class="box-footer">
-                
-              </div>
-              <!-- /.box-footer -->
-          </div>
-          <!-- /.box -->
 
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Tags</h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-              <div class="box-body">
                 <div class="form-group">
-                  <!-- <label for="category_id" class="col-sm-2 control-label">Tags</label> -->
-
+                  <label for="twitter" class="col-sm-2 control-label">Twitter</label>
                   <div class="col-sm-12">
-                    <!-- <select multiple data-role="tagsinput" class="form-controll">
-                    </select> -->
-                    <input type="text" class="form-control" id="tags" name="tags" placeholder="Enter Tags">
+                    <input type="text" class="form-control" id="twitter" name="twitter"  value="{{ $settings->twitter }}"  placeholder="Enter Email" >
                   </div>
                 </div>
-              </div>
-              <!-- /.box-body -->
-              <div class="box-footer">
-                
-              </div>
-              <!-- /.box-footer -->
-          </div>
-          <!-- /.box -->
 
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Publish</h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-              <div class="box-body">
                 <div class="form-group">
-                  <label for="status" class="col-sm-2 control-label">Status</label>
-
-                  <div class="col-sm-10">
-                    <select name="status" class="form-control">
-                        <option value="1">Published</option>
-                        <option value="0">Draft</option>
-                    </select>
+                  <label for="instagram" class="col-sm-2 control-label">instagram</label>
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control" id="instagram" name="instagram"  value="{{ $settings->instagram }}"  placeholder="Enter Email" >
                   </div>
                 </div>
 
-                <div class="form-group" style="margin-top: 60px !important;">
-                  <label for="status" class="col-sm-2 control-label">Visibility</label>
-
-                  <div class="col-sm-10">
-                    <select name="visibility" class="form-control">
-                        <option value="1">Public</option>
-                        <option value="0">Private</option>
-                    </select>
+                <div class="form-group">
+                  <label for="google_plus" class="col-sm-2 control-label">Google Plus</label>
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control" id="google_plus" name="google_plus"  value="{{ $settings->google_plus }}"  placeholder="Enter Email" >
                   </div>
-                </div> 
-
-                <div class="form-group" style="margin-top: 110px !important;">
-                  <label>
-                    <!-- <input type="checkbox" name="featured" class="flat-red" value="1"> -->
-                    {{ Form::checkbox('featured', '1', false, ['class' => 'featured']) }}
-                      Featured
-                  </label>
                 </div>
 
-                <div class="form-group" style="">
-                  <label>
-                    <!-- <input type="checkbox" class="flat-red" name="headline"> -->
-                    {{ Form::checkbox('headline', '1', false, ['class' => 'headline']) }}
-                      Headline
-                  </label>
-                </div>             
+                <div class="form-group">
+                  <label for="youtube" class="col-sm-2 control-label">Youtube</label>
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control" id="youtube" name="youtube"  value="{{ $settings->google_plus }}"  placeholder="Enter Email" >
+                  </div>
+                </div>
+
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
@@ -291,9 +238,6 @@ Banglabox || Add New Article
 
 <script src="{{ asset('vendor/dorpify/dist/js/dropify.min.js') }}"></script>
 
-<!-- iCheck 1.0.1 -->
-<script src="{{ asset('assets/plugins/iCheck/icheck.min.js') }}"></script>
-
 <script>
     $(document).ready(function() {
         $('.select2').select2();
@@ -323,22 +267,6 @@ Banglabox || Add New Article
             reader.readAsDataURL(input.files[0]);
         }
     }
-
-        //iCheck for checkbox and radio inputs
-        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-          checkboxClass: 'icheckbox_minimal-blue',
-          radioClass   : 'iradio_minimal-blue'
-        })
-        //Red color scheme for iCheck
-        $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-          checkboxClass: 'icheckbox_minimal-red',
-          radioClass   : 'iradio_minimal-red'
-        })
-        //Flat red color scheme for iCheck
-        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-          checkboxClass: 'icheckbox_flat-green',
-          radioClass   : 'iradio_flat-green'
-        })
 </script>
 
 

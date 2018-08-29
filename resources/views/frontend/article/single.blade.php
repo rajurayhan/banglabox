@@ -1,6 +1,7 @@
 <?php
     use EasyBanglaDate\Types\BnDateTime;
     use EasyBanglaDate\Types\DateTime as EnDateTime;
+    use App\Http\Controllers\HomeController;
 
     $created_at     = $article->created_at;
 
@@ -17,6 +18,10 @@
     $colorArray      = ['green', 'violet', 'purple', 'blue', 'red', 'cyan'];
     $randomColor     = array_rand($colorArray);
     $color           = $colorArray[$randomColor];
+
+    
+    $homeCTRLR      = new HomeController();
+    $settingsAttr        = $homeCTRLR->gteSettings();
 ?>
 
 <!DOCTYPE html>

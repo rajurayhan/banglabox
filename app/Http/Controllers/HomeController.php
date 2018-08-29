@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Input;
 use App\Article;
 use App\Category;
 use App\Subscriber;
+use App\Settings;
 
 use App\Mail\ContuctUs;
 use Mail;
@@ -33,10 +34,18 @@ class HomeController extends Controller
     }
 
     public function about(){
+        $settingsObj    = new Settings();
+        $settings       = $settingsObj->first();
+
+        // return view('frontend.pages.about', compact('settings'));
         return view('frontend.pages.about');
     }
 
     public function contact(){
+        $settingsObj    = new Settings();
+        $settings       = $settingsObj->first();
+
+        // return view('frontend.pages.contact', compact('settings'));
         return view('frontend.pages.contact');
     }
 
@@ -48,7 +57,7 @@ class HomeController extends Controller
         ->cc(['devraju.bd@gmail.com'])
         ->send(new ContuctUs());
 
-        return response()->json('Mail Sent Successfully!');
+        return response()->json('Message Sent Successfully! We will find you shortly.');
     }
 
     // public function privacy(){
@@ -79,4 +88,14 @@ class HomeController extends Controller
             return redirect()->back()->with('message', 'You have sucessfully Subscribed!');
         }
     }
+
+    public function gteSettings()
+    {
+        $settingsObj    = new Settings();
+        $settings       = $settingsObj->first();
+
+        return $settings;
+    }
+
+    
 }

@@ -1,3 +1,10 @@
+<?php
+    use App\Http\Controllers\HomeController;
+    $homeCTRLR      = new HomeController();
+    $settingsAttr        = $homeCTRLR->gteSettings();
+
+    // var_dump($settingsAttr);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

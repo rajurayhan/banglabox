@@ -17,10 +17,15 @@ class CreateSettingsTable extends Migration
             $table->increments('id');
             $table->string('website_title');
             $table->string('logo');
+            $table->string('address');
+            $table->string('contact');
+            $table->string('email');
+            $table->longText('about');
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
-            $table->string('instagrm')->nullable();
+            $table->string('instagram')->nullable();
             $table->string('google_plus')->nullable();
+            $table->string('youtube')->nullable();
             $table->timestamps();
         });
     }

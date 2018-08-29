@@ -53,7 +53,7 @@
 
         <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i><span>Newsletter</span></a></li>
 
-        <li><a href="#"><i class="fa fa-cogs" aria-hidden="true"></i><span>Settings</span></a></li>
+        <li><a href="{{ route('settings') }}"><i class="fa fa-cogs" aria-hidden="true"></i><span>Settings</span></a></li>
 
 
       </ul>

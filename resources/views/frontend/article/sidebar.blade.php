@@ -77,25 +77,25 @@
         <div class="socials socials--wide socials--large">
             <div class="row row-16">
                 <div class="col">
-                    <a class="social social-facebook" href="#" title="facebook" target="_blank" aria-label="facebook">
+                    <a class="social social-facebook" href="https://facebook.com/{{ $settingsAttr->facebook }}" title="facebook" target="_blank" aria-label="facebook">
                         <i class="ui-facebook"></i>
                         <span class="social__text">Facebook</span>
                     </a><!--
-                  --><a class="social social-twitter" href="#" title="twitter" target="_blank" aria-label="twitter">
+                  --><a class="social social-twitter" href="https://twitter.com/{{ $settingsAttr->twitter }}" title="twitter" target="_blank" aria-label="twitter">
                         <i class="ui-twitter"></i>
                         <span class="social__text">Twitter</span>
                     </a><!--
-                  --><a class="social social-youtube" href="#" title="youtube" target="_blank" aria-label="youtube">
+                  --><a class="social social-youtube" href="https://youtube.com/channel/{{ $settingsAttr->youtube }}" title="youtube" target="_blank" aria-label="youtube">
                         <i class="ui-youtube"></i>
                         <span class="social__text">Youtube</span>
                     </a>
                 </div>
                 <div class="col">
-                    <a class="social social-google-plus" href="#" title="google" target="_blank" aria-label="google">
+                    <a class="social social-google-plus" href="https://plus.google.com/+{{ $settingsAttr->google_plus }}" title="google" target="_blank" aria-label="google">
                         <i class="ui-google"></i>
                         <span class="social__text">Google+</span>
                     </a><!--
-                  --><a class="social social-instagram" href="#" title="instagram" target="_blank" aria-label="instagram">
+                  --><a class="social social-instagram" href="https://instagram.com/{{ $settingsAttr->instagram }}" title="instagram" target="_blank" aria-label="instagram">
                         <i class="ui-instagram"></i>
                         <span class="social__text">Instagram</span>
                     </a><!--
