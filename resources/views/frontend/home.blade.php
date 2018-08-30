@@ -101,6 +101,7 @@
             <div class="col-lg-6">
 
                 <!-- Large post -->
+                @if($headline)
                 <div class="featured-posts-grid__item featured-posts-grid__item--lg">
                     <article class="entry card featured-posts-grid__entry">
                         <div class="entry__img-holder card__img-holder">
@@ -125,7 +126,10 @@
                             </ul>
                         </div>
                     </article>
-                </div> <!-- end large post -->
+                </div>
+                @endif 
+                
+                <!-- end large post -->
             </div>
 
           <div class="col-lg-6">
