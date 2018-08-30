@@ -101,8 +101,9 @@
             <div class="col-lg-6">
 
                 <!-- Large post -->
-                @if($headline)
+                
                 <div class="featured-posts-grid__item featured-posts-grid__item--lg">
+                @if($headline)
                     <article class="entry card featured-posts-grid__entry">
                         <div class="entry__img-holder card__img-holder">
                             <a href="{{ route('singleArticle', [$headline->id, $headline->slug]) }}">
@@ -126,8 +127,9 @@
                             </ul>
                         </div>
                     </article>
+                  @endif 
                 </div>
-                @endif 
+                
                 
                 <!-- end large post -->
             </div>
