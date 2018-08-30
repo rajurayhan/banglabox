@@ -138,8 +138,8 @@
                   <i class="ui-search nav__search-trigger-icon"></i>
                 </a>
                 <div class="nav__search-box" id="nav__search-box">
-                  <form class="nav__search-form">
-                    <input type="text" placeholder="Search an article" class="nav__search-input">
+                  <form class="nav__search-form" action="{{ route('search') }}">
+                    <input type="text" placeholder="Search an article" class="nav__search-input" name="term" value="@if(isset($query)){{ $query }}@endif">
                     <button type="submit" class="search-button btn btn-lg btn-color btn-button">
                       <i class="ui-search nav__search-icon"></i>
                     </button>

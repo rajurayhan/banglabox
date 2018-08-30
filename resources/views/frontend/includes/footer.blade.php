@@ -1,3 +1,8 @@
+    <?php
+                          use EasyBanglaDate\Types\BnDateTime;
+                          use EasyBanglaDate\Types\DateTime as EnDateTime;
+    ?>
+    
     <!-- Footer -->
     <footer class="footer footer--dark">
       <div class="container">
@@ -36,22 +41,36 @@
               </aside>
             </div>  
 
+            <?php
+                use App\Http\Controllers\HomeController;
+                $homeCTRLR      = new HomeController();
+
+                $popularArticles  = $homeCTRLR->getFooterArticles();
+            ?>
+
             <div class="col-lg-4 col-md-6">
               <aside class="widget widget-popular-posts">
                 <h4 class="widget-title">Popular Posts</h4>
                 <ul class="post-list-small">
+                @foreach($popularArticles as $popular)
+
+                <?php
+
+                  $bongabda       = new BnDateTime($popular->created_at, new DateTimeZone('Asia/Dhaka'));
+                  $published_at   = $bongabda->getDateTime()->format('jS F, Y'). PHP_EOL;
+                ?>
                   <li class="post-list-small__item">
                     <article class="post-list-small__entry clearfix">
                       <div class="post-list-small__img-holder">
                         <div class="thumb-container thumb-100">
-                          <a href="#">
-                            <img data-src="img/content/post_small/post_small_1.jpg" src="img/empty.png" alt="" class="post-list-small__img--rounded lazyload">
+                          <a href="{{ route('singleArticle', [$popular->id, $popular->slug]) }}">
+                            <img data-src="{{ route('home') }}/uploads/featured/{{ $popular->image }}" src="{{ route('home') }}/uploads/featured/{{ $popular->image }}" alt="" class="post-list-small__img--rounded lazyload">
                           </a>
                         </div>
                       </div>
                       <div class="post-list-small__body">
                         <h3 class="post-list-small__entry-title">
-                          <a href="#">Follow These Smartphone Habits of Successful Entrepreneurs</a>
+                          <a href="{{ route('singleArticle', [$popular->id, $popular->slug]) }}">{{ $popular->title }}</a>
                         </h3>
                         <ul class="entry__meta">
                           <li class="entry__meta-author">
@@ -59,37 +78,13 @@
                             <a href="#">BanglaBox</a>
                           </li>
                           <li class="entry__meta-date">
-                            Jan 21, 2018
+                            {{ $published_at }}
                           </li>
                         </ul>
                       </div>                  
                     </article>
                   </li>
-                  <li class="post-list-small__item">
-                    <article class="post-list-small__entry clearfix">
-                      <div class="post-list-small__img-holder">
-                        <div class="thumb-container thumb-100">
-                          <a href="#">
-                            <img data-src="img/content/post_small/post_small_2.jpg" src="img/empty.png" alt="" class="post-list-small__img--rounded lazyload">
-                          </a>
-                        </div>
-                      </div>
-                      <div class="post-list-small__body">
-                        <h3 class="post-list-small__entry-title">
-                          <a href="#">Lose These 12 Bad Habits If You're Serious About Becoming a Millionaire</a>
-                        </h3>
-                        <ul class="entry__meta">
-                          <li class="entry__meta-author">
-                            <span>by</span>
-                            <a href="#">BanglaBox</a>
-                          </li>
-                          <li class="entry__meta-date">
-                            Jan 21, 2018
-                          </li>
-                        </ul>
-                      </div>                  
-                    </article>
-                  </li>
+                @endforeach  
                 </ul>
               </aside>              
             </div>

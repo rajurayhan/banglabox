@@ -170,21 +170,21 @@ Banglabox || Update Settings
                 <div class="form-group">
                   <label for="category_id" class="col-sm-2 control-label">Facebook</label>
                   <div class="col-sm-12">
-                  <input type="text" class="form-control" id="facebook" name="facebook"  value="{{ $settings->facebook }}"  placeholder="Enter Email" >
+                  <input type="text" class="form-control" id="facebook" name="facebook"  value="{{ $settings->facebook }}"  placeholder="Fcebook Username. ie. raju.rayhan" >
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="twitter" class="col-sm-2 control-label">Twitter</label>
                   <div class="col-sm-12">
-                    <input type="text" class="form-control" id="twitter" name="twitter"  value="{{ $settings->twitter }}"  placeholder="Enter Email" >
+                    <input type="text" class="form-control" id="twitter" name="twitter"  value="{{ $settings->twitter }}"  placeholder="Twitter Username. ie. raju_rayhan" >
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="instagram" class="col-sm-2 control-label">instagram</label>
                   <div class="col-sm-12">
-                    <input type="text" class="form-control" id="instagram" name="instagram"  value="{{ $settings->instagram }}"  placeholder="Enter Email" >
+                    <input type="text" class="form-control" id="instagram" name="instagram"  value="{{ $settings->instagram }}"  placeholder="Fcebook Username. ie. raju.rayhan" >
                   </div>
                 </div>
 

@@ -5,6 +5,15 @@
 
     $homeCTRLR      = new HomeController();
     $settingsAttr        = $homeCTRLR->gteSettings();
+
+    function getPublishDateBn($date){
+      $bongabda       = new BnDateTime($date, new DateTimeZone('Asia/Dhaka'));
+      $published_at   = $bongabda->getDateTime()->format('jS F, Y'). PHP_EOL;
+
+      return $published_at;
+    }
+
+    
     
 ?>
 <!DOCTYPE html>
@@ -95,15 +104,15 @@
                 <div class="featured-posts-grid__item featured-posts-grid__item--lg">
                     <article class="entry card featured-posts-grid__entry">
                         <div class="entry__img-holder card__img-holder">
-                            <a href="#">
-                                <img src="img/content/hero/hero_post_4.jpg" alt="" class="entry__img">
+                            <a href="{{ route('singleArticle', [$headline->id, $headline->slug]) }}">
+                                <img src="{{ route('home') }}/uploads/featured/{{ $headline->image }}" alt="" class="entry__img">
                             </a>
-                            <a href="#" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--green">বিস্ময়কর</a>
+                            <a href="{{ route('categoryArticles', $headline->category->slug) }}" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--green">{{ $headline->category->name }}</a>
                         </div>
 
                         <div class="entry__body card__body">
                             <h2 class="entry__title">
-                                <a href="#">বন ম্যান অব ইন্ডিয়া'  যাদব পায়েং ( ভারতের বন রক্ষক ) !!</a>
+                                <a href="{{ route('singleArticle', [$headline->id, $headline->slug]) }}">{{ $headline->title }}</a>
                             </h2>
                             <ul class="entry__meta">
                                 <li class="entry__meta-author">
@@ -111,7 +120,7 @@
                                     <a href="#">BanglaBox</a>
                                 </li>
                                 <li class="entry__meta-date">
-                                    July 16, 2018
+                                    {{ getPublishDateBn($headline->created_at) }}
                                 </li>
                             </ul>
                         </div>
@@ -121,18 +130,20 @@
 
           <div class="col-lg-6">
 
+          
+
             <!-- Small post -->
             <div class="featured-posts-grid__item featured-posts-grid__item--sm">
               <article class="entry card post-list featured-posts-grid__entry">
-                <div class="entry__img-holder post-list__img-holder card__img-holder" style="background-image: url(img/content/hero/hero_post_1.jpg)">
-                  <a href="#" class="thumb-url"></a>
-                  <img src="img/content/hero/hero_post_1.jpg" alt="" class="entry__img d-none">
-                  <a href="#" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--violet">বিস্ময়কর</a>
+                <div class="entry__img-holder post-list__img-holder card__img-holder" style="background-image: url({{ route('home') }}/uploads/featured/{{ $featured['0']->image }})">
+                  <a href="{{ route('singleArticle', [$featured['0']->id, $featured['0']->slug]) }}" class="thumb-url"></a>
+                  <img src="{{ route('home') }}/uploads/featured/{{ $featured['0']->image }}" alt="" class="entry__img d-none">
+                  <a href="{{ route('categoryArticles', [$featured['0']->category->slug]) }}" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--violet">{{ $featured['0']->category->name }}</a>
                 </div>
 
                 <div class="entry__body post-list__body card__body">  
                   <h2 class="entry__title">
-                    <a href="#">বর্তমান বিশ্বের দামি গাড়ির শীর্ষ স্থানে রয়েছে ১ কোটি ১ লাখ মার্কিন ডলার মূল্যের.... </a>
+                    <a href="{{ route('singleArticle', [$featured['0']->id, $featured['0']->slug]) }}">{{ $featured['0']->title }}</a>
                   </h2>
                   <ul class="entry__meta">
                     <li class="entry__meta-author">
@@ -140,25 +151,26 @@
                       <a href="#">BanglaBox</a>
                     </li>
                     <li class="entry__meta-date">
-                      July 16, 2018
+                    {{ getPublishDateBn($featured['0']->created_at) }}
                     </li>              
                   </ul>
                 </div>
               </article>
             </div> <!-- end post -->
 
+
             <!-- Small post -->
             <div class="featured-posts-grid__item featured-posts-grid__item--sm">
               <article class="entry card post-list featured-posts-grid__entry">
-                <div class="entry__img-holder post-list__img-holder card__img-holder" style="background-image: url(img/content/hero/hero_post_2.jpg)">
-                  <a href="#" class="thumb-url"></a>
-                  <img src="img/content/hero/hero_post_2.jpg" alt="" class="entry__img d-none">
-                  <a href="#" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--purple">জীবন যাত্রা</a>
+                <div class="entry__img-holder post-list__img-holder card__img-holder" style="background-image: url({{ route('home') }}/uploads/featured/{{ $featured['1']->image }})">
+                  <a href="{{ route('singleArticle', [$featured['0']->id, $featured['0']->slug]) }}" class="thumb-url"></a>
+                  <img src="{{ route('home') }}/uploads/featured/{{ $featured['1']->image }}" alt="" class="entry__img d-none">
+                  <a href="{{ route('categoryArticles', [$featured['1']->category->slug]) }}" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--purple">{{ $featured['1']->category->name }}</a>
                 </div>
 
                 <div class="entry__body post-list__body card__body">  
                   <h2 class="entry__title">
-                    <a href="#">যে ৯টি টিপস জানলে গৃহকর্মী ছাড়াই আপনার ঘরদোর থাকবে পরিচ্ছন্ন...</a>
+                    <a href="{{ route('singleArticle', [$featured['0']->id, $featured['0']->slug]) }}">{{ $featured['1']->title }}</a>
                   </h2>
                   <ul class="entry__meta">
                     <li class="entry__meta-author">
@@ -166,25 +178,29 @@
                       <a href="#">BanglaBox</a>
                     </li>
                     <li class="entry__meta-date">
-                        July 16, 2018
+                    {{ getPublishDateBn($featured['1']->created_at) }}
                     </li>              
                   </ul>
                 </div>
               </article>
             </div> <!-- end post -->
 
+         
+
+
             <!-- Small post -->
+            
             <div class="featured-posts-grid__item featured-posts-grid__item--sm">
               <article class="entry card post-list featured-posts-grid__entry">
-                <div class="entry__img-holder post-list__img-holder card__img-holder" style="background-image: url(img/content/hero/hero_post_3.jpg)">
-                  <a href="#" class="thumb-url"></a>
-                  <img src="img/content/hero/hero_post_3.jpg" alt="" class="entry__img d-none">
-                  <a href="#" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--blue">বিনোদন</a>
+                <div class="entry__img-holder post-list__img-holder card__img-holder" style="background-image: url({{ route('home') }}/uploads/featured/{{ $featured['2']->image }})">
+                  <a href="{{ route('singleArticle', [$featured['2']->id, $featured['0']->slug]) }}" class="thumb-url"></a>
+                  <img src="{{ route('home') }}/uploads/featured/{{ $featured['2']->image }}" alt="" class="entry__img d-none">
+                  <a href="{{ route('categoryArticles', [$featured['1']->category->slug]) }}" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--blue">{{ $featured['2']->category->name }}</a>
                 </div>
 
                 <div class="entry__body post-list__body card__body">  
                   <h2 class="entry__title">
-                    <a href="#">বাংলাদেশের প্রথম পূর্ণ দৈর্ঘ্য চলচিত্রের নাম “দ্য লাস্ট কিস”। ঢাকার নবাব পরিবারের পৃষ্ঠপোষকতায় এই ছবি নির্মাণ...</a>
+                    <a href="{{ route('singleArticle', [$featured['2']->id, $featured['0']->slug]) }}">{{ $featured['2']->title }}</a>
                   </h2>
                   <ul class="entry__meta">
                     <li class="entry__meta-author">
@@ -192,12 +208,14 @@
                       <a href="#">BanglaBox</a>
                     </li>
                     <li class="entry__meta-date">
-                        July 16, 2018
+                    {{ getPublishDateBn($featured['2']->created_at) }}
                     </li>              
                   </ul>
                 </div>
               </article>
-            </div> <!-- end post -->
+            </div> 
+            
+            <!-- end post -->
 
           </div> <!-- end col -->
 

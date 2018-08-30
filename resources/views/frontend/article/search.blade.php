@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>BanglaBox || {{ $category->name }}</title>
+    <title>BanglaBox || {{ $query }} search result</title>
 
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
@@ -65,7 +65,7 @@
           <a href="index-2.html" class="breadcrumbs__url">News</a>
         </li> -->
         <li class="breadcrumbs__item breadcrumbs__item--current">
-          {{ $category->name }}
+          search
         </li>
       </ul>
     </div>
@@ -77,7 +77,10 @@
 
 <!-- Posts -->
 <div class="col-lg-8 blog__content mb-72">
-    <h1 class="page-title">{{ $category->name }}</h1>
+    <h2 class="page-title"> {{ sizeof($articles) }} result(s) found for <em>{{ $query }}</em></h2>
+    @if(sizeof($articles)<1)
+        <h3>Sorry! Your Search Keyword did not match.</h3>
+    @endif
     @include('frontend.article.data')
 </div> <!-- end posts -->
 

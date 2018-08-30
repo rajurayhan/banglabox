@@ -20,8 +20,11 @@ class HomeController extends Controller
         $articleObj         = new Article();
         $articles           = $articleObj->paginate(6);
 
-        $latestPosts        = $articleObj->orderBy('id', 'desc')->take(6)->get();
+        $headline           = $articleObj->where('is_headline', 1)->first();
+        $featured           = Article::where('is_headline', 0)->where('is_featured', 1)->orderByRaw('RAND()')->take(3)->get();
 
+        $latestPosts        = $articleObj->orderBy('id', 'desc')->take(6)->get();
+        
         if($request->ajax()){
             $view = view('frontend.article.data',compact('articles'))->render();
             return response()->json(['html'=>$view]);
@@ -29,8 +32,8 @@ class HomeController extends Controller
 
         $randoms  = Article::orderByRaw('RAND()')->take(3)->get();
 
-        return view('frontend.home', compact('articles', 'randoms', 'latestPosts'));
-        // return $latestPosts;
+        return view('frontend.home', compact('articles', 'randoms', 'latestPosts', 'headline', 'featured'));
+        // return $headline;
     }
 
     public function about(){
@@ -89,12 +92,44 @@ class HomeController extends Controller
         }
     }
 
+    public function search(Request $request)
+    {        
+      
+        $query                  = $request->term;
+        $articleObj             = new Article();
+
+        $articles               = $articleObj->where('title', 'like', "%{$query}%")
+                                             ->orWhere('description', 'like', "%{$query}%")
+                                             ->orWhere('excerpt', 'like', "%{$query}%")
+                                             ->orWhere('slug', 'like', "%{$query}%")
+                                             ->orWhere('tags', 'like', "%{$query}%")
+                                             ->paginate(6);
+
+        if($request->ajax()){
+            $view = view('frontend.article.data',compact('articles'))->render();
+            return response()->json(['html'=>$view]);
+        }
+
+        // return $articles;
+        return view('frontend.article.search', compact('articles', 'query'));
+    }
+
     public function gteSettings()
     {
         $settingsObj    = new Settings();
         $settings       = $settingsObj->first();
 
         return $settings;
+    }
+
+    public function getFooterArticles()
+    {
+        $articleObj             = new Article();
+        $articles               = $articleObj->where('status', 1)
+                                             ->orderBy('read_count', 'desc')
+                                             ->take(2)
+                                             ->get();
+        return $articles;
     }
 
     
