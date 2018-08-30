@@ -60,6 +60,7 @@ Route::post('admin/article/post', 'ArticleController@postArticle')->name('postAr
 
 Route::get('admin/article/edit/{id}', 'ArticleController@editArticle')->name('editArticle');
 Route::post('admin/article/update/{id}', 'ArticleController@updateArticle')->name('updateArticle');
+Route::post('admin/article/delete/{id}', 'ArticleController@deleteArticle')->name('deleteArticle');
 
     //Settings 
 Route::get('admin/settings', 'AdminController@settings')->name('settings');

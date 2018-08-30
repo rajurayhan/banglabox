@@ -12,6 +12,7 @@ use EasyBanglaDate\Types\DateTime as EnDateTime;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Image;
+use DB;
 
 
 
@@ -188,5 +189,32 @@ class ArticleController extends Controller
         $article->save();
 
         return redirect()->back()->with('message', 'Article Updated Successfully!');
+    }
+
+    public function deleteArticle($id)
+    {
+        $articleObj         = new Article();
+        $article            = $articleObj->find($id);
+
+        $isHeadline         = $article->is_headline;
+        
+        $article->is_headline   = 0;
+        $article->save();
+        $article->delete();
+
+        $msg        = 'Article Deleted Successfully.';
+
+        if($isHeadline){
+            $lastArticle    = $articleObj->orderBy('created_at', 'desc')->first();
+            // $lastArticle = DB::table('articles')->latest()->first();
+            if($lastArticle){
+                $lastArticle->is_headline   = 1; 
+                $lastArticle->save();
+
+                $msg        = 'Article Deleted Successfully. Headline Changed.';
+            }
+        }
+
+        return redirect()->back()->with('message', $msg);
     }
 }

@@ -1,3 +1,18 @@
+<?php
+    use EasyBanglaDate\Types\BnDateTime;
+    use EasyBanglaDate\Types\DateTime as EnDateTime;
+
+    function getPublishDateBn($date){
+      $bongabda       = new BnDateTime($date, new DateTimeZone('Asia/Dhaka'));
+      $published_at   = $bongabda->getDateTime()->format('jS F, Y'). PHP_EOL;
+
+      return $published_at;
+    }
+
+    
+    
+?>
+
 @extends('backend.layouts.master')
 @section('title')
 Banglabox || Articles
@@ -52,14 +67,29 @@ Banglabox || Articles
                 </thead>
                 <tbody>
                     @foreach($articles as $article)
-                      <tr>
+                      <tr @if($article->is_headline) style="color: red" @endif>
                         <td>{{ $loop->index+1 }}</td>
                         <td><img src="{{ route('home') }}/uploads/featured/{{ $article->image }}"  class="img-thumbnail img-responsive" style="max-width: 150px;"></td>
-                        <td>{{ $article->title }}</td>
+                        <td>{{ $article->title }} @if($article->is_headline)<span style="display: none;">Headline</span>@endif </td>
                         <td>{{ $article->category->name }}</td>
                         <td>{{ $article->slug }}</td>
-                        <td>{{ $article->creted_at }}</td>
-                        <td><a href="{{ route('editArticle', $article->id) }}"><button type="button" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-edit"></span></button></a></td>
+                        <td>{{ getPublishDateBn($article->created_at) }}</td>
+                        <td>
+                          <a href="{{ route('editArticle', $article->id) }}"><button type="button" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-edit"></span></button></a>
+
+                          <form id="delete-form-{{ $article->id }}" action="{{ route('deleteArticle',$article->id) }}" style="display: none;" method="post">
+                            
+                            {{ csrf_field() }}
+                            {{ method_field('POST') }}
+                            </form>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="
+                            if(confirm('Are you sure, You want to delete this?'))
+                            {
+                                event.preventDefault();
+                                document.getElementById('delete-form-{{ $article->id }}').submit();}else{ event.preventDefault(); }">
+                                <span class="glyphicon glyphicon-trash"></span></button>
+                          
+                          </td>
                       </tr>
                     @endforeach
                 </tbody>
