@@ -216,6 +216,13 @@
                 }
             });
         });
+
+        $("#password").keypress(function(e) {
+            var keycode = (e.keyCode ? e.keyCode : e.which);
+            if (keycode == '13') {
+                $('#loginForm').submit();
+            }
+        });
 </script>
 
 @if(count($errors)>0)

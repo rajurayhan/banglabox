@@ -121,7 +121,7 @@
               <!-- The user image in the navbar-->
               <img src="{{ route('home') }}/img/user_image.png" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -129,13 +129,13 @@
                 <img src="{{ route('home') }}/img/user_image.png" class="img-circle" alt="User Image">
 
                 <p>
-                  Raju Rayhyan - Software Engineer
-                  <small>Member since Aug. 2018</small>
+                  {{ Auth::user()->name }}
+                  <small></small>
                 </p>
               </li>
               <!-- Menu Body -->
               <li class="user-body">
-                <div class="row">
+                <!-- <div class="row">
                   <div class="col-xs-4 text-center">
                     <a href="#">Followers</a>
                   </div>
@@ -145,7 +145,7 @@
                   <div class="col-xs-4 text-center">
                     <a href="#">Friends</a>
                   </div>
-                </div>
+                </div> -->
                 <!-- /.row -->
               </li>
               <!-- Menu Footer-->
