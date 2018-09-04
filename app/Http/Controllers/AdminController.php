@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Settings;
+use App\Subscriber;
 
 use Image;
+use App\Mail\NewsLetter;
+use Mail;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -52,5 +56,27 @@ class AdminController extends Controller
 
         return redirect()->back()->with('message', 'Settings Updated Successfully!');
         
+    }
+
+    public function newsLetter()
+    {
+        $subsObj         = new Subscriber();
+        $subscribers     = $subsObj->orderBy('id', 'desc')->get();
+        
+        return view('backend.pages.newsletter', compact('subscribers'));
+        // return view('backend.mail.newslettertpl');
+    }
+
+    public function sendNewsletter()
+    {
+        $subscriberObj      = new Subscriber();
+        $subscribers        = $subscriberObj->where('status', 1)->get();
+
+        foreach($subscribers as $subscriber){
+            Mail::to($subscriber->email)
+                ->send(new NewsLetter($subscriber->token));
+        }
+
+        return response()->json('Newsletter Sent Successfully! ');
     }
 }

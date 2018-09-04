@@ -86,6 +86,7 @@ class HomeController extends Controller
         }
         else{
             $subObj->email  = $request->email;
+            $subObj->token  = $this->RandomString();
             $subObj->save();
 
             return redirect()->back()->with('message', 'You have sucessfully Subscribed!');
@@ -130,6 +131,46 @@ class HomeController extends Controller
                                              ->take(2)
                                              ->get();
         return $articles;
+    }
+
+    public function RandomString($length = 15) {
+        $randstr    = '';
+        srand((double) microtime(TRUE) * 1000000);
+        //our array add all letters and numbers if you wish
+        $chars = array(
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'p',
+            'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5',
+            '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 
+            'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
+    
+        for ($rand = 0; $rand <= $length; $rand++) {
+            $random = rand(0, count($chars) - 1);
+            $randstr .= $chars[$random];
+        }
+        return $randstr;
+    }
+
+    public function unsubscribe($token)
+    {
+        $subsCriberObj      = new Subscriber();
+        $subscriber         = $subsCriberObj->where('token', $token)->first();
+
+        if($subscriber){
+            if($subscriber->status == 1){
+                $subscriber->status     = 0;
+                $subscriber->save();
+
+                $msg    = 'You have Unsubscribed from BanglaBox - Weekly Digest.';
+            }
+            else{
+                $msg    = 'You are already Unsubscribed from BanglaBox - Weekly Digest.';
+            }
+        }
+        else{
+            $msg        = 'Sorry! Your have never subscribed to BanglaBox.';
+        }
+
+        return $msg;
     }
 
     

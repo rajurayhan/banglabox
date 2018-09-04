@@ -37,31 +37,59 @@ Route::get('/contact-us', 'HomeController@contactUs')->name('contactUs');
 
 Route::get('/search', 'HomeController@search')->name('search'); 
 
+Route::get('unsubscribe/{token}', 'HomeController@unsubscribe')->name('unsubscribe');
+
+ 
+Route::get('/login', 'AuthenticateController@login')->name('login'); 
+Route::post('/login-user', 'AuthenticateController@postLogin')->name('postLogin'); 
+
 
 /** Back End Routs  **/
-Route::get('dashboard', 'AdminController@dashboard')->name('dashboard');
 
-    // Category 
-Route::get('admin/category', 'CategoryController@allCategory')->name('allCategory');
 
-Route::post('admin/category/post', 'CategoryController@postCategory')->name('postCategory');
-Route::post('admin/category/update/', 'CategoryController@updateCategory')->name('updateCategory');
-Route::post('admin/category/delete/{id}', 'CategoryController@deleteCategory')->name('deleteCategory');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/logout', 'AuthenticateController@logOut')->name('logOut');
 
-Route::get('ajax/category/info/', 'CategoryController@getCategoryInfo')->name('getCategoryInfo'); // Ajax (Edit Purpose)
+    Route::get('dashboard', 'AdminController@dashboard')->name('dashboard');
 
-    // Articles 
-Route::get('admin/articles', 'ArticleController@allArticles')->name('allArticles');
+        // Category 
+    Route::get('admin/category', 'CategoryController@allCategory')->name('allCategory');
 
-Route::get('admin/articles/data', 'ArticleController@anyData')->name('anyData'); // Get Serverside Data
+    Route::post('admin/category/post', 'CategoryController@postCategory')->name('postCategory');
+    Route::post('admin/category/update/', 'CategoryController@updateCategory')->name('updateCategory');
+    Route::post('admin/category/delete/{id}', 'CategoryController@deleteCategory')->name('deleteCategory');
 
-Route::get('admin/article/new', 'ArticleController@newArticle')->name('newArticle');
-Route::post('admin/article/post', 'ArticleController@postArticle')->name('postArticle');
+    Route::get('ajax/category/info/', 'CategoryController@getCategoryInfo')->name('getCategoryInfo'); // Ajax (Edit Purpose)
 
-Route::get('admin/article/edit/{id}', 'ArticleController@editArticle')->name('editArticle');
-Route::post('admin/article/update/{id}', 'ArticleController@updateArticle')->name('updateArticle');
-Route::post('admin/article/delete/{id}', 'ArticleController@deleteArticle')->name('deleteArticle');
+        // Articles 
+    Route::get('admin/articles', 'ArticleController@allArticles')->name('allArticles');
 
-    //Settings 
-Route::get('admin/settings', 'AdminController@settings')->name('settings');
-Route::post('admin/settings/update', 'AdminController@postSettings')->name('postSettings');
+    Route::get('admin/articles/data', 'ArticleController@anyData')->name('anyData'); // Get Serverside Data
+
+    Route::get('admin/article/new', 'ArticleController@newArticle')->name('newArticle');
+    Route::post('admin/article/post', 'ArticleController@postArticle')->name('postArticle');
+
+    Route::get('admin/article/edit/{id}', 'ArticleController@editArticle')->name('editArticle');
+    Route::post('admin/article/update/{id}', 'ArticleController@updateArticle')->name('updateArticle');
+    Route::post('admin/article/delete/{id}', 'ArticleController@deleteArticle')->name('deleteArticle');
+
+        //Settings 
+    Route::get('admin/settings', 'AdminController@settings')->name('settings');
+    Route::post('admin/settings/update', 'AdminController@postSettings')->name('postSettings');
+
+        // Users 
+    Route::get('admin/users', 'UserController@userList')->name('userList');
+
+    Route::post('admin/user/post', 'UserController@postUser')->name('postUser');
+    Route::post('admin/user/update/', 'UserController@updateUser')->name('updateUser');
+    Route::post('admin/user/delete/{id}', 'UserController@deleteUser')->name('deleteUser');
+
+    Route::get('ajax/user/info/', 'UserController@getUserInfo')->name('getUserInfo'); // Ajax (Edit Purpose)
+
+        // Newsletter 
+
+    Route::get('admin/newsletter', 'AdminController@newsLetter')->name('newsLetter');
+    Route::get('admin/newsletter/send', 'AdminController@sendNewsletter')->name('sendNewsletter');
+
+});
+

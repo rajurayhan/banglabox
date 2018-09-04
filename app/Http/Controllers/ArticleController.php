@@ -30,7 +30,7 @@ class ArticleController extends Controller
     public function singleArticle($id, $slug)
     {
         $articleObj             = new Article();
-        $article                = $articleObj->find($id);
+        $article                = $articleObj->findorfail($id);
 
         $article->read_count    = $article->read_count + 1; 
         $article->save();
@@ -53,7 +53,7 @@ class ArticleController extends Controller
         $articleObj             = new Article();
         // $articles               = $articleObj->where('category_id', $category->id)->get();
 
-        $articles               = $articleObj->where('category_id', $category->id)->paginate(6);
+        $articles               = $articleObj->where('category_id', $category->id)->orderBy('id', 'desc')->paginate(6);
 
         if($request->ajax()){
             $view = view('frontend.article.data',compact('articles'))->render();

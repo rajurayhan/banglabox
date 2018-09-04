@@ -358,6 +358,10 @@
     <!-- Toastr --> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+<script>
+   
+</script>
+
 @if(session()->has('message'))
 <script>
         var text    = '{{ session()->get("message") }}';

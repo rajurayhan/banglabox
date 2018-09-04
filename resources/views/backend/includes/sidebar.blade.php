@@ -6,7 +6,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="{{ route('home') }}/img/user_image.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>Alexander Pierce</p>
@@ -16,7 +16,7 @@
       </div>
 
       <!-- search form (Optional) -->
-      <form action="#" method="get" class="sidebar-form">
+      <!-- <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search...">
           <span class="input-group-btn">
@@ -24,14 +24,14 @@
               </button>
             </span>
         </div>
-      </form>
+      </form> -->
       <!-- /.search form -->
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">HEADER</li>
+        <li class="header">Navigation</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <li class=""><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         {{-- <li><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span>Another Link</span></a></li> --}}
         <li class="treeview">
           <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span>Articles</span>
@@ -47,11 +47,11 @@
 
         <li><a href="{{ route('allCategory') }}"><i class="fa fa-thumb-tack" aria-hidden="true"></i><span>Categories</span></a></li>
 
-        <li><a href="#"><i class="fa fa-users" aria-hidden="true"></i><span>Users</span></a></li>
+        <li><a href="{{ route('userList') }}"><i class="fa fa-users" aria-hidden="true"></i><span>Users</span></a></li>
 
         <li><a href="#"><i class="fa fa-picture-o" aria-hidden="true"></i><span>Advertisement</span></a></li>
 
-        <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i><span>Newsletter</span></a></li>
+        <li><a href="{{ route('newsLetter') }}"><i class="fa fa-envelope" aria-hidden="true"></i><span>Newsletter</span></a></li>
 
         <li><a href="{{ route('settings') }}"><i class="fa fa-cogs" aria-hidden="true"></i><span>Settings</span></a></li>
 
