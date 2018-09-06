@@ -25,7 +25,7 @@ class CreateArticlesTable extends Migration
             $table->boolean('visibility');
             $table->boolean('is_featured')->default(0);
             $table->boolean('is_headline')->default(0);
-            $table->string('tags'); // Array
+            $table->longText('tags'); // Array
             $table->integer('read_count')->default(0);
             $table->integer('author_id')->nullable();
             $table->integer('created_by')->nullable();
