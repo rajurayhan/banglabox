@@ -77,7 +77,7 @@
 
 <!-- Posts -->
 <div class="col-lg-8 blog__content mb-72">
-    <h1 class="page-title">{{ $category->name }}</h1>
+    <h3 class="page-title"><ul style="list-style-type: disc; margin-left: 5%"><li>{{ $category->name }}</li></ul></h3>
     @include('frontend.article.data')
 </div> <!-- end posts -->
 
@@ -163,7 +163,7 @@
 <script type="text/javascript">
     var page = 1;
     $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() >= $(document).height()) {
+        if($(window).scrollTop() + $(window).height() >= $(document).height()*0.7) {
             page++;
             loadMoreData(page);
         }

@@ -14,7 +14,7 @@
 
     <!-- Widget Popular Posts -->
     <aside class="widget widget-popular-posts">
-        <h4 class="widget-title">Popular Posts</h4>
+        <h2 class="widget-title">জনপ্রিয় লেখাসমূহ</h2>
         <ul class="post-list-small">
         @foreach($popularArticles as $popArticle)
         <?php

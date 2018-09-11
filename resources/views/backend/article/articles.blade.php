@@ -60,7 +60,8 @@ Banglabox || Articles
                   <th>Image</th>
                   <th>Title</th>
                   <th>Category</th>
-                  <th>Tags</th>
+                  <th>Slug</th>
+                  <th>Read</th>
                   <th>Created At</th>
                   <th>Actions</th>
                 </tr>
@@ -70,9 +71,10 @@ Banglabox || Articles
                       <tr @if($article->is_headline) style="color: red" @endif>
                         <td>{{ $loop->index+1 }}</td>
                         <td><img src="{{ route('home') }}/uploads/featured/{{ $article->image }}"  class="img-thumbnail img-responsive" style="max-width: 150px;"></td>
-                        <td>{{ $article->title }} @if($article->is_headline)<span style="display: none;">Headline</span>@endif </td>
+                        <td><a @if($article->is_headline) style="color: red" @endif href="{{ route('singleArticle', [$article->id, $article->slug]) }}" target="_blank">{{ $article->title }} @if($article->is_headline)<span style="display: none;">Headline</span>@endif </a></td>
                         <td>{{ $article->category->name }}</td>
                         <td>{{ $article->slug }}</td>
+                        <td>{{ $article->read_count }}</td>
                         <td>{{ getPublishDateBn($article->created_at) }}</td>
                         <td>
                           <a href="{{ route('editArticle', $article->id) }}"><button type="button" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-edit"></span></button></a>
@@ -99,7 +101,8 @@ Banglabox || Articles
                   <th>Image</th>
                   <th>Title</th>
                   <th>Category</th>
-                  <th>Tags</th>
+                  <th>Slug</th>
+                  <th>Read</th>
                   <th>Created At</th>
                   <th>Actions</th>
                 </tr>

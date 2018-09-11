@@ -29,7 +29,7 @@
 
             <div class="col-lg-2 col-md-6">
               <aside class="widget widget_nav_menu">
-                <h4 class="widget-title">Useful Links</h4>
+                <h4 class="widget-title">প্রয়োজনীয় লিঙ্ক</h4>
                 <ul>
                   <li><a href="{{ route('about') }}">About</a></li>
                   <!-- <li><a href="#">News</a></li>
@@ -50,7 +50,7 @@
 
             <div class="col-lg-4 col-md-6">
               <aside class="widget widget-popular-posts">
-                <h4 class="widget-title">Popular Posts</h4>
+                <h4 class="widget-title">জনপ্রিয় লেখাসমূহ</h4>
                 <ul class="post-list-small">
                 @foreach($popularArticles as $popular)
 

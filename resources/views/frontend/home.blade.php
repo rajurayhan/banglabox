@@ -78,7 +78,7 @@
       <div class="trending-now">
         <span class="trending-now__label">
           <i class="ui-flash"></i>
-        LATEST ARTICLES</span>
+        সদ্য প্রকাশিত</span>
         <div class="newsticker">
           <ul class="newsticker__list">
           @foreach($latestPosts as $latest)
@@ -125,6 +125,7 @@
                                     {{ getPublishDateBn($headline->created_at) }}
                                 </li>
                             </ul>
+                          <p>{{ mb_substr($headline->excerpt, 0, 60) }} ...</p>
                         </div>
                     </article>
                   @endif 
@@ -160,6 +161,7 @@
                     {{ getPublishDateBn($feat->created_at) }}
                     </li>              
                   </ul>
+                <p>{{ mb_substr($feat->excerpt, 0, 60) }} ...</p>
                 </div>
               </article>
             </div> 
@@ -222,7 +224,7 @@
 
           <!-- Widget Recommended (Rating) -->
           <aside class="widget widget-rating-posts">
-            <h4 class="widget-title">Recommended</h4>
+            <h4 class="widget-title">বাছাইকৃত লেখাসমূহ</h4>
             @foreach($randoms as $random)
             <?php 
                   $bongabda   = new BnDateTime($random->created_at, new DateTimeZone('Asia/Dhaka'));
@@ -230,7 +232,7 @@
             ?>
             <article class="entry">
               <div class="entry__img-holder">
-                <a href="#">
+                <a href="{{ route('singleArticle', [$random->id, $random->slug]) }}">
                   <div class="thumb-container thumb-60">
                     <img data-src="{{ route('home') }}/uploads/featured/{{ $random->image }}" src="{{ route('home') }}/uploads/featured/{{ $random->image }}" class="entry__img lazyload" alt="">
                   </div>
@@ -241,7 +243,7 @@
                 <div class="entry__header">
                   
                   <h2 class="entry__title">
-                    <a href="#">{{ $random->title }}</a>
+                    <a href="{{ route('singleArticle', [$random->id, $random->slug]) }}">{{ $random->title }}</a>
                   </h2>
                   <ul class="entry__meta">
                     <!-- <li class="entry__meta-author">
@@ -338,11 +340,12 @@
   <script src="{{ asset('js/jquery.newsTicker.min.js') }}"></script>  
   <script src="{{ asset('js/modernizr.min.js') }}"></script>
   <script src="{{ asset('js/scripts.js') }}"></script>
+  
 
   <script type="text/javascript">
     var page = 1;
     $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() >= $(document).height()) {
+        if($(window).scrollTop() + $(window).height() >= $(document).height()*0.7) {
             page++;
             loadMoreData(page);
         }

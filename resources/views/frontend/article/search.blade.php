@@ -77,9 +77,9 @@
 
 <!-- Posts -->
 <div class="col-lg-8 blog__content mb-72">
-    <h2 class="page-title"> {{ sizeof($articles) }} result(s) found for <em>{{ $query }}</em></h2>
+    <h2 class="page-title"><em>{{ $query }}</em> এর জন্য {{ sizeof($articles) }} টি ফলাফল পাওয়া গেছে।</h2>
     @if(sizeof($articles)<1)
-        <h3>Sorry! Your Search Keyword did not match.</h3>
+        <h3>দুঃখিত! আপনার প্রত্যাশিত লেখাটি খুঁজে পাওয়া যায়নি। </h3>
     @endif
     @include('frontend.article.data')
 </div> <!-- end posts -->
@@ -166,7 +166,7 @@
 <script type="text/javascript">
     var page = 1;
     $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() >= $(document).height()) {
+        if($(window).scrollTop() + $(window).height() >= $(document).height()*0.7) {
             page++;
             loadMoreData(page);
         }

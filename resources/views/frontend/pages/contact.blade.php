@@ -103,15 +103,15 @@
         <h1 class="page-title">যোগাযোগ</h1>
         
         <!-- Google Map -->
-        <div id="google-map" class="gmap" data-address="Adbox Bangladesh, Dhaka, Bangladesh"></div>
+        {{-- <div id="google-map" class="gmap" data-address="Adbox Bangladesh, Dhaka, Bangladesh"></div> --}}
 
         <div class="row justify-content-center">
           <div class="col-lg-8">
             <h4>Drop Us a Message</h4>
             <p>Don't hesitate to get in touch. We will reply you as soon as possible.</p>
             <ul class="contact-items">
-              <li class="contact-item"><address>{{ $settingsAttr->address }}</address></li>
-              <li class="contact-item"><a href="{{ $settingsAttr->contact }}">{{ $settingsAttr->contact }}</a></li>
+              {{-- <li class="contact-item"><address>{{ $settingsAttr->address }}</address></li>
+              <li class="contact-item"><a href="{{ $settingsAttr->contact }}">{{ $settingsAttr->contact }}</a></li> --}}
               <li class="contact-item"><a href="mailto:{{ $settingsAttr->email }}">{{ $settingsAttr->email }}</a></li>
             </ul>            
 

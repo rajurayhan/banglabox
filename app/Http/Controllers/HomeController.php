@@ -104,12 +104,12 @@ class HomeController extends Controller
                                              ->orWhere('excerpt', 'like', "%{$query}%")
                                              ->orWhere('slug', 'like', "%{$query}%")
                                              ->orWhere('tags', 'like', "%{$query}%")
-                                             ->paginate(6);
+                                             ->get();
 
-        if($request->ajax()){
-            $view = view('frontend.article.data',compact('articles'))->render();
-            return response()->json(['html'=>$view]);
-        }
+        // if($request->ajax()){
+        //     $view = view('frontend.article.data',compact('articles'))->render();
+        //     return response()->json(['html'=>$view]);
+        // }
 
         // return $articles;
         return view('frontend.article.search', compact('articles', 'query'));

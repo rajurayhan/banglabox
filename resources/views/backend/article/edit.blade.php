@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 @section('title')
-Banglabox || Add New Article
+Banglabox || Edit Article
 @endsection
 @section('headSection')
     <!-- DataTables -->
@@ -126,7 +126,7 @@ Banglabox || Add New Article
 
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Featured Image</h3>
+              <h3 class="box-title">Featured Image (730x430 px)</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->

@@ -48,9 +48,11 @@
   if (/Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent || navigator.vendor || window.opera)) {
      $("html").addClass("mobile");
      $('.dropdown-toggle').attr('data-toggle', 'dropdown');
+     $(".sidebar--right").hide();
   }
   else {
     $("html").removeClass("mobile");
+    $(".sidebar--right").show();
   }
 
   /* IE Detect
