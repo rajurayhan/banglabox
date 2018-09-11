@@ -57,11 +57,11 @@
   <main class="main oh" id="main">
 
     <!-- Top Bar -->
-    <div class="top-bar d-none d-lg-block">
+
+    {{-- <div class="top-bar d-none d-lg-block">
       <div class="container">
         <div class="row">
-
-          <!-- Top menu -->
+          
           <div class="col-lg-6">
             <ul class="top-menu">
               <li><a href="{{ route('about') }}">About</a></li>
@@ -69,7 +69,6 @@
             </ul>
           </div>
           
-          <!-- Socials -->
           <div class="col-lg-6">
             <div class="socials nav__socials socials--nobase socials--white justify-content-end"> 
               <a class="social social-facebook" href="https://facebook.com/{{ $settingsAttr->facebook }}" target="_blank" aria-label="facebook">
@@ -92,7 +91,9 @@
 
         </div>
       </div>
-    </div> <!-- end top bar -->        
+    </div>  --}}
+    
+    <!-- end top bar -->        
 
     <!-- Navigation -->
     <header class="nav">
@@ -145,7 +146,25 @@
                     </button>
                   </form>
                 </div>                
-              </div>             
+              </div>
+              
+              {{-- <div class="socials nav__socials socials--nobase socials--white justify-content-end"> 
+                <a class="social social-facebook" href="https://facebook.com/{{ $settingsAttr->facebook }}" target="_blank" aria-label="facebook">
+                  <i class="ui-facebook"></i>
+                </a>
+                <a class="social social-twitter" href="https://twitter.com/{{ $settingsAttr->twitter }}" target="_blank" aria-label="twitter">
+                  <i class="ui-twitter"></i>
+                </a>
+                <a class="social social-google-plus" href="https://plus.google.com/+{{ $settingsAttr->google_plus }}" target="_blank" aria-label="google">
+                  <i class="ui-google"></i>
+                </a>
+                <a class="social social-youtube" href="https://youtube.com/channel/{{ $settingsAttr->youtube }}" target="_blank" aria-label="youtube">
+                  <i class="ui-youtube"></i>
+                </a>
+                <a class="social social-instagram" href="https://instagram.com/{{ $settingsAttr->instagram }}" target="_blank" aria-label="instagram">
+                  <i class="ui-instagram"></i>
+                </a>
+              </div> --}}
 
             </div> <!-- end nav right -->            
         

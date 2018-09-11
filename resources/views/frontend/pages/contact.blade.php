@@ -107,8 +107,8 @@
 
         <div class="row justify-content-center">
           <div class="col-lg-8">
-            <h4>Drop Us a Message</h4>
-            <p>Don't hesitate to get in touch. We will reply you as soon as possible.</p>
+            <h4>আমাদের সাথে যোগাযোগ করুন</h4>
+            <p>BanglaBox সম্পর্কে আপনার যে কোন মতামত জানাতে আমাদের ই-মেইল করুন অথবা নিচের ফর্মটি পূরণ করে পাঠিয়ে দিন - </p>
             <ul class="contact-items">
               {{-- <li class="contact-item"><address>{{ $settingsAttr->address }}</address></li>
               <li class="contact-item"><a href="{{ $settingsAttr->contact }}">{{ $settingsAttr->contact }}</a></li> --}}
@@ -148,30 +148,30 @@
             <form onsubmit="return false" method="POST" id="contactForm">
             {{ csrf_field() }}
               <div class="form-group">
-                <label for="name">Name: *</label>
-                <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name">
+                <label for="name">নাম: *</label>
+                <input type="text" class="form-control" id="name" placeholder="আপনার নাম" name="name">
               </div>
 
               <div class="form-group">
-                <label for="email">Email: *</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                <label for="email">ই-মেইল: *</label>
+                <input type="email" class="form-control" id="email" placeholder="আপনার ই-মেইল" name="email">
               </div>
               <div class="form-group">
-                <label for="phone">Phone: *</label>
-                <input type="text" class="form-control" id="phone" placeholder="Enter Phone" name="phone">
-              </div>
-
-              <div class="form-group">
-                <label for="subject">Subject: *</label>
-                <input type="text" class="form-control" id="subject" placeholder="Enter Subject" name="subject">
+                <label for="phone">ফোন: *</label>
+                <input type="text" class="form-control" id="phone" placeholder="আপনার ফোন/মোবাইল নম্বর" name="phone">
               </div>
 
               <div class="form-group">
-                <label for="message">Message: *</label>
+                <label for="subject">বিষয়: *</label>
+                <input type="text" class="form-control" id="subject" placeholder="বিষয়" name="subject">
+              </div>
+
+              <div class="form-group">
+                <label for="message">আপনার মতামত: *</label>
                 <textarea name="message" id="message" class="form-controll" rows="7" width="100%"></textarea>
               </div>
 
-              <button type="submit" class="btn btn-success" id="submit_btn">Submit</button>
+              <button type="submit" class="btn btn-success" id="submit_btn">সাবমিট</button>
             </form>
 
           </div>

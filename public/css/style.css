@@ -1576,7 +1576,7 @@ img.mfp-img {
 		height: 46px;
 		width: 46px;
 		line-height: 46px;
-		font-size: 16px; }
+		font-size: 30px; }
 	.socials--wide a {
 		width: 100%;
 		padding: 0 15px;
@@ -1618,47 +1618,47 @@ img.mfp-img {
 			.social__text {
 				display: none; } }
 	.social-facebook {
-		background-color: #39599f; }
+		background-color: #808080; }
 	.social-facebook:hover {
 		background-color: #324e8c !important;
 		color: #fff !important; }
 	.social-twitter {
-		background-color: #55ACEE; }
+		background-color: #808080; }
 	.social-twitter:hover {
 		background-color: #3ea1ec !important;
 		color: #fff !important; }
 	.social-google-plus {
-		background-color: #DE4B39; }
+		background-color: #808080; }
 	.social-google-plus:hover {
 		background-color: #d93824 !important;
 		color: #fff !important; }
 	.social-youtube {
-		background-color: #c61d23; }
+		background-color: #808080; }
 	.social-youtube:hover {
 		background-color: #b01a1f !important;
 		color: #fff !important; }
 	.social-snapchat {
-		background-color: #fffb01; }
+		background-color: #808080; }
 	.social-snapchat:hover {
 		background-color: #e7e300 !important;
 		color: #fff !important; }
 	.social-linkedin {
-		background-color: #0e76a8; }
+		background-color: #808080; }
 	.social-linkedin:hover {
 		background-color: #0c6590 !important;
 		color: #fff !important; }
 	.social-pinterest {
-		background-color: #c8232c; }
+		background-color: #808080; }
 	.social-pinterest:hover {
 		background-color: #b21f27 !important;
 		color: #fff !important; }
 	.social-instagram {
-		background-color: #e1306c; }
+		background-color: #808080; }
 	.social-instagram:hover {
 		background-color: #d81f5e !important;
 		color: #fff !important; }
 	.social-rss {
-		background-color: #ef822a; }
+		background-color: #808080; }
 	.social-rss:hover {
 		background-color: #ed7412 !important;
 		color: #fff !important; }

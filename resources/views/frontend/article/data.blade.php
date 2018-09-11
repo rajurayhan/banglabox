@@ -18,8 +18,8 @@
     <article class="entry card post-list">
         <div class="entry__img-holder post-list__img-holder card__img-holder" style="background-image: url({{ route('home') }}/uploads/featured/{{ $article->image }})">
         <a href="{{ route('singleArticle',[$article->id, $article->slug]) }}" class="thumb-url"></a>
-        <img src="img/content/list/list_post_1.jpg" alt="" class="entry__img d-none">
-        <a href="{{ route('categoryArticles', $article->category->slug) }}" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--{{$colorArray[$article->category->id]}}">{{ $article->category->name }}</a>
+        <img src="{{ route('home') }}/img/logo-footer.png" alt="" class="entry__img d-none">
+        {{-- <a href="{{ route('categoryArticles', $article->category->slug) }}" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--{{$colorArray[$article->category->id]}}">{{ $article->category->name }}</a> --}}
         </div>
 
         <div class="entry__body post-list__body card__body">

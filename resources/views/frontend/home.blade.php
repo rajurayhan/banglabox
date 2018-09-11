@@ -109,7 +109,7 @@
                             <a href="{{ route('singleArticle', [$headline->id, $headline->slug]) }}">
                                 <img src="{{ route('home') }}/uploads/featured/{{ $headline->image }}" alt="" class="entry__img">
                             </a>
-                            <a href="{{ route('categoryArticles', $headline->category->slug) }}" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--green">{{ $headline->category->name }}</a>
+                            {{-- <a href="{{ route('categoryArticles', $headline->category->slug) }}" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--green">{{ $headline->category->name }}</a> --}}
                         </div>
 
                         <div class="entry__body card__body">
@@ -145,7 +145,7 @@
                 <div class="entry__img-holder post-list__img-holder card__img-holder" style="background-image: url({{ route('home') }}/uploads/featured/{{ $feat->image }})">
                   <a href="{{ route('singleArticle', [$feat->id, $feat->slug]) }}" class="thumb-url"></a>
                   <img src="{{ route('home') }}/uploads/featured/{{ $feat->image }}" alt="" class="entry__img d-none">
-                  <a href="{{ route('categoryArticles', [$feat->category->slug]) }}" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--violet">{{ $feat->category->name }}</a>
+                  {{-- <a href="{{ route('categoryArticles', [$feat->category->slug]) }}" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--violet">{{ $feat->category->name }}</a> --}}
                 </div>
 
                 <div class="entry__body post-list__body card__body">  
