@@ -70,7 +70,7 @@
                       <input type="email" name="email" placeholder="Your email" required="">
                     </div>
                     <div class="form-group">
-                      <input type="submit" class="btn btn-lg btn-color" value="Sign Up">
+                      <input type="submit" class="btn btn-lg btn-color" style="background-color: #808080" value="Sign Up">
                     </div>
                   </div>
                 </form>                

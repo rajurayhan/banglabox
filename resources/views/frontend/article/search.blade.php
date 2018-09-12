@@ -24,13 +24,13 @@
   <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
 
     <!-- Favicons -->
-    <link rel="shortcut icon" href="img/favicon.ico">
-    <link rel="apple-touch-icon" href="img/apple-touch-icon.html">
-    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+    <link rel="shortcut icon" href="{{ route('home') }}/img/favicon.ico">
+    <link rel="apple-touch-icon" href="{{ route('home') }}/img/apple-touch-icon.html">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ route('home') }}/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ route('home') }}/img/apple-touch-icon-114x114.png">
 
   <!-- Lazyload (must be placed in head in order to work) -->
-  <script src="{{ asset('js/lazysizes.min.js') }}"></script>
+  <script src="{{ route('home') }}/js/lazysizes.min.js"></script>
    <!-- Toastr --> 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
   <style type="text/css">

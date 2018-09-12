@@ -33,6 +33,11 @@
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="">
+    <meta property="og:url"                content="{{ route('singleArticle', [$article->id, $article->slug]) }}" />
+    <meta property="og:type"               content="article" />
+    <meta property="og:title"              content="{{ $article->title }}" />
+    <meta property="og:description"        content="{{ $article->excerpt }}" />
+    <meta property="og:image"              content="{{ route('home') }}/uploads/featured/{{ $article->image }}" />
 
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,600,700%7CSource+Sans+Pro:400,600,700' rel='stylesheet'>
@@ -43,13 +48,13 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
 
     <!-- Favicons -->
-    <link rel="shortcut icon" href="img/favicon.ico">
-    <link rel="apple-touch-icon" href="img/apple-touch-icon.html">
-    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+    <link rel="shortcut icon" href="{{ route('home') }}/img/favicon.ico">
+    <link rel="apple-touch-icon" href="{{ route('home') }}/img/apple-touch-icon.html">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ route('home') }}/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ route('home') }}/img/apple-touch-icon-114x114.png">
 
     <!-- Lazyload (must be placed in head in order to work) -->
-    <script src="js/lazysizes.min.js"></script>
+    <script src="{{ route('home') }}/js/lazysizes.min.js"></script>
 
     <!-- Toastr --> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
