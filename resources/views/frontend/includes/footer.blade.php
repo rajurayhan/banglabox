@@ -17,21 +17,16 @@
                 
 
                 <p class="copyright">
-                    &copy; {{ date('Y') }} BanglaBox | Made by <a href="http://adboxbd.com/">Adbox</a>
+                    &copy; {{ date('Y') }} BanglaBox
                   </p>
               </aside>
             </div>
 
-            <div class="col-lg-2 col-md-6">
+            <div class="col-lg-3 col-md-6">
               <aside class="widget widget_nav_menu">
-                <h4 class="widget-title">প্রয়োজনীয় লিঙ্ক</h4>
+                <h4 class="widget-title">Contact</h4>
                 <ul>
-                  <li><a href="{{ route('about') }}">আমাদের সম্পর্কে</a></li>
-                  <!-- <li><a href="#">News</a></li>
-                  <li><a href="#">Advertise</a></li>
-                  <li><a href="#">Support</a></li>
-                  <li><a href="#">Features</a></li> -->
-                  <li><a href="{{ route('contact') }}">যোগাযোগ</a></li>
+                  <li><a href="mailto:info@banglabox.net">info@banglabox.net</a></li>
                 </ul>
               </aside>
             </div>  
@@ -43,9 +38,9 @@
                 $popularArticles  = $homeCTRLR->getFooterArticles();
             ?>
 
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-3 col-md-6">
               <aside class="widget widget-popular-posts">
-                <h4 class="widget-title">সোস্যাল মিডিয়া</h4>
+                <h4 class="widget-title">Let's Be Social</h4>
                 <div class="socials socials--large socials--rounded mb-24">
                   <a href="https://facebook.com/{{ $settingsAttr->facebook }}" class="social social-facebook" aria-label="facebook"><i class="ui-facebook"></i></a>
                   <a href="https://twitter.com/{{ $settingsAttr->twitter }}" class="social social-twitter" aria-label="twitter"><i class="ui-twitter"></i></a>
@@ -58,11 +53,11 @@
 
             <div class="col-lg-3 col-md-6">
               <aside class="widget widget_mc4wp_form_widget">
-                <h4 class="widget-title">Newsletter</h4>
-                <p class="newsletter__text">
+                <h4 class="widget-title">Subscribe</h4>
+                {{-- <p class="newsletter__text">
                   <i class="ui-email newsletter__icon"></i>
                   Subscribe for our daily news
-                </p>
+                </p> --}}
                 <form class="mc4wp-form" method="post" action="{{ route('subscribe') }}">
                 {{ csrf_field() }}
                   <div class="mc4wp-form-fields">
@@ -73,7 +68,8 @@
                       <input type="submit" class="btn btn-lg btn-color" style="background-color: #808080" value="Sign Up">
                     </div>
                   </div>
-                </form>                
+                </form>
+                <p style="margin-top: 63px;">Powered by <a href="http://adboxbd.com/" target="_blank">Adbox Bangladesh</a></p>                
               </aside>
             </div>
 

@@ -11,7 +11,7 @@
     // echo $bongabda->format('l jS F Y b h:i:s') . PHP_EOL ;
     // echo $bongabda->enFormat('l jS F Y h:i:s a') . PHP_EOL;
     // echo $bongabda->getDateTime()->format('l jS F Y b h:i:s'). PHP_EOL;
-    $published =  $bongabda->getDateTime()->format('l, jS F, Y b h:i:s'). PHP_EOL;
+    $published =  $bongabda->getDateTime()->format('l, jS F, Y'). PHP_EOL;
     // echo $bongabda->getDateTime()->enFormat('l jS F Y h:i:s A') . PHP_EOL;
     // echo $created_at;
 
@@ -115,7 +115,7 @@
 <article class="entry mb-0">
 
 <div class="single-post__entry-header entry__header">
-    <a href="{{ route('categoryArticles', $article->category->slug) }}" class="entry__meta-category entry__meta-category--label entry__meta-category--{{ $color }}">{{ $article->category->name }}</a>
+    {{-- <a href="{{ route('categoryArticles', $article->category->slug) }}" class="entry__meta-category entry__meta-category--label entry__meta-category--{{ $color }}">{{ $article->category->name }}</a> --}}
     <h1 class="single-post__entry-title">
         {{ $article->title }}
     </h1>
@@ -134,18 +134,27 @@
         </ul>
 
         <ul class="entry__meta">
-            <li class="entry__meta-views">
+            {{-- <li class="entry__meta-views">
                 <i class="ui-eye"></i>
                 <span>{{ $article->read_count }}</span>
-            </li>
+            </li> --}}
             <!-- <li class="entry__meta-comments">
                 <a href="#">
                     <i class="ui-chat-empty"></i>13
                 </a>
             </li> -->
+            <div class="fb-save" data-uri="{{ route('singleArticle', [$article->id, $article->slug]) }}" data-size="small"></div>
         </ul>
     </div>
+
+    <div class="entry__meta-holder">
+        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ route('singleArticle',[$article->id, $article->slug]) }}"><button class="btn btn-large singleShare shareFacebook">Share on Facebook</button></a>
+        <a target="_blank" href="https://twitter.com/intent/tweet?text={{ $article->title }}&url={{ route("singleArticle", [$article->id, $article->slug]) }}&via=raju_rayhan"><button class="btn btn-large singleShare shareTwitter">Share on Twitter</button></a>
+        <a target="_blank" href="https://pinterest.com/pin/create/button/?url=BanglaBox&media={{ route('home') }}/uploads/featured/{{ $article->image }}&description={{ $article->title }}"><button class="btn btn-large singleShare sharePinterest">Share on Pinterest</button></a>
+    </div>
 </div> <!-- end entry header -->
+
+
 
 <!-- <div class="entry__img-holder">
     <img src="{{ route('home') }}/uploads/featured/{{ $article->image }}" alt="" class="entry__img">
@@ -181,7 +190,7 @@
             $tagString  = $article->tags;
             $tags       = explode(',', $tagString);
         ?>
-        <div class="entry__tags">
+        {{-- <div class="entry__tags">
             <i class="ui-tags"></i>
             <span class="entry__tags-label">Tags:</span>
             <!-- <a href="#" rel="tag">mobile</a><a href="#" rel="tag">gadgets</a><a href="#" rel="tag">satelite</a> -->
@@ -190,7 +199,8 @@
             @endforeach
             
             
-        </div> <!-- end tags -->
+        </div>  --}}
+        <!-- end tags -->
 
     </div> <!-- end entry article -->
 </div> <!-- end entry article wrap -->
@@ -229,7 +239,7 @@
     <div class="clearfix">
         <div class="entry-navigation--left">
             <i class="ui-arrow-left"></i>
-            <span class="entry-navigation__label">Previous Article</span>
+            <span class="entry-navigation__label">পূর্ববর্তী</span>
             @if (isset($previous))
             <div class="entry-navigation__link">
                 <a href="{{ route('singleArticle',[$previous->id, $previous->slug]) }}" rel="next">{{ $previous->title }}</a>
@@ -237,7 +247,7 @@
             @endif
         </div>
         <div class="entry-navigation--right">
-            <span class="entry-navigation__label">Next Article</span>
+            <span class="entry-navigation__label">পরবর্তী</span>
             <i class="ui-arrow-right"></i>
             @if (isset($next))
             <div class="entry-navigation__link">

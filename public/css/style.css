@@ -1576,7 +1576,7 @@ img.mfp-img {
 		height: 46px;
 		width: 46px;
 		line-height: 46px;
-		font-size: 20px; }
+		font-size: 18px; }
 	.socials--wide a {
 		width: 100%;
 		padding: 0 15px;
@@ -2795,8 +2795,8 @@ img.mfp-img {
 /* Widget Logo
 -------------------------------------------------------*/
 .widget-logo .copyright {
-	margin-top: 24px;
-	margin-bottom: 24px; }
+	margin-top: 0px;
+	margin-bottom: 5px; }
 
 /* Widget Twitter
 -------------------------------------------------------*/
@@ -3887,7 +3887,8 @@ input.nav__search-mobile-input:-ms-input-placeholder {
 	.footer--white {
 		background-color: #fff; }
 	.footer--dark {
-		background-color: #171821; }
+		background-color: #171821;
+		max-height: 240px !important; }
 		.footer--dark a,
 		.footer--dark .widget-title,
 		.footer--dark .social {
@@ -3911,7 +3912,7 @@ input.nav__search-mobile-input:-ms-input-placeholder {
 			background-color: #2D2E36;
 			color: #fff; }
 	.footer__widgets {
-		padding: 90px 0; }
+		padding: 25px 0; }
 		.footer__widgets p {
 			font-size: 14px;
 			line-height: 26px; }
@@ -3922,7 +3923,8 @@ input.nav__search-mobile-input:-ms-input-placeholder {
 			padding: 60px 0; }
 	.footer .logo__img {
 		display: block;
-		padding-bottom: 20px; }
+		padding-bottom: 0px !important;
+		margin-top: -20px; }
 
 /* Footer Grey
 -------------------------------------------------------*/
@@ -3976,7 +3978,8 @@ input.nav__search-mobile-input:-ms-input-placeholder {
 .copyright {
 	color: #83858F;
 	display: inline-block;
-	font-size: 15px !important; }
+	font-size: 15px !important;
+	text-align: center; }
 	.copyright a {
 		color: inherit; }
 		.copyright a:hover {
@@ -4980,6 +4983,43 @@ dd {
 		card__img-holder:hover{
 		-webkit-filter: brightness(1.10); /* Safari 6.0 - 9.0 */
     	filter: brightness(1.10);
+	}
+
+	.socials--nobase a:hover{
+		/* background-color: #f37545 !important; */
+		color: #f37545 !important;
+	}
+
+	@media screen and (max-width: 600px) {
+		.socials--nobase{
+			display: none;
+		}
+		.singleShare{
+			display: none;
+		}
+	  }
+
+	.singleShare{
+		width: 230px;;
+		height: 40px;;
+	}
+
+	.shareFacebook{
+		background-color: #39599f;
+	}
+	.shareTwitter{
+		background-color: #3ea1ec;
+	}
+	.sharePinterest{
+		background-color: #c8232c;
+	}
+
+	.singleShare{
+		color: #FFF;
+	}
+
+	.widget_nav_menu{
+		margin-top: 117px;
 	}
 
 /*# sourceMappingURL=style.css.map */

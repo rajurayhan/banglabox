@@ -77,7 +77,7 @@
 
 <!-- Posts -->
 <div class="col-lg-8 blog__content mb-72">
-    <h2 class="page-title"><em>{{ $query }}</em> এর জন্য {{ sizeof($articles) }} টি ফলাফল পাওয়া গেছে।</h2>
+    <h2 class="page-title"><em>{{ $query }}</em> এর জন্য {{ sizeof($articles) }} টি ফলাফল পাওয়া গেছেঃ </h2>
     @if(sizeof($articles)<1)
         <h3>দুঃখিত! আপনার প্রত্যাশিত লেখাটি খুঁজে পাওয়া যায়নি। </h3>
     @endif

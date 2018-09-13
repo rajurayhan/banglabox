@@ -24,7 +24,12 @@
   <meta charset="utf-8">
   <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="description" content="">
+  <meta name="description" content="নির্ভরতার নতুন মাত্রা নিয়ে এসেছে বাংলা বক্স। গল্প-কাহিনী থেকে শুরু করে সারা বিশ্ব, হারিয়ে যাওয়া শহর, হলিউড-বলিউড, বিনোদণের সব খবর">
+  <meta property="og:url"                content="http://banglabox.net" />
+  <meta property="og:type"               content="website" />
+  <meta property="og:title"              content="Banglabox" />
+  <meta property="og:description"        content="নির্ভরতার নতুন মাত্রা নিয়ে এসেছে বাংলা বক্স। গল্প-কাহিনী থেকে শুরু করে সারা বিশ্ব, হারিয়ে যাওয়া শহর, হলিউড-বলিউড, বিনোদণের সব খবর" />
+  <meta property="og:image"              content="http://banglabox.net/img/og-banglabox.png" />
 
   <!-- Google Fonts -->
   <link href='https://fonts.googleapis.com/css?family=Montserrat:400,600,700%7CSource+Sans+Pro:400,600,700' rel='stylesheet'>
@@ -178,7 +183,7 @@
 
     <div class="text-center pb-48">
         <a href="#">
-            <img src="img/content/ads.jpg" alt="">
+            {{-- <img src="img/content/ads.jpg" alt=""> --}}
         </a>
     </div>
 
@@ -214,11 +219,11 @@
         <aside class="col-lg-4 sidebar sidebar--1 sidebar--right">
 
           <!-- Widget Ad 300 -->
-          <aside class="widget widget_media_image">
+          {{-- <aside class="widget widget_media_image">
             <a href="#">
               <img src="img/content/placeholder_336.jpg" alt="">
             </a>
-          </aside> <!-- end widget ad 300 -->
+          </aside> <!-- end widget ad 300 --> --}}
           
 
 
@@ -269,11 +274,11 @@
             @endforeach
             
 
-              <aside class="widget widget_media_image">
+              {{-- <aside class="widget widget_media_image">
                   <a href="#">
                       <img src="img/content/placeholder_336.jpg" alt="">
                   </a>
-              </aside>
+              </aside> --}}
 
           </aside> <!-- end widget recommended (rating) -->
         </aside> <!-- end sidebar 1 -->
@@ -317,7 +322,7 @@
 
     <div class="text-center pb-48">
         <a href="#">
-            <img src="img/content/ads.jpg" alt="">
+            {{-- <img src="img/content/ads.jpg" alt=""> --}}
         </a>
     </div>
 

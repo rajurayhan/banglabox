@@ -132,6 +132,24 @@
 
             <!-- Nav Right -->
             <div class="nav__right">
+                
+                <div style="margin-left: -200px;" class="socials nav__socials socials--nobase socials--white justify-content-end"> 
+                <a class="social social-facebook" href="https://facebook.com/{{ $settingsAttr->facebook }}" target="_blank" aria-label="facebook">
+                  <i class="ui-facebook"></i>
+                </a>
+                <a class="social social-twitter" href="https://twitter.com/{{ $settingsAttr->twitter }}" target="_blank" aria-label="twitter">
+                  <i class="ui-twitter"></i>
+                </a>
+                <a class="social social-google-plus" href="https://plus.google.com/+{{ $settingsAttr->google_plus }}" target="_blank" aria-label="google">
+                  <i class="ui-google"></i>
+                </a>
+                <a class="social social-youtube" href="https://youtube.com/channel/{{ $settingsAttr->youtube }}" target="_blank" aria-label="youtube">
+                  <i class="ui-youtube"></i>
+                </a>
+                <a class="social social-instagram" href="https://instagram.com/{{ $settingsAttr->instagram }}" target="_blank" aria-label="instagram">
+                  <i class="ui-instagram"></i>
+                </a>
+             </div>
 
               <!-- Search -->
               <div class="nav__right-item nav__search">
@@ -148,23 +166,7 @@
                 </div>                
               </div>
               
-              {{-- <div class="socials nav__socials socials--nobase socials--white justify-content-end"> 
-                <a class="social social-facebook" href="https://facebook.com/{{ $settingsAttr->facebook }}" target="_blank" aria-label="facebook">
-                  <i class="ui-facebook"></i>
-                </a>
-                <a class="social social-twitter" href="https://twitter.com/{{ $settingsAttr->twitter }}" target="_blank" aria-label="twitter">
-                  <i class="ui-twitter"></i>
-                </a>
-                <a class="social social-google-plus" href="https://plus.google.com/+{{ $settingsAttr->google_plus }}" target="_blank" aria-label="google">
-                  <i class="ui-google"></i>
-                </a>
-                <a class="social social-youtube" href="https://youtube.com/channel/{{ $settingsAttr->youtube }}" target="_blank" aria-label="youtube">
-                  <i class="ui-youtube"></i>
-                </a>
-                <a class="social social-instagram" href="https://instagram.com/{{ $settingsAttr->instagram }}" target="_blank" aria-label="instagram">
-                  <i class="ui-instagram"></i>
-                </a>
-              </div> --}}
+              
 
             </div> <!-- end nav right -->            
         
