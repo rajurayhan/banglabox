@@ -147,11 +147,11 @@
         </ul>
     </div>
 
-    <div class="entry__meta-holder">
+    {{-- <div class="entry__meta-holder">
         <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ route('singleArticle',[$article->id, $article->slug]) }}"><button class="btn btn-large singleShare shareFacebook">Share on Facebook</button></a>
         <a target="_blank" href="https://twitter.com/intent/tweet?text={{ $article->title }}&url={{ route("singleArticle", [$article->id, $article->slug]) }}&via=raju_rayhan"><button class="btn btn-large singleShare shareTwitter">Share on Twitter</button></a>
         <a target="_blank" href="https://pinterest.com/pin/create/button/?url=BanglaBox&media={{ route('home') }}/uploads/featured/{{ $article->image }}&description={{ $article->title }}"><button class="btn btn-large singleShare sharePinterest">Share on Pinterest</button></a>
-    </div>
+    </div> --}}
 </div> <!-- end entry header -->
 
 
@@ -165,7 +165,7 @@
     <!-- Share -->
     <div class="entry__share">
         <div class="sticky-col">
-            <div class="socials socials--rounded socials--large">
+            <div class="socials socials--rounded socials--small">
                 <a class="social social-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ route('singleArticle',[$article->id, $article->slug]) }}" title="facebook" target="_blank" aria-label="facebook">
                     <i class="ui-facebook"></i>
                 </a>
@@ -205,6 +205,12 @@
     </div> <!-- end entry article -->
 </div> <!-- end entry article wrap -->
 
+<div class="entry__meta-holder">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ route('singleArticle',[$article->id, $article->slug]) }}"><button class="btn btn-large singleShare shareFacebook">Share on Facebook</button></a>
+    <a target="_blank" href="https://twitter.com/intent/tweet?text={{ $article->title }}&url={{ route("singleArticle", [$article->id, $article->slug]) }}&via=raju_rayhan"><button class="btn btn-large singleShare shareTwitter">Share on Twitter</button></a>
+    <a target="_blank" href="https://pinterest.com/pin/create/button/?url=BanglaBox&media={{ route('home') }}/uploads/featured/{{ $article->image }}&description={{ $article->title }}"><button class="btn btn-large singleShare sharePinterest">Share on Pinterest</button></a>
+</div>
+
 
 <!-- Newsletter Wide -->
 <div class="newsletter-wide">
@@ -222,10 +228,10 @@
                 {{ csrf_field() }}
                     <div class="mc4wp-form-fields">
                         <div class="form-group">
-                            <input type="email" name="email" placeholder="Your email" required="">
+                            <input style="height: 35px;" type="email" name="email" placeholder="Your email" required="">
                         </div>
                         <div class="form-group">
-                            <input type="submit" class="btn btn-lg btn-color" value="Sign Up">
+                            <input style="height: 35px;" type="submit" class="btn btn-lg btn-color" value="Sign Up">
                         </div>
                     </div>
                 </form>

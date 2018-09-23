@@ -76,8 +76,8 @@
 <div class="row">
 
 <!-- Posts -->
-<div class="col-lg-8 blog__content mb-72">
-    <h3 class="page-title"><ul style="list-style-type: disc; margin-left: 5%"><li>{{ $category->name }}</li></ul></h3>
+<div class="col-lg-8 blog__content mb-72" style="margin-top: -22px;">
+    <h3 class="page-title"></h3>
     @include('frontend.article.data')
 </div> <!-- end posts -->
 
@@ -85,6 +85,10 @@
 
 </div> <!-- end content -->
 </div> <!-- end main container -->
+
+<div class="ajax-load text-center" style="display:none">
+    <p><img src="{{ route('home') }}/img/loader.svg"></p>
+</div>
 
 @include('frontend.includes.footer')
 

@@ -35,7 +35,7 @@
       </ul>
     </nav>
 
-    <div class="socials sidenav__socials"> 
+    <div class="socials sidenav__socials socials--rounded"> 
       <a class="social social-facebook" href="https://facebook.com/{{ $settingsAttr->facebook }}" target="_blank" aria-label="facebook">
         <i class="ui-facebook"></i>
       </a>
@@ -133,7 +133,7 @@
             <!-- Nav Right -->
             <div class="nav__right">
                 
-                <div style="margin-left: -200px;" class="socials nav__socials socials--nobase socials--white justify-content-end"> 
+                <div style="margin-left: -200px;" class="socials nav__socials  socials--nobase socials--white justify-content-end"> 
                 <a class="social social-facebook" href="https://facebook.com/{{ $settingsAttr->facebook }}" target="_blank" aria-label="facebook">
                   <i class="ui-facebook"></i>
                 </a>

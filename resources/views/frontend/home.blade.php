@@ -209,14 +209,14 @@
             <a href="#" class="pagination__page">4</a>
             <a href="#" class="pagination__page pagination__icon pagination__page--next"><i class="ui-arrow-right"></i></a>
           </nav> -->
-          <div class="ajax-load text-center" style="display:none">
-            <p><img src="http://demo.itsolutionstuff.com/plugin/loader.gif">Loading More Articles</p>
-          </div>
+          {{-- <div class="ajax-load text-center" style="display:none">
+          <p><img src="{{ route('home') }}/img/loader.svg"></p>
+          </div> --}}
 
         </div> <!-- end posts -->
 
         <!-- Sidebar 1 -->
-        <aside class="col-lg-4 sidebar sidebar--1 sidebar--right">
+        <aside class="col-lg-4 sidebar sidebar--1 sidebar--right" style="margin-top: -22px;">
 
           <!-- Widget Ad 300 -->
           {{-- <aside class="widget widget_media_image">
@@ -228,7 +228,7 @@
 
 
           <!-- Widget Recommended (Rating) -->
-          <aside class="widget widget-rating-posts">
+          <aside class="widget widget-rating-posts" >
             <h4 class="widget-title">বাছাইকৃত লেখাসমূহ</h4>
             @foreach($randoms as $random)
             <?php 
@@ -284,6 +284,9 @@
         </aside> <!-- end sidebar 1 -->
       </div> <!-- content secondary -->
       <!-- Carousel posts -->
+      <div class="ajax-load text-center" style="display:none">
+        <p><img src="{{ route('home') }}/img/loader.svg"></p>
+      </div>
       <section class="section mb-0">
           <div class="title-wrap title-wrap--line title-wrap--pr">
               <h3 class="section-title">videos</h3>

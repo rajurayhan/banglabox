@@ -10,11 +10,11 @@
     // var_dump($popularArticles);
 ?>
 <!-- Sidebar -->
-<aside class="col-lg-4 sidebar sidebar--right">
+<aside class="col-lg-4 sidebar sidebar--right" style="margin-top: -22px;">
 
     <!-- Widget Popular Posts -->
     <aside class="widget widget-popular-posts">
-        <h2 class="widget-title">জনপ্রিয় লেখাসমূহ</h2>
+        <h2 class="widget-title" style="margin-bottom: 25px;">জনপ্রিয় লেখাসমূহ</h2>
         <ul class="post-list-small">
         @foreach($popularArticles as $popArticle)
         <?php
@@ -62,10 +62,10 @@
         {{ csrf_field() }}
             <div class="mc4wp-form-fields">
             <div class="form-group">
-                <input type="email" name="email" placeholder="Your email" required="">
+                <input style="height: 35px;" type="email" name="email" placeholder="Your email" required="">
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-lg btn-color" value="Sign Up">
+                <input style="height: 35px;" type="submit" class="btn btn-lg btn-color" value="Sign Up">
             </div>
             </div>
         </form> 
@@ -74,7 +74,7 @@
     <!-- Widget Socials -->
     <aside class="widget widget-socials">
         <h4 class="widget-title">Let's hang out on social</h4>
-        <div class="socials socials--wide socials--large">
+        <div class="socials socials--wide socials--medium">
             <div class="row row-16">
                 <div class="col">
                     <a class="social social-facebook" href="https://facebook.com/{{ $settingsAttr->facebook }}" title="facebook" target="_blank" aria-label="facebook">
