@@ -30,15 +30,15 @@ class ArticleController extends Controller
     public function singleArticle($id, $slug)
     {
         $articleObj             = new Article();
-        $article                = $articleObj->findorfail($id);
+        $article                = $articleObj->where('status', 1)->findorfail($id);
 
         $article->read_count    = $article->read_count + 1; 
         $article->save();
 
-        $relatedArticles        = $articleObj->where('category_id', $article->category_id)->where('id', '!=', $article->id)->take(6)->get();
+        $relatedArticles        = $articleObj->where('category_id', $article->category_id)->where('status', 1)->where('id', '!=', $article->id)->take(6)->get();
 
-        $previous   = $articleObj->where('id', '<', $article->id)->orderBy('id','desc')->first();
-        $next       = $articleObj->where('id', '>', $article->id)->orderBy('id')->first();
+        $previous   = $articleObj->where('id', '<', $article->id)->where('status', 1)->orderBy('id','desc')->first();
+        $next       = $articleObj->where('id', '>', $article->id)->where('status', 1)->orderBy('id')->first();
 
         return view('frontend.article.single', compact('article', 'relatedArticles', 'next', 'previous'));
         // return $article;
@@ -53,7 +53,7 @@ class ArticleController extends Controller
         $articleObj             = new Article();
         // $articles               = $articleObj->where('category_id', $category->id)->get();
 
-        $articles               = $articleObj->where('category_id', $category->id)->orderBy('id', 'desc')->paginate(6);
+        $articles               = $articleObj->where('category_id', $category->id)->where('status', 1)->orderBy('id', 'desc')->paginate(6);
 
         if($request->ajax()){
             $view = view('frontend.article.data',compact('articles'))->render();
@@ -80,7 +80,7 @@ class ArticleController extends Controller
     public function allArticles()
     {
         $articleObj         = new Article();
-        $articles           = $articleObj->get();
+        $articles           = $articleObj->orderBy('id', 'desc')->get();
         return view('backend.article.articles', compact('articles'));
     }
 
@@ -111,11 +111,10 @@ class ArticleController extends Controller
 
         $image = Input::file('image');
 			$filename  = time() . '.' . $image->getClientOriginalExtension();
-			$path = public_path('uploads/featured/' . $filename);
-            // Image::make($image->getRealPath())->resize(468, 249)->save($path);
+            $path = ('uploads/featured/' . $filename);
             Image::make($image->getRealPath())->save($path);
         
-        $articleObj->image = $filename;
+            $articleObj->image = $filename;
 
         if ($request->has('featured')) {
             $articleObj->is_featured = 1;
@@ -166,14 +165,14 @@ class ArticleController extends Controller
 
         if($image){
             $filename  = time() . '.' . $image->getClientOriginalExtension();
-            $path = public_path('uploads/featured/' . $filename);
-            Image::make($image->getRealPath())->resize(468, 249)->save($path);
+            $path = ('uploads/featured/' . $filename);
+            Image::make($image->getRealPath())->save($path);
         
             $article->image = $filename;
         }
 
         if ($request->has('featured')) {
-            $articleObj->is_featured = 1;
+            $article->is_featured = 1;
         }
 
         if ($request->has('headline')) {

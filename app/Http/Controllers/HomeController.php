@@ -18,19 +18,19 @@ class HomeController extends Controller
 {
     public function home(Request $request){
         $articleObj         = new Article();
-        $articles           = $articleObj->paginate(6);
+        $articles           = $articleObj->where('is_headline', 0)->where('status', 1)->orderBy('id', 'DESC')->paginate(6);
 
         $headline           = $articleObj->where('is_headline', 1)->first();
-        $featured           = Article::where('is_headline', 0)->where('is_featured', 1)->orderByRaw('RAND()')->take(3)->get();
+        $featured           = Article::where('is_headline', 0)->where('is_featured', 1)->where('status', 1)->orderByRaw('RAND()')->take(3)->get();
 
-        $latestPosts        = $articleObj->orderBy('id', 'desc')->take(6)->get();
+        $latestPosts        = $articleObj->where('status', 1)->orderBy('id', 'DESC')->take(6)->get();
         
         if($request->ajax()){
             $view = view('frontend.article.data',compact('articles'))->render();
             return response()->json(['html'=>$view]);
         }
 
-        $randoms  = Article::orderByRaw('RAND()')->take(3)->get();
+        $randoms  = Article::orderByRaw('RAND()')->where('status', 1)->take(3)->get();
 
         return view('frontend.home', compact('articles', 'randoms', 'latestPosts', 'headline', 'featured'));
         // return $headline;
@@ -80,9 +80,17 @@ class HomeController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()
+            $subs     = $subObj->where('email', $request->email)->first();
+            if($subs->status){
+                return redirect()->back()
                         ->withErrors($validator)
                         ->withInput();
+            }
+            else{
+                $subs->status = 1;
+                $subs->save();
+                return redirect()->back()->with('message', 'You have sucessfully Subscribed!');
+            }
         }
         else{
             $subObj->email  = $request->email;
@@ -104,12 +112,12 @@ class HomeController extends Controller
                                              ->orWhere('excerpt', 'like', "%{$query}%")
                                              ->orWhere('slug', 'like', "%{$query}%")
                                              ->orWhere('tags', 'like', "%{$query}%")
-                                             ->get();
+                                             ->paginate(6);
 
-        // if($request->ajax()){
-        //     $view = view('frontend.article.data',compact('articles'))->render();
-        //     return response()->json(['html'=>$view]);
-        // }
+        if($request->ajax()){
+            $view = view('frontend.article.data',compact('articles'))->render();
+            return response()->json(['html'=>$view]);
+        }
 
         // return $articles;
         return view('frontend.article.search', compact('articles', 'query'));
