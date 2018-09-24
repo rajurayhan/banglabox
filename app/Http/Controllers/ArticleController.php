@@ -27,15 +27,20 @@ class ArticleController extends Controller
         
     }
     
-    public function singleArticle($id, $slug)
+    public function singleArticle($id, $slug, Request $request)
     {
         $articleObj             = new Article();
         $article                = $articleObj->where('status', 1)->findorfail($id);
 
-        $article->read_count    = $article->read_count + 1; 
-        $article->save();
+        $relatedArticles        = $articleObj->where('category_id', $article->category_id)->where('status', 1)->where('id', '!=', $article->id)->orderBy('id', 'DESC')->paginate(4);
 
-        $relatedArticles        = $articleObj->where('category_id', $article->category_id)->where('status', 1)->where('id', '!=', $article->id)->take(6)->get();
+        if($request->ajax()){
+            $view = view('frontend.article.related',compact('relatedArticles'))->render();
+            return response()->json(['html'=>$view]);
+        }
+
+        $article->read_count    = $article->read_count + 1; 
+        $article->save();        
 
         $previous   = $articleObj->where('id', '<', $article->id)->where('status', 1)->orderBy('id','desc')->first();
         $next       = $articleObj->where('id', '>', $article->id)->where('status', 1)->orderBy('id')->first();

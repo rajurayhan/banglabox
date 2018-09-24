@@ -27,7 +27,7 @@
                     <div class="post-list-small__img-holder">
                         <div class="thumb-container thumb-100">
                             <a href="{{ route('singleArticle',[$popArticle->id, $popArticle->slug]) }}">
-                                <img data-src="{{ route('home') }}/uploads/featured/{{ $popArticle->image }}" src="{{ route('home') }}/uploads/featured/{{ $popArticle->image }}" alt="" class="post-list-small__img--rounded lazyload">
+                                <img data-src="{{ route('home') }}/uploads/featured/{{ $popArticle->image }}" src="{{ route('home') }}/uploads/featured/{{ $popArticle->image }}" onerror="this.src='{{ route('home') }}/img/logo-footer.png'"  alt="" class="post-list-small__img--rounded lazyload">
                             </a>
                         </div>
                     </div>

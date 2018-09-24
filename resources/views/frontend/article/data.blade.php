@@ -16,9 +16,10 @@
 ?>
 
     <article class="entry card post-list">
-        <div class="entry__img-holder post-list__img-holder card__img-holder" style="background-image: url({{ route('home') }}/uploads/featured/{{ $article->image }})">
+        <div class="entry__img-holder post-list__img-holder card__img-holder" style="background-image: url()">
         <a href="{{ route('singleArticle',[$article->id, $article->slug]) }}" class="thumb-url"></a>
-        <img src="{{ route('home') }}/img/logo-footer.png" alt="" class="entry__img d-none">
+        {{-- <img src="{{ route('home') }}/img/logo-footer.png" alt="" class="entry__img d-none"> --}}
+        <img data-src="{{ route('home') }}/uploads/featured/{{ $article->image }}" src="{{ route('home') }}/img/logo-footer.png" onerror="this.src='{{ route('home') }}/img/logo-footer.png'" class="entry__img lazyload" alt="" />
         {{-- <a href="{{ route('categoryArticles', $article->category->slug) }}" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--{{$colorArray[$article->category->id]}}">{{ $article->category->name }}</a> --}}
         </div>
 

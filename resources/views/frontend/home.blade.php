@@ -131,7 +131,8 @@
                     <article class="entry card featured-posts-grid__entry">
                         <div class="entry__img-holder card__img-holder">
                             <a href="{{ route('singleArticle', [$headline->id, $headline->slug]) }}">
-                                <img src="{{ route('home') }}/uploads/featured/{{ $headline->image }}" alt="" class="entry__img">
+                                {{-- <img src="{{ route('home') }}/uploads/featured/{{ $headline->image }}" alt="" class="entry__img"> --}}
+                                <img data-src="{{ route('home') }}/uploads/featured/{{ $headline->image }}" src="{{ route('home') }}/img/logo-footer.png" onerror="this.src='{{ route('home') }}/img/logo-footer.png'" class="entry__img lazyload" alt="" />
                             </a>
                             {{-- <a href="{{ route('categoryArticles', $headline->category->slug) }}" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--green">{{ $headline->category->name }}</a> --}}
                         </div>
@@ -166,9 +167,10 @@
             <!-- Small post -->
             <div class="featured-posts-grid__item featured-posts-grid__item--sm">
               <article class="entry card post-list featured-posts-grid__entry">
-                <div class="entry__img-holder post-list__img-holder card__img-holder" style="background-image: url({{ route('home') }}/uploads/featured/{{ $feat->image }})">
+                <div class="entry__img-holder post-list__img-holder card__img-holder" style="background-image: url()">
                   <a href="{{ route('singleArticle', [$feat->id, $feat->slug]) }}" class="thumb-url"></a>
-                  <img src="{{ route('home') }}/uploads/featured/{{ $feat->image }}" alt="" class="entry__img d-none">
+                  <img data-src="{{ route('home') }}/uploads/featured/{{ $feat->image }}" src="{{ route('home') }}/img/logo-footer.png" onerror="this.src='{{ route('home') }}/img/logo-footer.png'" class="entry__img lazyload" alt="" />
+                  {{-- <img src="{{ route('home') }}/uploads/featured/{{ $feat->image }}" alt="" class="entry__img d-none"> --}}
                   {{-- <a href="{{ route('categoryArticles', [$feat->category->slug]) }}" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--violet">{{ $feat->category->name }}</a> --}}
                 </div>
 
@@ -258,7 +260,8 @@
               <div class="entry__img-holder">
                 <a href="{{ route('singleArticle', [$random->id, $random->slug]) }}">
                   <div class="thumb-container thumb-60">
-                    <img data-src="{{ route('home') }}/uploads/featured/{{ $random->image }}" src="{{ route('home') }}/uploads/featured/{{ $random->image }}" class="entry__img lazyload" alt="">
+                      <img data-src="{{ route('home') }}/uploads/featured/{{ $random->image }}" src="{{ route('home') }}/img/logo-footer.png" onerror="this.src='{{ route('home') }}/img/logo-footer.png'" class="entry__img lazyload" alt="" />
+                    {{-- <img data-src="{{ route('home') }}/img/{{ $random->image }}" src="{{ route('home') }}/uploads/featured/{{ $random->image }}" class="entry__img lazyload" alt=""> --}}
                   </div>
                 </a>
               </div>

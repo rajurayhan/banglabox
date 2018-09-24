@@ -282,6 +282,7 @@
     </div>
 </nav>
 
+
 <!-- Author -->
 <!-- <div class="entry-author clearfix">
     <img alt="" data-src="img/content/single/author.jpg" src="img/empty.png" class="avatar lazyload">
@@ -294,7 +295,7 @@
 </div> -->
 
 <!-- Related Posts -->
-<section class="section related-posts mt-40 mb-0">
+{{-- <section class="section related-posts mt-40 mb-0">
     <div class="title-wrap title-wrap--line title-wrap--pr">
         <h3 class="section-title">Related Articles</h3>
     </div>
@@ -316,7 +317,7 @@
     @endforeach
     </div> <!-- end slider -->
 
-</section> <!-- end related posts -->
+</section> <!-- end related posts --> --}}
 
 </article> <!-- end standard post -->
 
@@ -329,41 +330,25 @@
 </div> <!-- end comments -->
 
 <!-- Comment Form -->
-<!-- <div id="respond" class="comment-respond">
-    <div class="title-wrap">
-        <h5 class="comment-respond__title section-title">Leave a Reply</h5>
+<div class="entry-comments">
+    <div class="title-wrap title-wrap--line">
+        <h3 class="section-title">You may also like</h3>
     </div>
-    <form id="form" class="comment-form" method="post" action="#">
-        <p class="comment-form-comment">
-            <label for="comment">Comment</label>
-            <textarea id="comment" name="comment" rows="5" required="required"></textarea>
-        </p>
+    <div class="row" id="relaed_posts">
+        @include('frontend.article.related')
+    </div>
+    
+</div>
 
-        <div class="row row-20">
-            <div class="col-lg-4">
-                <label for="name">Name: *</label>
-                <input name="name" id="name" type="text">
-            </div>
-            <div class="col-lg-4">
-                <label for="comment">Email: *</label>
-                <input name="email" id="email" type="email">
-            </div>
-            <div class="col-lg-4">
-                <label for="comment">Website:</label>
-                <input name="website" id="website" type="text">
-            </div>
-        </div>
-
-        <p class="comment-form-submit">
-            <input type="submit" class="btn btn-lg btn-color btn-button" value="Post Comment" id="submit-message">
-        </p>
-
-    </form>
-</div>  -->
+<div class="ajax-load text-center" style="display:none">
+    <p><img src="{{ route('home') }}/img/loader.svg"></p>
+</div>
 <!-- end comment form -->
 
 </div> <!-- end content box -->
 </div> <!-- end post content -->
+
+
 
 @include('frontend.article.sidebar')
 
@@ -450,6 +435,43 @@
         </script>
    @endforeach
 @endif
+
+<script type="text/javascript">
+    var page = 1;
+    $(window).scroll(function() {
+        if($(window).scrollTop() + $(window).height() >= $(document).height()*0.7) {
+            page++;
+            loadMoreData(page);
+        }
+    });
+
+
+    function loadMoreData(page){
+      $.ajax(
+            {
+                url: '?page=' + page,
+                type: "get",
+                beforeSend: function()
+                {
+                    $('.ajax-load').show();
+                }
+            })
+            .done(function(data)
+            {
+                if(data.html == " "){
+                    $('.ajax-load').html("No more records found");
+                    return;
+                }
+                $('.ajax-load').hide();
+                $("#relaed_posts").append(data.html);
+            })
+            .fail(function(jqXHR, ajaxOptions, thrownError)
+            {
+                  // alert('server not responding...');
+                  console.log('server not responding...');
+            });
+    }
+  </script>
 
 </body>
 
