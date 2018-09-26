@@ -374,10 +374,13 @@
 
   <script type="text/javascript">
     var page = 1;
+    var maxPage   = {{ $articles->lastPage() }};
     $(window).scroll(function() {
         if($(window).scrollTop() + $(window).height() >= $(document).height()*0.7) {
             page++;
-            loadMoreData(page);
+            if(page<=maxPage){
+              loadMoreData(page);
+            }
         }
     });
 
