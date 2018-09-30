@@ -51,6 +51,7 @@
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="">
+    <meta property="fb:app_id"             content="940628459465939" />
     <meta property="og:url"                content="{{ route('singleArticle', [$article->id, $article->slug]) }}" />
     <meta property="og:type"               content="article" />
     <meta property="og:title"              content="{{ $article->title }}" />
@@ -63,6 +64,7 @@
     <!-- Css -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/font-icons.css') }}" />
+    <link rel="stylesheet" href="{{ asset('vendor/share-selection/share-selection.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
 
     <!-- Favicons -->
@@ -377,6 +379,7 @@
   <script src="{{ asset('js/twitterFetcher_min.js') }}"></script>
   <script src="{{ asset('js/jquery.newsTicker.min.js') }}"></script>  
   <script src="{{ asset('js/modernizr.min.js') }}"></script>
+  <script src="{{ asset('vendor/share-selection/share-selection.js') }}"></script>
   <script src="{{ asset('js/scripts.js') }}"></script>
 
     <!-- Toastr --> 
