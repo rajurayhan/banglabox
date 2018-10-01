@@ -175,24 +175,39 @@ class ArticleController extends Controller
         
             $article->image = $filename;
         }
-
-        if ($request->has('featured')) {
-            $article->is_featured = 1;
+        $featured  = $request->featured;
+        $article->is_featured = $featured;
+        if (!$featured) {
+            $article->is_featured = 0;
         }
-
-        if ($request->has('headline')) {
+        $headline  = $request->headline;
+        if ($headline) {
             $oldHeadline = $articleObj->where('is_headline', 1)->first();
             if($oldHeadline){
-                $oldHeadline->is_headline = 0;
-                $oldHeadline->save();
+                if($oldHeadline->id!=$id){
+                    $oldHeadline->is_headline = 0;
+                    $oldHeadline->save();
+                }
             }
-
-            $article->is_headline = 1;
         }
+        else{
+            $headline = 0;
+        }
+        $article->is_headline = $headline;
 
         $article->save();
 
         return redirect()->back()->with('message', 'Article Updated Successfully!');
+
+
+        // $headline  = $request->headline;
+        // if($headline){
+        //     $headline = 'Headline Selected';
+        // }
+        // else{
+        //     $headline = 'Headline Not Selected';
+        // }
+        // return $headline;
     }
 
     public function deleteArticle($id)
@@ -220,5 +235,30 @@ class ArticleController extends Controller
         }
 
         return redirect()->back()->with('message', $msg);
+    }
+
+    public function imageResize()
+    {
+        $articleObj  = new Article();
+        $articles    = $articleObj->get();
+        $notFound = 0;
+        $Existing  = 0;
+        foreach ($articles as $article) {
+            $image  = ('uploads/featured/' . $article->image);
+            $fileName = $article->image;
+            if(file_exists($image)){
+                $Existing++;
+                $img    = Image::make($image);
+                $img->fit(600,360, function ($constraint) {
+                    $constraint->upsize();
+                });
+                $img->save('uploads/featured/'.$fileName);
+            }
+            else{
+                $notFound++;
+            }
+        }
+
+        return 'Done: '.$Existing.'!  Not found: '.$notFound;
     }
 }
