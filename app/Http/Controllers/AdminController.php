@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Settings;
 use App\Subscriber;
+use App\Video;
 
 use Image;
 use App\Mail\NewsLetter;
@@ -78,5 +79,56 @@ class AdminController extends Controller
         }
 
         return response()->json('Newsletter Sent Successfully! ');
+    }
+
+    public function videos()
+    {
+        $videoObj     = new Video();
+        $videos       = $videoObj->orderBy('id', 'DESC')->get();
+
+        return view('backend.videos.videos', compact('videos'));
+        // return $videos;
+    }
+
+    public function postVideo(Request $request)
+    {
+        $videoObj     = new Video();
+
+        $videoObj->url          = $request->url;
+        $videoObj->title        = $request->title;
+        $videoObj->status  = 1;
+        $videoObj->save();
+
+        return redirect()->back()->with('message', 'Video Added Successfully!');
+    }
+
+    public function updateVideo(Request $request)
+    {
+        $videoObj     = new Video();
+        $video        = $videoObj->findorfail($request->vidID);
+
+        $video->url          = $request->url;
+        $video->title        = $request->title;
+        $video->save();
+
+        return redirect()->back()->with('message', 'Video Updated Successfully!');
+    }
+
+    public function deleteVideo($id)
+    {
+        $videoObj     = new Video();
+        $video        = $videoObj->findorfail($id);
+        $video->delete();
+
+        return redirect()->back()->with('message', 'Video Deleted Successfully!');
+    }
+
+    public function getVideo(Request $request)
+    {
+        $videoObj     = new Video();
+        $video        = $videoObj->find($request->id);
+
+        return response()->json($video);
+
     }
 }

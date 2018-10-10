@@ -91,5 +91,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('admin/newsletter', 'AdminController@newsLetter')->name('newsLetter');
     Route::get('admin/newsletter/send', 'AdminController@sendNewsletter')->name('sendNewsletter');
 
+    Route::get('admin/videos', 'AdminController@videos')->name('videos');
+    Route::post('admin/video/post', 'AdminController@postVideo')->name('postVideo');
+    Route::post('admin/video/update', 'AdminController@updateVideo')->name('updateVideo');
+
+    Route::post('admin/video/delete/{id}', 'AdminController@deleteVideo')->name('deleteVideo');
+
+    Route::get('ajax/video/info', 'AdminController@getVideo')->name('getVideo');
+
 });
 

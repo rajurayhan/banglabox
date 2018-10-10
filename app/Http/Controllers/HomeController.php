@@ -10,6 +10,7 @@ use App\Article;
 use App\Category;
 use App\Subscriber;
 use App\Settings;
+use App\Video;
 
 use App\Mail\ContuctUs;
 use Mail;
@@ -24,6 +25,10 @@ class HomeController extends Controller
         $featured           = Article::where('is_headline', 0)->where('is_featured', 1)->where('status', 1)->orderByRaw('RAND()')->take(3)->get();
 
         $latestPosts        = $articleObj->where('status', 1)->orderBy('id', 'DESC')->take(6)->get();
+
+        $videoObj           = new Video();
+        $videos             = $videoObj->orderBy('id', 'DESC')->take(10)->get();
+
         
         if($request->ajax()){
             $view = view('frontend.article.data',compact('articles'))->render();
@@ -32,8 +37,8 @@ class HomeController extends Controller
 
         $randoms  = Article::orderByRaw('RAND()')->where('status', 1)->take(3)->get();
 
-        return view('frontend.home', compact('articles', 'randoms', 'latestPosts', 'headline', 'featured'));
-        // return $headline;
+        return view('frontend.home', compact('articles', 'randoms', 'latestPosts', 'headline', 'featured', 'videos'));
+        // return $videos;
     }
 
     public function about(){

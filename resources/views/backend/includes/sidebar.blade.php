@@ -55,6 +55,8 @@
 
         <li><a href="{{ route('settings') }}"><i class="fa fa-cogs" aria-hidden="true"></i><span>Settings</span></a></li>
 
+        <li class=""><a href="{{ route('videos') }}"><i class="fa fa-youtube"></i> <span>Video</span></a></li>
+
 
       </ul>
       <!-- /.sidebar-menu -->
