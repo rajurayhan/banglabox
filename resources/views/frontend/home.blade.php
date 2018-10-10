@@ -453,7 +453,7 @@
             <p><img src="{{ route('home') }}/img/loader.svg"></p>
     
           </div>
-          <div class="ajax-load-more text-center" style="">
+          <div class="ajax-load-more text-left" style="">
             <button type="button" class="load-more-btn btn btn-lg btn-color btn-button" style="" >আরো পড়ুন</button>
           </div>
           
