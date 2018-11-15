@@ -19,10 +19,11 @@ class HomeController extends Controller
 {
     public function home(Request $request){
         $articleObj         = new Article();
-        $articles           = $articleObj->where('is_headline', 0)->where('status', 1)->orderBy('id', 'DESC')->paginate(6);
+        $articles           = $articleObj->where('is_headline', 0)->where('is_featured', 0)->where('status', 1)->orderBy('id', 'DESC')->paginate(6);
 
         $headline           = $articleObj->where('is_headline', 1)->first();
-        $featured           = Article::where('is_headline', 0)->where('is_featured', 1)->where('status', 1)->orderByRaw('RAND()')->take(3)->get();
+        //$featured           = Article::where('is_headline', 0)->where('is_featured', 1)->where('status', 1)->orderByRaw('RAND()')->take(3)->get();
+        $featured           = $articleObj->where('is_featured', 1)->where('status', 1)->orderBy('featured_location')->get();
 
         $latestPosts        = $articleObj->where('status', 1)->orderBy('id', 'DESC')->take(6)->get();
 

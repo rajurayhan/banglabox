@@ -243,13 +243,27 @@ Banglabox || Edit Article
                   <label>
                     <!-- <input type="checkbox" name="featured" class="flat-red" value="1"> -->
                     @if($article->is_featured)
-                      {{ Form::checkbox('featured', '1', true, ['class' => 'featured']) }}
+                      {{ Form::checkbox('featured', '1', true, ['class' => 'featured', 'id' => 'featured']) }}
                       Featured
                     @else
-                    {{ Form::checkbox('featured', '1', false, ['class' => 'featured']) }}
+                    {{ Form::checkbox('featured', '1', false, ['class' => 'featured', 'id' => 'featured']) }}
                       Featured
                       @endif
                   </label>
+                </div>
+
+                <div id="featurePosition" style="display: none;">
+                  <div class="form-group">
+                    <label for="position" class="col-sm-2 control-label">Position</label>
+  
+                    <div class="col-sm-10">
+                      <select name="position" id="position" class="form-control">
+                          <option value="1">Top</option>
+                          <option value="2">Midle</option>
+                          <option value="3">Bottom</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="form-group" style="">
@@ -264,6 +278,8 @@ Banglabox || Edit Article
                       @endif
                   </label>
                 </div>
+
+                
 
               </div>
               <!-- /.box-body -->
@@ -303,6 +319,12 @@ Banglabox || Edit Article
 
 <script>
     $(document).ready(function() {
+        var is_featured = '{{ $article->is_featured }}';
+        var location = '{{ $article->featured_location }}';
+        if(is_featured==1){          
+          $('#featurePosition').css('display', 'inline');
+          $('#position').val(location);
+        }
         $('.select2').select2();
         $('#tags').tagsInput();
         $('#tags').importTags('{{ $article->tags }}');
@@ -334,6 +356,14 @@ Banglabox || Edit Article
             reader.readAsDataURL(input.files[0]);
         }
     }
+
+    $('#featured').change(function() {  
+        if (this.checked) {
+            $('#featurePosition').css('display', 'inline');
+        } else {
+            $('#featurePosition').css('display', 'none');
+        }
+    });
 </script>
 
 

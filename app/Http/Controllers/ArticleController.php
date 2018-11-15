@@ -122,7 +122,21 @@ class ArticleController extends Controller
             $articleObj->image = $filename;
 
         if ($request->has('featured')) {
-            $articleObj->is_featured = 1;
+            $position                   = $request->position;
+            $articleObj->is_featured    = 1;
+            $articleObj->featured_location       = $position;
+
+            $oldFeaturedWithSamePosition = $articleObj->where('is_featured', 1)->where('featured_location', $position)->first();
+            if($oldFeaturedWithSamePosition){
+                $oldFeaturedWithSamePosition->is_featured   = 0;
+                $oldFeaturedWithSamePosition->featured_location       = NULL;
+
+                $oldFeaturedWithSamePosition->save();
+            }
+        }
+        else{
+            $articleObj->is_featured    = 0;
+            $articleObj->featured_location       = NULL;
         }
 
         if ($request->has('headline')) {
@@ -175,11 +189,33 @@ class ArticleController extends Controller
         
             $article->image = $filename;
         }
-        $featured  = $request->featured;
-        $article->is_featured = $featured;
-        if (!$featured) {
-            $article->is_featured = 0;
+        // $featured  = $request->featured;
+        // $article->is_featured = $featured;
+        // if (!$featured) {
+        //     $article->is_featured = 0;
+        // }
+
+        if ($request->has('featured')) {
+            $position                   = $request->position;
+            $article->is_featured    = 1;
+            $article->featured_location       = $position;
+
+            $oldFeaturedWithSamePosition = $articleObj->where('is_featured', 1)->where('featured_location', $position)->first();
+            if($oldFeaturedWithSamePosition){
+                if($oldFeaturedWithSamePosition->id != $id){
+                    $oldFeaturedWithSamePosition->is_featured   = 0;
+                    $oldFeaturedWithSamePosition->featured_location       = NULL;
+
+                    $oldFeaturedWithSamePosition->save();
+                }
+            }
         }
+
+        else{
+            $article->is_featured    = 0;
+            $article->featured_location       = NULL;
+        }
+
         $headline  = $request->headline;
         if ($headline) {
             $oldHeadline = $articleObj->where('is_headline', 1)->first();

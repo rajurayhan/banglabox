@@ -68,10 +68,10 @@ Banglabox || Articles
                 </thead>
                 <tbody>
                     @foreach($articles as $article)
-                      <tr @if($article->is_headline) style="color: red" @endif>
+                      <tr @if($article->is_headline) style="color: red" @elseif($article->is_featured) style="color: green" @endif>
                         <td>{{ $loop->index+1 }}</td>
                         <td><img src="{{ route('home') }}/uploads/featured/{{ $article->image }}"  class="img-thumbnail img-responsive" style="max-width: 150px;"></td>
-                        <td><a @if($article->is_headline) style="color: red" @endif href="{{ route('singleArticle', [$article->id, $article->slug]) }}" target="_blank">{{ $article->title }} @if($article->is_headline)<span style="display: none;">Headline</span>@endif </a></td>
+                        <td><a @if($article->is_headline) style="color: red"  @elseif($article->is_featured) style="color: green"@endif href="{{ route('singleArticle', [$article->id, $article->slug]) }}" target="_blank">{{ $article->title }} @if($article->is_headline)<span style="display: none;">Headline</span>@elseif($article->is_featured)<span style="display: none;">Featured</span>@endif </a></td>
                         <td>{{ $article->category->name }}</td>
                         <td>{{ $article->slug }}</td>
                         <td>{{ $article->read_count }}</td>

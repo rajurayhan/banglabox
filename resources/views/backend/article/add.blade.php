@@ -96,7 +96,7 @@ Banglabox || Add New Article
             <!-- /.box-header -->
             <!-- form start -->
             {{-- <form method="post" action="{{ route('postArticle') }}" enctype="multipart/form-data"> --}}
-              {{ Form::open(['route'=>'postArticle', 'class'=>'form','enctype' =>'multipart/form-data' ,'files'=>true]) }}
+              {{ Form::open(['route'=>'postArticle', 'class'=>'form', 'id'=>'addArticle', 'enctype' =>'multipart/form-data' ,'files'=>true]) }}
               {{-- {{ csrf_field() }} --}}
               <div class="box-body">
                 <div class="form-group">
@@ -245,9 +245,23 @@ Banglabox || Add New Article
                 <div class="form-group" style="margin-top: 110px !important;">
                   <label>
                     <!-- <input type="checkbox" name="featured" class="flat-red" value="1"> -->
-                    {{ Form::checkbox('featured', '1', false, ['class' => 'featured']) }}
+                    {{ Form::checkbox('featured', '1', false, ['class' => 'featured', 'id' => 'featured']) }}
                       Featured
                   </label>
+                </div>
+
+                <div id="featurePosition" style="display: none;">
+                  <div class="form-group">
+                    <label for="position" class="col-sm-2 control-label">Position</label>
+  
+                    <div class="col-sm-10">
+                      <select name="position" id="position" class="form-control">
+                          <option value="1">Top</option>
+                          <option value="2">Midle</option>
+                          <option value="3">Bottom</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="form-group" style="">
@@ -325,6 +339,14 @@ Banglabox || Add New Article
             reader.readAsDataURL(input.files[0]);
         }
     }
+
+    $('#featured').change(function() {  
+        if (this.checked) {
+            $('#featurePosition').css('display', 'inline');
+        } else {
+            $('#featurePosition').css('display', 'none');
+        }
+    });
 
         //iCheck for checkbox and radio inputs
         $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
