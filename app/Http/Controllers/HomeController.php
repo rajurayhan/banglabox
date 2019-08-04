@@ -187,5 +187,36 @@ class HomeController extends Controller
         return $msg;
     }
 
+    public function feed()
+    {
+           /* create new feed */
+           $feed = \App::make("feed");
+
+
+           /* creating rss feed with our most recent 20 posts */
+           $posts = \DB::table('articles')->orderBy('created_at', 'desc')->take(20)->get();
+
+
+           /* set your feed's title, description, link, pubdate and language */
+           $feed->title = 'Anadalok Pathshala Feed';
+           $feed->description = 'Feeds of latest 20 articles';
+           $feed->logo = route('home').'/'.'img/logo.png';
+           $feed->link = url('feed.rss', 'rss');
+           $feed->setDateFormat('datetime');
+           $feed->pubdate = $posts[0]->created_at;
+           $feed->lang = 'en';
+           $feed->setShortening(true);
+           $feed->setTextLimit(100);
+
+
+           foreach ($posts as $post)
+           {
+               $feed->add($post->title, 'Anadalok', route('singleArticle', [$post->id, $post->slug]), $post->created_at, $post->description, $post->description);
+           }
+
+
+           return $feed->render('rss');
+    }
+
     
 }

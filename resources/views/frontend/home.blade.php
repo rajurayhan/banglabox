@@ -66,18 +66,12 @@
 
 
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
         <script>
-
-        (adsbygoogle = window.adsbygoogle || []).push({
-
-            google_ad_client: "ca-pub-5674956945304338",
-
+          (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3257460471248637",
             enable_page_level_ads: true
-
-        });
-
-    </script>
+          });
+        </script>
 
   <title>BanglaBox</title>
 
@@ -470,23 +464,24 @@
 
           <!-- Widget Ad 300 -->
 
-           <aside class="widget widget_media_image">
+          <!-- <aside class="widget widget_media_image">-->
 
-            <a href="#">
+          <!--  <a href="#">-->
 
-              <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <!-- SideBar Home -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px"
-                     data-ad-client="ca-pub-5674956945304338"
-                     data-ad-slot="9438220874"></ins>
-                <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
+          <!--    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+          <!--      <ins class="adsbygoogle"-->
+          <!--           style="display:inline-block;width:336px;height:280px"-->
+          <!--           data-ad-client="ca-pub-3257460471248637"-->
+          <!--           data-ad-slot="9438220874"></ins>-->
+          <!--      <script>-->
+          <!--      (adsbygoogle = window.adsbygoogle || []).push({});-->
+          <!--      </script>-->
 
-            </a>
+          <!--  </a>-->
 
-          </aside> <!-- end widget ad 300 --> 
+          <!--</aside> -->
+          
+          <!-- end widget ad 300 --> 
 
           
 
@@ -590,23 +585,22 @@
 
 
 
-             <aside class="widget widget_media_image">
+             <!--<aside class="widget widget_media_image">-->
 
-                  <a href="#">
+             <!--     <a href="#">-->
 
-                      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- Home Sidebar Bottom -->
-                    <ins class="adsbygoogle"
-                         style="display:inline-block;width:336px;height:280px"
-                         data-ad-client="ca-pub-5674956945304338"
-                         data-ad-slot="6294302346"></ins>
-                    <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+             <!--         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+             <!--       <ins class="adsbygoogle"-->
+             <!--            style="display:inline-block;width:336px;height:280px"-->
+             <!--            data-ad-client="ca-pub-3257460471248637"-->
+             <!--            data-ad-slot="6294302346"></ins>-->
+             <!--       <script>-->
+             <!--       (adsbygoogle = window.adsbygoogle || []).push({});-->
+             <!--       </script>-->
 
-                  </a>
+             <!--     </a>-->
 
-              </aside>
+             <!-- </aside>-->
 
 
 

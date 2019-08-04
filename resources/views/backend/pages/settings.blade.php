@@ -198,7 +198,7 @@ Banglabox || Update Settings
                 <div class="form-group">
                   <label for="youtube" class="col-sm-2 control-label">Youtube</label>
                   <div class="col-sm-12">
-                    <input type="text" class="form-control" id="youtube" name="youtube"  value="{{ $settings->google_plus }}"  placeholder="Enter Email" >
+                    <input type="text" class="form-control" id="youtube" name="youtube"  value="{{ $settings->youtube }}"  placeholder="Enter Email" >
                   </div>
                 </div>
 

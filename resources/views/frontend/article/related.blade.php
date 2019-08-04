@@ -37,7 +37,7 @@
                 <a href="#">BanglaBox</a>
             </li>
             <li class="entry__meta-date">
-                {{ $published }}
+                {{-- {{ $published }} --}}
             </li>
             </ul>
         </div>

@@ -71,10 +71,17 @@ class ArticleController extends Controller
 
     public function popularArticles()
     {
+        
+        $today          = date('Y-m-d');
+        $from           = date('Y-m-d', strtotime('-15 days', strtotime($today)));
+        
         $articleObj             = new Article();
         $articles               = $articleObj->where('status', 1)
+                                             //->where('category_id', $cat)
+                                             ->whereDate('created_at', '>=', $from)
+                                             ->whereDate('created_at', '<=', $today)
                                              ->orderBy('read_count', 'desc')
-                                             ->take(5)
+                                             ->take(8)
                                              ->get();
         return $articles;
     }

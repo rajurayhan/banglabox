@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 @section('title')
-Banglabox || Category
+Banglabox || Gallery
 @endsection
 @section('headSection')
     <!-- DataTables -->
@@ -12,12 +12,12 @@ Banglabox || Category
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Category
+            Gallery
             <small></small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="active">Category</li>
+            <li class="active">Gallery</li>
         </ol>
     </section>
 
@@ -32,8 +32,8 @@ Banglabox || Category
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Category List</h3>
-              <button type="button" class="btn btn-sm btn-success pull-right" data-toggle="modal" data-target="#addCategory">
+              <h3 class="box-title">User List</h3>
+              <button type="button" class="btn btn-sm btn-success pull-right" data-toggle="modal" data-target="#addUser">
                 Add New</button>
             </div>
             <!-- /.box-header -->
@@ -42,24 +42,29 @@ Banglabox || Category
                 <thead>
                 <tr>
                   <th>SL</th>
+                  <th>Image</th>
                   <th>Name</th>
-                  <th>Slug</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
+                  <th>Path</th>
+                  <th>Copy</th>
+                  <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach($categories as $cat)
+                    @foreach($medias as $media)
                         <tr align="center"> 
                             <td>{{ $loop->index + 1 }}</td>
-                            <td>{{ $cat->name }}</td>
-                            <td>{{ $cat->slug }}</td>
+                            <td><img src="{{ route('home') }}/{{ $media->path }}"  class="img-thumbnail img-responsive" style="max-width: 150px;"></td>
+                            <td>{{ $media->name }}</td>
+                            <td><a href="{{route('home')}}/{{ $media->path }}" target="_blank">{{route('home')}}/{{ $media->path }}</a></td>
                             <td>
-                            <!-- <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editCategory"><span class="glyphicon glyphicon-edit"></span></button> -->
-                            <button type="button" class="btn btn-sm btn-warning" onclick="editCategory({{ $cat->id }});"><span class="glyphicon glyphicon-edit"></span></button>
+                                <button type="button" class="btn btn-sm btn-success" data-clipboard-text="{{ route('home') }}/{{ $media->path }}">
+                                        <i class="ionicons ion-pinpoint"></i>
+                                </button>
                             </td>
+                            
                             <td>
-                                <form id="delete-form-{{ $cat->id }}" action="{{ route('deleteCategory',$cat->id) }}" style="display: none;" method="post">
+                                
+                                <form id="delete-form-{{ $media->id }}" action="{{ route('deleteMedia',$media->id) }}" style="display: none;" method="post">
                             
                                 {{ csrf_field() }}
                                 {{ method_field('POST') }}
@@ -68,7 +73,7 @@ Banglabox || Category
                                 if(confirm('Are you sure, You want to delete this?'))
                                 {
                                     event.preventDefault();
-                                    document.getElementById('delete-form-{{ $cat->id }}').submit();}else{ event.preventDefault(); }">
+                                    document.getElementById('delete-form-{{ $media->id }}').submit();}else{ event.preventDefault(); }">
                                     <span class="glyphicon glyphicon-trash"></span></button>
                             </td>
                         </tr>
@@ -77,10 +82,11 @@ Banglabox || Category
                 <tfoot>
                 <tr>
                   <th>SL</th>
+                  <th>Image</th>
                   <th>Name</th>
-                  <th>Slug</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
+                  <th>Path</th>
+                  <th>Copy</th>
+                  <th>Action</th>
                 </tr>
                 </tfoot>
               </table>
@@ -100,29 +106,28 @@ Banglabox || Category
 <!-- /.content-wrapper -->
 
 <!-- Add Modal -->
-<div class="modal fade" id="addCategory">
+<div class="modal fade" id="addUser">
     <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Add New Category</h4>
+        <h4 class="modal-title">Add New Image</h4>
         </div>
         <div class="modal-body">
             <!-- Form Starts -->
-            <form method="POST" action="{{ route('postCategory') }}">
+            {{ Form::open(['route'=>'postMedia', 'class'=>'form', 'id'=>'postMedia', 'enctype' =>'multipart/form-data' ,'files'=>true]) }}
                 {{ csrf_field() }}
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="name">Category Name</label>
-                        <input type="text" class="form-control"  name="name" placeholder="Category Name" autocomplete="off" required>
+                        <label for="name">Image Name</label>
+                        <input type="text" class="form-control"  name="name" placeholder="Image Name" autocomplete="off" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="slug">Category Slug (Must be Unique)</label>
-                        <input type="text" class="form-control"  name="slug" placeholder="www.example.com/category/{slug}" autocomplete="off" required>
-                    </div>
-                    
+                        <label for="email">Image</label>
+                        <input type="file" class="form-control"  name="image" placeholder="Select Image" autocomplete="off" required>
+                    </div>                   
                     
                 </div>
                 <!-- /.box-body -->
@@ -131,7 +136,7 @@ Banglabox || Category
         <div class="modal-footer">
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Save changes</button>
-        </form>  
+        {{ Form::close()}}
         <!-- Form Ends -->
         </div>
     </div>
@@ -144,28 +149,41 @@ Banglabox || Category
 
 <!-- Edit Modal -->
 
-<div class="modal fade" id="editCategory">
+<div class="modal fade" id="editUser">
     <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Edit Category</h4>
+        <h4 class="modal-title">Edit User</h4>
         </div>
         <div class="modal-body">
             <!-- Form Starts -->
-            <form method="POST" action="{{ route('updateCategory') }}">
+            <form method="POST" action="{{ route('updateUser') }}">
                 {{ csrf_field() }}
                 <div class="box-body">
-                    <div class="form-group">
-                        <label for="name">Category Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Category Name" autocomplete="off" required>
-                        <input type="hidden" class="form-control" id="catID" name="catID" placeholder="Category ID" autocomplete="off">
+                <div class="form-group">
+                        <label for="name">User Name</label>
+                        <input type="text" class="form-control" id="name"  name="name" placeholder="User Name" autocomplete="off" required>
+                        <input type="hidden" class="form-control" id="userID"  name="userID" placeholder="User ID" autocomplete="off" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="slug">Category Slug (Must be Unique)</label>
-                        <input type="text" class="form-control" id="slug" name="slug" placeholder="www.example.com/category/{slug}" autocomplete="off" required>
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="User Email" autocomplete="off" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control"  name="password" placeholder="User Password" autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="active">Status</label>
+                        <select class="form-control" name="active" id="active">
+                                <option value="1">Active</option>
+                                <option value="0">Inactive</option>
+                        </select>
                     </div>
                     
                     
@@ -191,6 +209,7 @@ Banglabox || Category
 <!-- DataTables -->
 <script src="{{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/clipboard.min.js') }}"></script>
 
 <script>
   $(function () {
@@ -205,7 +224,7 @@ Banglabox || Category
     // })
   })
 
-  function editCategory(id) {
+  function editUser(id) {
     	// alert(id);
     	// $('#editExpenseModal').modal('show');
     	$.ajaxSetup({
@@ -214,20 +233,55 @@ Banglabox || Category
 	            }
 	        });
 	        $.ajax({
-	            url: "{{ route('getCategoryInfo') }}",
+	            url: "{{ route('getUserInfo') }}",
 	            data: {id},
 	            type: 'GET',
 	            datatype: 'JSON',
 	            success: function (response) {
 	            		console.log(response);
-                        $('#catID').val(response.id);
+                        $('#userID').val(response.id);
 	            		$('#name').val(response.name);
-                        $('#slug').val(response.slug);
-	            		$('#editCategory').modal('show');
+                        $('#email').val(response.email);
+                        $('#active').val(response.active);
+	            		$('#editUser').modal('show');
 	                },
 
 	        });
 			
 	}
+
+    var clipboard = new ClipboardJS('.btn');
+
+    clipboard.on('success', function(e) {
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+
+        e.clearSelection();
+
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+            }
+        toastr.success('Image Path Copied', 'Success');
+    });
+
+    clipboard.on('error', function(e) {
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+    });
 </script>
 @endsection

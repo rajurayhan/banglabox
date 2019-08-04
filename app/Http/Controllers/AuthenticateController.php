@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use Session;
 
 class AuthenticateController extends Controller
 {
@@ -15,13 +14,7 @@ class AuthenticateController extends Controller
             return view('backend.dashboard');
         }
         else{
-            $attempts = session()->get('loginAttempts');
-            if($attempts==NULL || $attempts<=2){
-                return view('backend.pages.login');
-            }
-            else{
-                return redirect()->route('home')->withErrors('Login Blocked from this Device for 120 minutes.');
-            }
+            return view('backend.pages.login');
         }
     }
     public function postLogin(Request $request)
@@ -30,20 +23,10 @@ class AuthenticateController extends Controller
         $password   = $request->password;
 
         if(Auth::attempt(['email' => $email, 'password' => $password])) {
-            session()->forget('loginAttempts');
             return redirect()->intended('dashboard')->with('message', 'Welcome Back!');
         }
         else{
-            $attempts = session()->get('loginAttempts');
-            if($attempts==NULL){
-                $attempts = 1;
-            }
-            else{
-                $attempts+=1;
-            }
-            session()->put('loginAttempts', $attempts);
-            $left   = 3- $attempts;
-            return redirect()->back()->withErrors('Invalid Username or Password. Attempt(s) Left: '.$left);
+            return redirect()->back()->withErrors('Invalid Username or Password');
         }
 
     }

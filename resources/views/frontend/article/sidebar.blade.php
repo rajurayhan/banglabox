@@ -41,7 +41,7 @@
                                 <a href="#">DeoThemes</a>
                             </li> -->
                             <li class="entry__meta-date">
-                                {{ $published }}
+                                {{-- {{ $published }} --}}
                             </li>
                         </ul>
                     </div>

@@ -47,7 +47,7 @@ class AdminController extends Controller
         $image = Input::file('logo');
         if(Input::hasFile('logo')){
             $filename  = 'logo.' . $image->getClientOriginalExtension();
-            $path = public_path('img/' . $filename);
+            $path = ('img/' . $filename);
             Image::make($image->getRealPath())->resize(90, 40)->save($path);
 
             $settings->logo     = $filename;

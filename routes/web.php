@@ -16,6 +16,7 @@
 // });
 
 /** Front End Routs  **/
+Route::get('/feed.rss', 'HomeController@feed')->name('feed');
 Route::get('/', 'HomeController@home')->name('home');
 
     //Article Routes
@@ -32,7 +33,7 @@ Route::get('/about', 'HomeController@about')->name('about');
 
 Route::get('/contact', 'HomeController@contact')->name('contact'); 
 Route::get('/contact-us', 'HomeController@contactUs')->name('contactUs'); 
-// Route::get('/', 'HomeController@privacy')->name('privacy');
+// Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 // Route::get('/', 'HomeController@copyright')->name('copyright');
 
 Route::get('/search', 'HomeController@search')->name('search'); 
@@ -83,6 +84,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('admin/user/post', 'UserController@postUser')->name('postUser');
     Route::post('admin/user/update/', 'UserController@updateUser')->name('updateUser');
     Route::post('admin/user/delete/{id}', 'UserController@deleteUser')->name('deleteUser');
+
+        //Media 
+    Route::get('admin/media', 'MediaController@media')->name('media');
+    Route::post('admin/media/post', 'MediaController@postMedia')->name('postMedia');
+    Route::post('admin/media/delete/{id}', 'MediaController@deleteMedia')->name('deleteMedia');
 
     Route::get('ajax/user/info/', 'UserController@getUserInfo')->name('getUserInfo'); // Ajax (Edit Purpose)
 

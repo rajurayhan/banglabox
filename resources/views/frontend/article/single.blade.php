@@ -41,10 +41,12 @@
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <script>
         (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-5674956945304338",
+            google_ad_client: "ca-pub-3257460471248637",
             enable_page_level_ads: true
         });
     </script>
+    
+    
     <title>BanglaBox || {{ $article->title }}</title>
 
     <meta charset="utf-8">
@@ -147,8 +149,8 @@
                 <a href="#">DeoThemes</a>
             </li> -->
             <li class="entry__meta-date">
-                <!-- {{ date('d M, Y', strtotime($article->created_at)) }} -->
-                {{ $published }}
+                {{--  {{ date('d M, Y', strtotime($article->created_at)) }} --}}
+                {{-- {{ $published }} --}}
                 
             </li>
         </ul>
@@ -176,9 +178,20 @@
 
 
 
-<!-- <div class="entry__img-holder">
-    <img src="{{ route('home') }}/uploads/featured/{{ $article->image }}" alt="" class="entry__img">
-</div> -->
+<!--<div class="entry__img-holder">-->
+<!--    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+<!--    <ins class="adsbygoogle"-->
+<!--         style="display:block; text-align:center;"-->
+<!--         data-ad-layout="in-article"-->
+<!--         data-ad-format="fluid"-->
+<!--         data-ad-client="ca-pub-3257460471248637"-->
+<!--         data-ad-slot="8175850917">-->
+        
+<!--    </ins>-->
+<!--    <script>-->
+<!--         (adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--    </script>-->
+<!--</div> -->
 
 <div class="entry__article-wrap">
 

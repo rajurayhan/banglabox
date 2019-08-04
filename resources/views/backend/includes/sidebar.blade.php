@@ -55,6 +55,8 @@
 
         <li><a href="{{ route('settings') }}"><i class="fa fa-cogs" aria-hidden="true"></i><span>Settings</span></a></li>
 
+        <li class=""><a href="{{ route('media') }}"><i class="fa fa-file-image-o" aria-hidden="true"></i> <span>Gallery</span></a></li>
+
         <li class=""><a href="{{ route('videos') }}"><i class="fa fa-youtube"></i> <span>Video</span></a></li>
 
 
